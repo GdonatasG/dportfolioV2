@@ -1,0 +1,100 @@
+{
+  "error_try_again": "An error occurred, please try again",
+  "tryAgainText": "Try again",
+  "refresh": "Refresh",
+  "nothing_found": "Nothing found",
+  "bottom_bar": {
+    "label": {
+      "about_me": "About Me",
+      "portfolio": "Portfolio",
+      "contacts": "Contacts",
+      "github": "My Github",
+      "settings": "Settings"
+    }
+  },
+  "tutorial": {
+    "greeting_message": "Hey!\nI’m glad that you have downloaded my Portfolio application.",
+    "what_to_find_message": "Here you can get to know me better and take a look at my portfolio.",
+    "ending_page_message": "I hope that you will find out something interesting about me and my projects.\nHave fun reading!",
+    "confirmation": "Are you sure to continue?",
+    "btn_cancel": "Cancel",
+    "btn_confirm": "Confirm"
+  },
+  "aboutMePage": {
+    "title_mobile_developer_with_level": "Mobile Developer (Junior level)",
+    "country_lithuania": "Lithuania",
+    "title_road_to_programming": "Road to Programming",
+    "road_to_programming_content1": "Why Information technology? Because it's unlimited thing, more you learn – more you can do. In my mind, today's world depends on that thing, so I want to be a part of this age of technology – not only to use, but also create.",
+    "road_to_programming_content2": "How I found myself in IT? At school I was already interested in Information Technology and computers. I think for that reason my favourite lesson was Computer Science. When I was at school I couldn't imagine how big is an IT world and what is actually possible to do. Database, API, Object oriented programming and other things like that was a darkness for me at that time.",
+    "title_the_beginning": "The Beginning",
+    "the_beginning_content1": "After graduating from school I decided to try Java development course for beginners. There I heard about Android Development which turned out to be really interesting for me and after course I started learning Android Development individually.\n\nBy exploring new things I found out about kotlin language which let me to get a bit deeper into mobile development. Then one interesting thing appeared in my life - Flutter framework. It's a cross platform framework which allows to create Mobile Applications for Android and iOS. The simplicity of Flutter allows to create cutting edge design and functionality (This portfolio APP that you are reading is also created with Flutter).",
+    "title_university": "University",
+    "university_content1": "Right now I'm studying at Vytautas Magnus University, Information Systems speciality. The university course and system help me to learn not only IT things, but also side skills which is really important in this modern life. I can't expect with what type of project I'm going to work in the future, for that reason I have to be prepared to understand some specific idea of the project.",
+    "title_goals": "Goals",
+    "goals_content1": "Actually, my main goal is to master Flutter development to ensure the best quality as possible: learning different programming patterns and finding solutions to the most relevant questions. In my mind, it's the thing that has to be divided in some small points to get the best result. Overall, in IT world you have to learn every day to follow current trends.",
+    "title_skills": "Skills",
+    "additional_skills_content1": "*Scored 100 percent from Information Technology exam.",
+    "title_education": "Education",
+    "timeline": {
+      "secondary_education_time": "2014 - 2018",
+      "secondary_education": "Secondary education",
+      "secondary_education_location": "Marijampoles Suduvos gymnasium. Marijampole, Lithuania",
+      "java_course_time": "2018 (3mos.)",
+      "java_course_name": "Java development course",
+      "java_course_location": "Kaunas Coding School. Kaunas, Lithuania",
+      "university_education_time": "2019 - present",
+      "university_education_name": "Bachelor of Computer Science",
+      "university_education_location": "Vytautas Magnus university. Kaunas, Lithuania"
+    }
+  },
+  "portfolioPage": {
+    "title": "My portfolio",
+    "dportfolio_about": "This Mobile application was created in 2020 and updated in the the beginning of 2021 to represent myself as a Mobile Application developer. While exploring Dportfolio you can get to know me better and take a look at my portfolio. Application was built using DDD (Domain Driven Development) principles to maintain better coding structure for future updates."
+  },
+  "contactsPage": {
+    "get_in_touch": "Get in touch!",
+    "email": {
+      "desc": "zitkusd@gmail.com",
+      "btn_text": "Email me"
+    },
+    "linkedin": {
+      "desc": "Add me on LinkedIn!",
+      "btn_text": "Let's connect"
+    },
+    "freelancer": {
+      "desc": "I'm on Freelancer!",
+      "btn_text": "View profile"
+    },
+    "upwork": {
+      "desc": "I'm on Upwork!",
+      "btn_text": "View profile"
+    }
+  },
+  "githubPage": {
+    "visit_profile": "Visit profile",
+    "repos_title": "{repos} repositories",
+    "filter": {
+      "title": "Filter Repositories",
+      "button_filter": "Filter",
+      "button_cancel": "Cancel",
+      "button_reset": "Reset",
+      "options": {
+        "all": "All"
+      }
+    }
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "about_application": "Application",
+    "version": "Version: {version}",
+    "creators": "Creators: {creators}",
+    "built_with": "Application built with Flutter",
+    "personalization": "Personalization",
+    "dark_theme": "Dark Theme",
+    "language": {
+      "title": "Language",
+      "en": "English",
+      "lt": "Lithuanian"
+    }
+  }
+}

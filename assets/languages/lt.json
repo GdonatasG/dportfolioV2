@@ -1,0 +1,100 @@
+{
+  "error_try_again": "Įvyko klaida, bandykite dar kartą",
+  "tryAgainText": "Bandyti dar",
+  "refresh": "Atnaujinti",
+  "nothing_found": "Nieko nerasta",
+  "bottom_bar": {
+    "label": {
+      "about_me": "Apie mane",
+      "portfolio": "Mano darbai",
+      "contacts": "Kontaktai",
+      "github": "Github",
+      "settings": "Nustatymai"
+    }
+  },
+  "tutorial": {
+    "greeting_message": "Labas!\nDžiaugiuosi, jog parsisiuntei mano Portfolio aplikaciją.",
+    "what_to_find_message": "Šiame kūrybos kampelyje gali plačiau susipažinti su manimi bei peržiūrėti mano atliktus darbus.",
+    "ending_page_message": "Tikiuosi, jog atrasi įdomių dalykų apie mane bei mano darbuose.\nLinkiu malonaus skaitymo!",
+    "confirmation": "Ar tikrai tęsti toliau?",
+    "btn_cancel": "Atšaukti",
+    "btn_confirm": "Tęsti"
+  },
+  "aboutMePage": {
+    "title_mobile_developer_with_level": "Mobiliųjų aplikacijų kūrėjas",
+    "country_lithuania": "Lietuva",
+    "title_road_to_programming": "Programavimo kelias",
+    "road_to_programming_content1": "Kodėl informacinės technologijos? Todėl, nes tai yra beribė sritis. Kuo daugiau mokaisi - tuo sunkesnes problemas gali išspręsti ir daugiau funkcijų atlikti. Manau, jog šis šiuolaikinis pasaulis labai priklauso nuo IT, todėl mano tikslas yra tapti ir būti viso to kūrėju, o ne tik vartotoju.",
+    "road_to_programming_content2": "Kaip save atradau IT pasaulyje? Jau mokykloje domėjausi informacinėmis technologijomis, turbūt ne be reikalo ši pamoka ir buvo mėgstamiausia. Mokydamasis mokykloje net neįsivaizdavau kokios yra IT galimybės ir ką iš tikrųjų galima atlikti. Duomenų bazės, „API“, objektiškai orientuotas programavimas ir kiti dalykai tuo metu man buvo visiška tamsa.",
+    "title_the_beginning": "Visko pradžia",
+    "the_beginning_content1": "Po mokyklos nusprendžiau jėgas išbandyti Java programavimo kursuose pradedantiesiems. Ten teko susipažinti su Android programavimu, o tai man pasirodė tikrai įdomu ir verta dėmesio, todėl po kursų nusprendžiau tęsti mokymąsi individualiai.\n\nTyrinėdamas bei besimokydamas atradau Kotlin programavimo kalbą, kuri man leido šiek tiek plačiau įsigilinti į Android programavimą. Po kurio laiko susipažinau ir su Flutter - karkasu, kuris leidžia kurti aplikacijas ne tik Android, bet ir iOS platformoms (Ši darbų aplikacija taip pat sukurta naudojantis minėtu karkasu).",
+    "title_university": "Universitetas",
+    "university_content1": "Šiuo metu esu Vytauto Didžiojo universiteto, informatikos sistemų specialybės studentas. Universiteto programa ir visa sistema suteikia man galimybę ne tik tobulėti IT sferoje, tačiau leidžia mokytis ir skirtingų sričių dalykų, kurie taip pat yra svarbūs šių dienų pasaulyje. Niekada negaliu nuspėti su kokio tipo projektu gali tekti dirbti ateityje, todėl turiu būti pasirengęs suprasti skirtingų projektų idėjas ir mintis.",
+    "title_goals": "Tikslai",
+    "goals_content1": "Šiuo metu turiu vieną didelį tikslą - kuo geriau išmokti naudotis ir perprasti Flutter karkaso galimybes, kad galėčiau užtikrinti geriausią darbų kokybę: įvairūs programavimo šablonai bei atsakymų ieškojimas į svarbiausius šių dienų IT klausimus. Šį tikslą teks išskaidyti į daug mažų punktų, kad mokymąsis ir tobulėjimas būtų paprastesnis bei efektyvesnis. Vis dėlto, IT pasaulis vystosi labai sparčiai, todėl mokytis tenka kiekvieną dieną ir sekti šių dienų tendencijas.",
+    "title_skills": "Įgūdžiai",
+    "additional_skills_content1": "*Surinkta 100 balų iš informatikos valstybinio brandos egzamino.",
+    "title_education": "Išsilavinimas",
+    "timeline": {
+      "secondary_education_time": "2014 - 2018",
+      "secondary_education": "Vidurinis išsilavinimas",
+      "secondary_education_location": "Marijampolės Suduvos gimnazija. Marijampolė, Lietuva",
+      "java_course_time": "2018 (3mėn.)",
+      "java_course_name": "Java programavimo kursai",
+      "java_course_location": "Kaunas Coding School. Kaunas, Lietuva",
+      "university_education_time": "2019 - dabar",
+      "university_education_name": "Informatikos mokslų bakalauras",
+      "university_education_location": "Vytauto didžiojo universitetas. Kaunas, Lietuva"
+    }
+  },
+  "portfolioPage": {
+    "title": "Mano darbai",
+    "dportfolio_about": "Ši išmaniųjų telefonų aplikacija buvo sukurta 2020 metais ir atnaujinta 2021 metų pradžioje bei skirta reprezentuoti save kaip mobiliųjų aplikacijų kūrėją. Naudojantis Dportfolio aplikacija galite plačiau susipažinti su manimi bei peržiūrėti mano atliktus darbus. Aplikacija buvo sukurta naudojantis DDD (Domain Driven Development) principais, kurie padeda palaikyti kodo struktūrą bei ateityje lengviau atlikti aplikacijų bei kodo atnaujinimus."
+  },
+  "contactsPage": {
+    "get_in_touch": "Bendraukime!",
+    "email": {
+      "desc": "zitkusd@gmail.com",
+      "btn_text": "Susisiekti"
+    },
+    "linkedin": {
+      "desc": "Bendraukime LinkedIn!",
+      "btn_text": "Susijungti"
+    },
+    "freelancer": {
+      "desc": "Aš Freelancer platformoje!",
+      "btn_text": "Peržiūrėti profilį"
+    },
+    "upwork": {
+      "desc": "Aš Upwork platformoje!",
+      "btn_text": "Peržiūrėti profilį"
+    }
+  },
+  "githubPage": {
+    "visit_profile": "Peržiūrėti profilį",
+    "repos_title": "{repos} repozitorijos",
+    "filter": {
+      "title": "Filtruoti repozitorijas",
+      "button_filter": "Filtruoti",
+      "button_cancel": "Uždaryti",
+      "button_reset": "Atstatyti",
+      "options": {
+        "all": "Visi"
+      }
+    }
+  },
+  "settingsPage": {
+    "title": "Nustatymai",
+    "about_application": "Aplikacija",
+    "version": "Versija: {version}",
+    "creators": "Kūrėjai: {creators}",
+    "built_with": "Aplikacija sukurta naudojantis Flutter karkasu",
+    "personalization": "Išvaizda",
+    "dark_theme": "Tamsi tema",
+    "language": {
+      "title": "Kalba",
+      "en": "Anglų",
+      "lt": "Lietuvių"
+    }
+  }
+}
