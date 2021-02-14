@@ -32,7 +32,7 @@ final List<PortfolioItem> listOfPortfolioItems = [
     title: 'Dportfolio',
     googlePlayUrl:
         'https://play.google.com/store/apps/details?id=com.app.dportfolio',
-    githubUrl: 'https://github.com/GdonatasG/dportfolio',
+    githubUrl: 'https://github.com/GdonatasG/dportfolioV2',
     about: LocaleKeys.DPORTFOLIO_ABOUT,
     isAboutTranslated: true,
     platformsAndTechnologies: [
