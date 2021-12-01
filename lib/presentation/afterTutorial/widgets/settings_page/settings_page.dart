@@ -1,18 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:dportfolio_v2/application/app_data_builder/app_data_export.dart';
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/text_tile.dart';
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/title_widget.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
-import 'package:dportfolio_v2/presentation/core/themes/theme_constants.dart';
-import 'package:dportfolio_v2/presentation/core/themes/theme_dark.dart';
-import 'package:dportfolio_v2/presentation/core/themes/theme_light.dart';
-import 'package:dportfolio_v2/presentation/core/widgets/edited_switch_preference.dart';
-import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:package_info/package_info.dart';
-import 'package:preferences/preference_page.dart';
-import 'package:preferences/preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage();
@@ -23,7 +12,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage>
     with AutomaticKeepAliveClientMixin {
-  String appVersion;
+  late String appVersion;
 
   @override
   void initState() {
@@ -50,12 +39,12 @@ class _SettingsPageState extends State<SettingsPage>
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Text(
-              context.getString(LocaleKeys.SETTINGS_TITLE),
-              style: Theme.of(context).appBarTheme.textTheme.headline6,
+              context.getString(LocaleKeys.SETTINGS_TITLE) ?? '',
             ),
             centerTitle: true,
           ),
-          body: PreferencePage(
+          body:
+              Container(), /*PreferencePage(
             [
               TitleWidget(
                 title: context.getString(LocaleKeys.ABOUT_APPLICATION),
@@ -124,7 +113,7 @@ class _SettingsPageState extends State<SettingsPage>
                 height: 1.0,
               ),
             ],
-          ),
+          ),*/
         ),
       ),
     );

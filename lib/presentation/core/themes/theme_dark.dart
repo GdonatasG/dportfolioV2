@@ -8,20 +8,22 @@ import '../app_dimensions.dart';
   - White
  */
 
-Color PRIMARY_COLOR = Colors.grey[800];
+Color? PRIMARY_COLOR = Colors.grey[800];
 Color PRIMARY_TEXT_COLOR = Colors.white;
 Color SELECTED_COLOR = Colors.blue.shade600;
 Color FOCUSED_COLOR = Colors.blue.shade900;
 Color UNSELECTED_COLOR = Colors.white;
 
-final ThemeData themeDark = ThemeData(
+final ThemeData themeDark = ThemeData.dark().copyWith(
   primaryColor: PRIMARY_COLOR,
-  accentColor: SELECTED_COLOR,
-  // for [CircularProgressIndicator]
   scaffoldBackgroundColor: Colors.grey[900],
-  unselectedWidgetColor: UNSELECTED_COLOR,
   textSelectionTheme: TextSelectionThemeData(
     cursorColor: UNSELECTED_COLOR,
+  ),
+  colorScheme: ColorScheme.dark(
+    primary: FOCUSED_COLOR,
+    onPrimary: PRIMARY_TEXT_COLOR,
+    secondary: SELECTED_COLOR,
   ),
   iconTheme: IconThemeData(
     color: UNSELECTED_COLOR,
@@ -31,9 +33,10 @@ final ThemeData themeDark = ThemeData(
   textTheme: TextTheme(
     headline2: TextStyle(fontSize: 22.0, color: UNSELECTED_COLOR),
     bodyText1: TextStyle(
-        fontSize: 13.0,
-        color: PRIMARY_TEXT_COLOR,
-        fontWeight: FontWeight.normal),
+      fontSize: 13.0,
+      color: PRIMARY_TEXT_COLOR,
+      fontWeight: FontWeight.normal,
+    ),
     headline4: TextStyle(
       fontSize: 20.0,
       color: PRIMARY_TEXT_COLOR,
@@ -44,19 +47,8 @@ final ThemeData themeDark = ThemeData(
     ),
   ),
   appBarTheme: AppBarTheme(
-    brightness: Brightness.dark,
     centerTitle: true,
-    textTheme: TextTheme(
-      subtitle1: TextStyle(
-        color: PRIMARY_TEXT_COLOR,
-      ),
-      headline6: TextStyle(
-        color: PRIMARY_TEXT_COLOR,
-        fontSize: 18.0,
-        fontWeight: FontWeight.w600,
-        fontFamily: "ComicSansMs",
-      ),
-    ),
+    backgroundColor: PRIMARY_COLOR,
     iconTheme: IconThemeData(
       color: UNSELECTED_COLOR,
       size: AppDimensions.APP_BAR_ICON_SIZE,
@@ -78,10 +70,6 @@ final ThemeData themeDark = ThemeData(
       size: AppDimensions.UNSELECTED_ICON_SIZE,
     ),
   ),
-  buttonTheme: ButtonThemeData(
-    buttonColor: FOCUSED_COLOR,
-    textTheme: ButtonTextTheme.primary,
-  ),
   inputDecorationTheme: InputDecorationTheme(
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(
@@ -101,7 +89,29 @@ final ThemeData themeDark = ThemeData(
     ),
   ),
   tabBarTheme: TabBarTheme(
+    indicator: UnderlineTabIndicator(
+      borderSide: BorderSide(
+        color: SELECTED_COLOR,
+        width: 2.0,
+      ),
+    ),
     labelColor: SELECTED_COLOR,
     unselectedLabelColor: UNSELECTED_COLOR,
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      primary: SELECTED_COLOR,
+    ),
+  ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      textStyle: TextStyle(color: SELECTED_COLOR),
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: FOCUSED_COLOR,
+      onPrimary: PRIMARY_TEXT_COLOR,
+    ),
   ),
 );

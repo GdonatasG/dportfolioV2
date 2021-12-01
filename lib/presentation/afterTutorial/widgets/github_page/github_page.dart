@@ -32,7 +32,7 @@ class _GithubPageState extends State<GithubPage>
       create: (c) => getIt<GithubBloc>()
         ..add(const GithubEvent.getUserDataByName('GdonatasG', false)),
       child: BlocBuilder<GithubBloc, GithubState>(
-        buildWhen: (previous, current) => current.maybeWhen(
+        buildWhen: (p, c) => c.maybeWhen(
           initial: () => true,
           loading: () => true,
           userDataLoaded: (_) => true,

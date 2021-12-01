@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class ContentTextWidget extends StatelessWidget {
   final String content;
 
-  const ContentTextWidget({Key key, @required this.content}) : super(key: key);
+  const ContentTextWidget({
+    Key? key,
+    required this.content,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

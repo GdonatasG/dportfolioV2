@@ -1,15 +1,15 @@
+/*
 import 'package:flutter/material.dart';
-import 'package:preferences/preference_service.dart';
 
 class CustomRadioPreference<T> extends StatefulWidget {
   final Text title;
-  final String desc;
+  final String? desc;
   final T val;
   final String localGroupKey;
   final bool selected;
   final bool isDefault;
 
-  final Function onSelect;
+  final Function? onSelect;
   final bool ignoreTileTap;
 
   final bool disabled;
@@ -90,3 +90,4 @@ class _CustomRadioPreferenceState<T> extends State<CustomRadioPreference<T>> {
     if (widget.onSelect != null) widget.onSelect();
   }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 import 'timeline.dart';
@@ -54,20 +55,20 @@ class TimelineBoxDecoration extends Decoration {
 abstract class _TimelinePainter extends BoxPainter {
   final Paint linePaint;
   final Paint circlePaint;
-  final double iconSize;
+  final double? iconSize;
   final bool isFirst;
   final bool isLast;
-  final TimelinePosition timelinePosition;
-  final TimelineProperties properties;
+  final TimelinePosition? timelinePosition;
+  final TimelineProperties? properties;
 
-  _TimelinePainter(
-      {this.iconSize,
-      this.properties,
-      this.isFirst = false,
-      this.isLast = false,
-      this.timelinePosition,
-      iconBackground})
-      : linePaint = Paint()
+  _TimelinePainter({
+    this.iconSize,
+    this.properties,
+    this.isFirst = false,
+    this.isLast = false,
+    this.timelinePosition,
+    iconBackground,
+  })  : linePaint = Paint()
           ..color = properties.lineColor
           ..strokeCap = StrokeCap.round
           ..strokeWidth = properties.lineWidth
@@ -179,3 +180,4 @@ class _TimelinePainterRight extends _TimelinePainter {
     canvas.drawCircle(offsetCenter, iconBackgroundRadius, circlePaint);
   }
 }
+*/

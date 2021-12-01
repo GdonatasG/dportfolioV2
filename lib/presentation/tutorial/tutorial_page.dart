@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dportfolio_v2/application/wrapper_bloc/wrapper_bloc.dart';
-import 'package:dportfolio_v2/injection.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/core/themes/theme_light.dart';
 import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
@@ -10,6 +9,7 @@ import 'package:dportfolio_v2/presentation/tutorial/widgets/what_to_find_view.da
 import 'package:flutter/material.dart';
 import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TutorialPage extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class TutorialPage extends StatefulWidget {
 
 class _TutorialPageState extends State<TutorialPage> {
   int currentPage = 0;
-  PageController _pageController;
+  late PageController _pageController;
 
   @override
   void initState() {
@@ -35,9 +35,12 @@ class _TutorialPageState extends State<TutorialPage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: themeLight.primaryColor,
-        statusBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.light));
+      statusBarColor: Theme.of(context).primaryColor,
+      statusBarIconBrightness: Theme.of(context).brightness == Brightness.light
+          ? Brightness.dark
+          : Brightness.light,
+      statusBarBrightness: Theme.of(context).brightness,
+    ));
     return Container(
       color: themeLight.primaryColor,
       child: SafeArea(
@@ -74,17 +77,17 @@ class FooterControls extends StatelessWidget {
   final int currentPage;
   final int maxPages;
 
-  const FooterControls(
-      {Key key,
-      @required this.pageController,
-      @required this.maxPages,
-      @required this.currentPage})
-      : super(key: key);
+  const FooterControls({
+    Key? key,
+    required this.pageController,
+    required this.maxPages,
+    required this.currentPage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
+      color: Theme.of(context).primaryColor,
       padding: const EdgeInsets.all(7.0),
       constraints: const BoxConstraints(
         minHeight: 40.0,
@@ -111,15 +114,17 @@ class FooterControls extends StatelessWidget {
       // not first page, but also not last, forward and back icons
       return [
         IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              previousPage();
-            }),
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            previousPage();
+          },
+        ),
         IconButton(
-            icon: const Icon(Icons.arrow_forward),
-            onPressed: () {
-              secondPage();
-            }),
+          icon: const Icon(Icons.arrow_forward),
+          onPressed: () {
+            secondPage();
+          },
+        ),
       ];
     } else {
       return [
@@ -152,23 +157,27 @@ class FooterControls extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(context.getString(LocaleKeys.CONFIRMATION)),
+            title: Text(
+              context.getString(LocaleKeys.CONFIRMATION) ?? '',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+            ),
             actions: [
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: new Text(context.getString(LocaleKeys.BTN_CANCEL)),
+                child: Text(context.getString(LocaleKeys.BTN_CANCEL) ?? ''),
               ), // cancel button
-              FlatButton(
-                onPressed: () async {
-                  getIt<WrapperBloc>()
+              TextButton(
+                onPressed: () {
+                  BlocProvider.of<WrapperBloc>(context)
                       .add(const WrapperEvent.tutorialCompleted());
-                  await ExtendedNavigator.of(context)
-                      .replace(Routes.afterTutorialPage);
+                  context.router.replace(const AfterTutorialPageRoute());
                 },
                 child: Text(
-                  context.getString(LocaleKeys.BTN_CONFIRM),
+                  context.getString(LocaleKeys.BTN_CONFIRM) ?? '',
                 ),
               ), // confirm button
             ],

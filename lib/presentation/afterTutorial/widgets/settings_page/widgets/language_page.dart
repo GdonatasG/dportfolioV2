@@ -3,8 +3,6 @@ import 'package:dportfolio_v2/application/app_data_builder/locale_constants.dart
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/core/widgets/custom_radio_preference.dart';
 import 'package:flutter/material.dart';
-import 'package:preferences/preference_page.dart';
-import 'package:preferences/preferences.dart';
 
 class LanguagePage extends StatefulWidget {
   @override
@@ -20,12 +18,13 @@ class _LanguagePageState extends State<LanguagePage> {
         child: Scaffold(
           appBar: AppBar(
             title: Text(
-              context.getString(LocaleKeys.LANGUAGE_TITLE),
-              style: Theme.of(context).appBarTheme.textTheme.headline6,
+              context.getString(LocaleKeys.LANGUAGE_TITLE) ?? '',
+              style: Theme.of(context).textTheme.headline6,
             ),
             centerTitle: true,
           ),
-          body: PreferencePage([
+          body:
+              Container() /*PreferencePage([
             const Divider(
               height: 1.0,
             ),
@@ -36,12 +35,12 @@ class _LanguagePageState extends State<LanguagePage> {
               ),
               LocaleConstants.LANG_EN,
               LocaleConstants.PREFERENCE_LANGUAGE,
-              isDefault: context.getCurrentLocale.languageCode ==
+              isDefault: context.getCurrentLocale?.languageCode ==
                   LocaleConstants.LANG_EN,
               onSelect: () {
-                WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
                   AppDataBuilder.of(context)
-                      .changeLocale(const Locale(LocaleConstants.LANG_EN));
+                      ?.changeLocale(const Locale(LocaleConstants.LANG_EN));
                 });
               },
             ),
@@ -67,7 +66,8 @@ class _LanguagePageState extends State<LanguagePage> {
             const Divider(
               height: 1.0,
             ),
-          ]),
+          ])*/
+          ,
         ),
       ),
     );

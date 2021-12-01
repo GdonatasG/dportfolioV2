@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'github_user.dart';
 
@@ -9,15 +10,17 @@ part of 'github_user.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$GithubUserTearOff {
   const _$GithubUserTearOff();
 
-// ignore: unused_element
   _GithubUser call(
-      {@required String login,
-      @required String avatar_url,
-      @required String html_url}) {
+      {required String? login,
+      required String? avatar_url,
+      required String? html_url}) {
     return _GithubUser(
       login: login,
       avatar_url: avatar_url,
@@ -27,16 +30,17 @@ class _$GithubUserTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $GithubUser = _$GithubUserTearOff();
 
 /// @nodoc
 mixin _$GithubUser {
-  String get login;
-  String get avatar_url;
-  String get html_url;
+  String? get login => throw _privateConstructorUsedError;
+  String? get avatar_url => throw _privateConstructorUsedError;
+  String? get html_url => throw _privateConstructorUsedError;
 
-  $GithubUserCopyWith<GithubUser> get copyWith;
+  @JsonKey(ignore: true)
+  $GithubUserCopyWith<GithubUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -44,7 +48,7 @@ abstract class $GithubUserCopyWith<$Res> {
   factory $GithubUserCopyWith(
           GithubUser value, $Res Function(GithubUser) then) =
       _$GithubUserCopyWithImpl<$Res>;
-  $Res call({String login, String avatar_url, String html_url});
+  $Res call({String? login, String? avatar_url, String? html_url});
 }
 
 /// @nodoc
@@ -57,15 +61,23 @@ class _$GithubUserCopyWithImpl<$Res> implements $GithubUserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object login = freezed,
-    Object avatar_url = freezed,
-    Object html_url = freezed,
+    Object? login = freezed,
+    Object? avatar_url = freezed,
+    Object? html_url = freezed,
   }) {
     return _then(_value.copyWith(
-      login: login == freezed ? _value.login : login as String,
-      avatar_url:
-          avatar_url == freezed ? _value.avatar_url : avatar_url as String,
-      html_url: html_url == freezed ? _value.html_url : html_url as String,
+      login: login == freezed
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar_url: avatar_url == freezed
+          ? _value.avatar_url
+          : avatar_url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      html_url: html_url == freezed
+          ? _value.html_url
+          : html_url // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -76,7 +88,7 @@ abstract class _$GithubUserCopyWith<$Res> implements $GithubUserCopyWith<$Res> {
           _GithubUser value, $Res Function(_GithubUser) then) =
       __$GithubUserCopyWithImpl<$Res>;
   @override
-  $Res call({String login, String avatar_url, String html_url});
+  $Res call({String? login, String? avatar_url, String? html_url});
 }
 
 /// @nodoc
@@ -91,36 +103,40 @@ class __$GithubUserCopyWithImpl<$Res> extends _$GithubUserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object login = freezed,
-    Object avatar_url = freezed,
-    Object html_url = freezed,
+    Object? login = freezed,
+    Object? avatar_url = freezed,
+    Object? html_url = freezed,
   }) {
     return _then(_GithubUser(
-      login: login == freezed ? _value.login : login as String,
-      avatar_url:
-          avatar_url == freezed ? _value.avatar_url : avatar_url as String,
-      html_url: html_url == freezed ? _value.html_url : html_url as String,
+      login: login == freezed
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar_url: avatar_url == freezed
+          ? _value.avatar_url
+          : avatar_url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      html_url: html_url == freezed
+          ? _value.html_url
+          : html_url // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_GithubUser extends _GithubUser {
   const _$_GithubUser(
-      {@required this.login,
-      @required this.avatar_url,
-      @required this.html_url})
-      : assert(login != null),
-        assert(avatar_url != null),
-        assert(html_url != null),
-        super._();
+      {required this.login, required this.avatar_url, required this.html_url})
+      : super._();
 
   @override
-  final String login;
+  final String? login;
   @override
-  final String avatar_url;
+  final String? avatar_url;
   @override
-  final String html_url;
+  final String? html_url;
 
   @override
   String toString() {
@@ -130,42 +146,39 @@ class _$_GithubUser extends _GithubUser {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GithubUser &&
-            (identical(other.login, login) ||
-                const DeepCollectionEquality().equals(other.login, login)) &&
+        (other.runtimeType == runtimeType &&
+            other is _GithubUser &&
+            (identical(other.login, login) || other.login == login) &&
             (identical(other.avatar_url, avatar_url) ||
-                const DeepCollectionEquality()
-                    .equals(other.avatar_url, avatar_url)) &&
+                other.avatar_url == avatar_url) &&
             (identical(other.html_url, html_url) ||
-                const DeepCollectionEquality()
-                    .equals(other.html_url, html_url)));
+                other.html_url == html_url));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(login) ^
-      const DeepCollectionEquality().hash(avatar_url) ^
-      const DeepCollectionEquality().hash(html_url);
+  int get hashCode => Object.hash(runtimeType, login, avatar_url, html_url);
 
+  @JsonKey(ignore: true)
   @override
   _$GithubUserCopyWith<_GithubUser> get copyWith =>
       __$GithubUserCopyWithImpl<_GithubUser>(this, _$identity);
 }
 
 abstract class _GithubUser extends GithubUser {
-  const _GithubUser._() : super._();
   const factory _GithubUser(
-      {@required String login,
-      @required String avatar_url,
-      @required String html_url}) = _$_GithubUser;
+      {required String? login,
+      required String? avatar_url,
+      required String? html_url}) = _$_GithubUser;
+  const _GithubUser._() : super._();
 
   @override
-  String get login;
+  String? get login;
   @override
-  String get avatar_url;
+  String? get avatar_url;
   @override
-  String get html_url;
+  String? get html_url;
   @override
-  _$GithubUserCopyWith<_GithubUser> get copyWith;
+  @JsonKey(ignore: true)
+  _$GithubUserCopyWith<_GithubUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }

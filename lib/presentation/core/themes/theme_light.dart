@@ -11,15 +11,26 @@ import '../app_dimensions.dart';
  */
 
 Color PRIMARY_COLOR = Colors.white;
-Color PRIMARY_TEXT_COLOR = Colors.grey[800];
+Color? PRIMARY_TEXT_COLOR = Colors.grey[800];
 Color SELECTED_COLOR = Colors.redAccent;
 Color FOCUSED_COLOR = Colors.black;
-Color UNSELECTED_COLOR = Colors.grey[600];
+Color UNSELECTED_COLOR = Colors.grey[600]!;
 
-final ThemeData themeLight = ThemeData(
+final ThemeData themeLight = ThemeData.light().copyWith(
   primaryColor: PRIMARY_COLOR,
-  accentColor: SELECTED_COLOR,
-  // for [CircularProgressIndicator]
+  indicatorColor: SELECTED_COLOR,
+  colorScheme: ColorScheme.light(
+    primary: SELECTED_COLOR,
+    onPrimary: Colors.black,
+    secondary: SELECTED_COLOR,
+    onSecondary: SELECTED_COLOR,
+  ),
+  appBarTheme: AppBarTheme(
+    backgroundColor: PRIMARY_COLOR,
+  ),
+  checkboxTheme: CheckboxThemeData(
+    overlayColor: MaterialStateProperty.all(SELECTED_COLOR),
+  ),
   scaffoldBackgroundColor: Colors.grey.shade50,
   unselectedWidgetColor: UNSELECTED_COLOR,
   cupertinoOverrideTheme: CupertinoThemeData(
@@ -29,16 +40,17 @@ final ThemeData themeLight = ThemeData(
     cursorColor: UNSELECTED_COLOR,
   ),
   iconTheme: IconThemeData(
-    color: FOCUSED_COLOR,
+    color: PRIMARY_TEXT_COLOR,
     size: AppDimensions.UNSELECTED_ICON_SIZE,
   ),
   dividerTheme: DividerThemeData(thickness: 0.25, color: UNSELECTED_COLOR),
   textTheme: TextTheme(
     headline2: TextStyle(fontSize: 22.0, color: UNSELECTED_COLOR),
     bodyText1: TextStyle(
-        fontSize: 13.0,
-        color: PRIMARY_TEXT_COLOR,
-        fontWeight: FontWeight.normal),
+      fontSize: 13.0,
+      color: PRIMARY_TEXT_COLOR,
+      fontWeight: FontWeight.normal,
+    ),
     headline4: TextStyle(
       fontSize: 18.0,
       color: PRIMARY_TEXT_COLOR,
@@ -46,29 +58,6 @@ final ThemeData themeLight = ThemeData(
     headline5: TextStyle(
       fontSize: 15.0,
       color: PRIMARY_TEXT_COLOR,
-    ),
-  ),
-  appBarTheme: AppBarTheme(
-    brightness: Brightness.light,
-    centerTitle: true,
-    textTheme: TextTheme(
-      subtitle1: TextStyle(
-        color: PRIMARY_TEXT_COLOR,
-      ),
-      headline6: TextStyle(
-        color: PRIMARY_TEXT_COLOR,
-        fontSize: 19.0,
-        fontWeight: FontWeight.w500,
-        fontFamily: "ComicSansMs",
-      ),
-    ),
-    iconTheme: IconThemeData(
-      color: FOCUSED_COLOR,
-      size: AppDimensions.APP_BAR_ICON_SIZE,
-    ),
-    actionsIconTheme: IconThemeData(
-      color: FOCUSED_COLOR,
-      size: AppDimensions.APP_BAR_ICON_SIZE,
     ),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -82,10 +71,6 @@ final ThemeData themeLight = ThemeData(
       color: UNSELECTED_COLOR,
       size: AppDimensions.UNSELECTED_ICON_SIZE,
     ),
-  ),
-  buttonTheme: ButtonThemeData(
-    buttonColor: PRIMARY_TEXT_COLOR,
-    textTheme: ButtonTextTheme.primary,
   ),
   inputDecorationTheme: InputDecorationTheme(
     enabledBorder: OutlineInputBorder(
@@ -106,7 +91,29 @@ final ThemeData themeLight = ThemeData(
     ),
   ),
   tabBarTheme: TabBarTheme(
+    indicator: UnderlineTabIndicator(
+      borderSide: BorderSide(
+        color: SELECTED_COLOR,
+        width: 2.0,
+      ),
+    ),
     labelColor: FOCUSED_COLOR,
     unselectedLabelColor: UNSELECTED_COLOR,
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      primary: SELECTED_COLOR,
+    ),
+  ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      textStyle: TextStyle(color: SELECTED_COLOR),
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: PRIMARY_TEXT_COLOR,
+      onPrimary: PRIMARY_COLOR,
+    ),
   ),
 );

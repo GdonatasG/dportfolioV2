@@ -17,7 +17,7 @@ class AppLocalizations {
   final GetPathFunction getPathFunction;
 
   /// The string to return if the key is not found.
-  final String notFoundString;
+  final String? notFoundString;
 
   /// The localized strings.
   final Map<String, String> _strings = HashMap();
@@ -29,7 +29,7 @@ class AppLocalizations {
       this.notFoundString});
 
   /// Returns the AppLocalizations instance attached to the specified build config.
-  static AppLocalizations of(BuildContext context) =>
+  static AppLocalizations? of(BuildContext context) =>
       Localizations.of<AppLocalizations>(context, AppLocalizations);
 
   /// Loads the localized strings.
@@ -47,8 +47,8 @@ class AppLocalizations {
   }
 
   /// Returns the string associated to the specified key.
-  String get(String key, [dynamic args]) {
-    String value = this._strings[key];
+  String? get(String key, [dynamic args]) {
+    String? value = this._strings[key];
     if (value == null) {
       return notFoundString;
     }

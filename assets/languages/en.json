@@ -1,5 +1,6 @@
 {
   "error_try_again": "An error occurred, please try again",
+  "error_empty_webview_url": "Couldn't open this website :(",
   "tryAgainText": "Try again",
   "refresh": "Refresh",
   "nothing_found": "Nothing found",

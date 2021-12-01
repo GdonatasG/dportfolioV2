@@ -1,12 +1,14 @@
 import 'dart:ui';
 
+import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/core/widgets/backgrounded_tag.dart';
 import 'package:flutter/material.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
 
 class Skills extends StatefulWidget {
-  const Skills({Key key}) : super(key: key);
+  const Skills({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _SkillsState createState() => _SkillsState();
@@ -47,15 +49,18 @@ class _SkillsState extends State<Skills> {
                 alignment: WrapAlignment.center,
                 spacing: 4.0,
                 children: listOfSkills
-                    .map((skill) => BackgroundedTag(
+                    .map(
+                      (skill) => BackgroundedTag(
                         text: Text(
                           skill,
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1
-                              .copyWith(fontWeight: FontWeight.w500),
+                              ?.copyWith(fontWeight: FontWeight.w500),
                         ),
-                        bgColor: Theme.of(context).primaryColor))
+                        bgColor: Theme.of(context).primaryColor,
+                      ),
+                    )
                     .toList(),
               ),
             ),
@@ -66,11 +71,12 @@ class _SkillsState extends State<Skills> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 Text(
-                  context.getString(LocaleKeys.ADDITIONAL_SKILLS_CONTENT1),
+                  context.getString(LocaleKeys.ADDITIONAL_SKILLS_CONTENT1) ??
+                      '',
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1
-                      .copyWith(fontStyle: FontStyle.italic),
+                      ?.copyWith(fontStyle: FontStyle.italic),
                   textAlign: TextAlign.center,
                 )
               ]),

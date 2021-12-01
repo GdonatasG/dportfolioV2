@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
 
 class University extends StatefulWidget {
-  const University({Key key}) : super(key: key);
+  const University({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _UniversityState createState() => _UniversityState();
@@ -30,7 +32,8 @@ class _UniversityState extends State<University> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 ContentTextWidget(
-                    content: context.getString(LocaleKeys.UNIVERSITY_CONTENT1))
+                    content:
+                        context.getString(LocaleKeys.UNIVERSITY_CONTENT1) ?? '')
               ]),
             ),
           )

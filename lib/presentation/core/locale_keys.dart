@@ -1,5 +1,6 @@
 abstract class LocaleKeys {
   static const ERROR_TRY_AGAIN = "error_try_again";
+  static const ERROR_EMPTY_WEBVIEW_URL = "error_empty_webview_url";
   static const TRY_AGAIN = 'tryAgainText';
   static const REFRESH = 'refresh';
   static const NOTHING_FOUND = "nothing_found";

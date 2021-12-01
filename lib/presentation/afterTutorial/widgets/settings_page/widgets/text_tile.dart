@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class TextTile extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final bool isSingleLine;
+  final String? title;
+  final String? subtitle;
+  final bool? isSingleLine;
 
-  final Icon leading;
-  final Icon trailing;
+  final Icon? leading;
+  final Icon? trailing;
 
-  final Function onTap;
+  final VoidCallback? onTap;
 
   const TextTile({
-    Key key,
+    Key? key,
     this.title,
     this.subtitle,
     this.isSingleLine,
@@ -28,24 +28,26 @@ class TextTile extends StatelessWidget {
         leading: leading != null
             ? IconTheme(
                 data: Theme.of(context).iconTheme,
-                child: leading,
+                child: leading!,
               )
             : null,
         trailing: trailing != null
             ? IconTheme(
                 data: Theme.of(context).iconTheme,
-                child: trailing,
+                child: trailing!,
               )
             : null,
         onTap: onTap,
         title: Text(
-          title,
-          overflow: isSingleLine ? TextOverflow.ellipsis : TextOverflow.visible,
+          title ?? '',
+          overflow: (isSingleLine ?? false)
+              ? TextOverflow.ellipsis
+              : TextOverflow.visible,
           style: Theme.of(context).textTheme.bodyText1,
         ),
         subtitle: subtitle != null
             ? Text(
-                subtitle,
+                subtitle ?? '',
                 style: Theme.of(context).textTheme.bodyText1,
               )
             : null,

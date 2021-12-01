@@ -12,11 +12,14 @@ extension UrlExtensions on BuildContext {
         enableJavaScript: true,
       );
     } else {
-      Scaffold.of(this).showSnackBar(
-        SnackBar(
-          content: Text(this.getString(LocaleKeys.ERROR_TRY_AGAIN)),
-        ),
-      );
+      final message = getString(LocaleKeys.ERROR_TRY_AGAIN);
+      if (message != null) {
+        ScaffoldMessenger.of(this).showSnackBar(
+          SnackBar(
+            content: Text(message),
+          ),
+        );
+      }
     }
   }
 }

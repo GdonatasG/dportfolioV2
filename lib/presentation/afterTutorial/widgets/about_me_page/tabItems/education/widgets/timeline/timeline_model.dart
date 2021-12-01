@@ -1,21 +1,24 @@
+/*
 import 'package:flutter/material.dart';
 
 enum TimelineItemPosition { left, right, random }
 
 class TimelineModel {
-  final Icon icon;
-  final Color iconBackground;
+  final Icon? icon;
+  final Color? iconBackground;
   final Widget child;
   final TimelineItemPosition position;
   bool isFirst;
   bool isLast;
 
-  TimelineModel(this.child,
-      {this.icon,
-      this.iconBackground,
-      this.position = TimelineItemPosition.random,
-      this.isFirst = false,
-      this.isLast = false});
+  TimelineModel(
+    this.child, {
+    this.icon,
+    this.iconBackground,
+    this.position = TimelineItemPosition.random,
+    this.isFirst = false,
+    this.isLast = false,
+  });
 
   @override
   bool operator ==(o) {
@@ -43,3 +46,4 @@ class TimelineModel {
           isFirst: isFirst ?? this.isFirst,
           isLast: isLast ?? this.isLast);
 }
+*/

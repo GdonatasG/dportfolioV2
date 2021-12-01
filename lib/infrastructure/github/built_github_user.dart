@@ -1,3 +1,4 @@
+/*
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dportfolio_v2/domain/github/github_user.dart';
@@ -16,9 +17,9 @@ abstract class BuiltGithubUser
 
   GithubUser toDomain() {
     return GithubUser(
-      login: login,
-      avatar_url: avatar_url,
-      html_url: html_url,
+      login: login ?? "",
+      avatar_url: avatar_url ?? "",
+      html_url: html_url ?? "",
     );
   }
 
@@ -28,3 +29,4 @@ abstract class BuiltGithubUser
   static Serializer<BuiltGithubUser> get serializer =>
       _$builtGithubUserSerializer;
 }
+*/

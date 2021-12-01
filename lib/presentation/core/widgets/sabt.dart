@@ -5,19 +5,19 @@ class SABT extends StatefulWidget {
   final Widget child;
 
   const SABT({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override
   _SABTState createState() {
-    return new _SABTState();
+    return _SABTState();
   }
 }
 
 class _SABTState extends State<SABT> {
-  ScrollPosition _position;
-  bool _visible;
+  ScrollPosition? _position;
+  bool _visible = false;
 
   @override
   void dispose() {
@@ -43,9 +43,9 @@ class _SABTState extends State<SABT> {
   }
 
   void _positionListener() {
-    final FlexibleSpaceBarSettings settings =
-        context.dependOnInheritedWidgetOfExactType();
-    bool visible =
+    final FlexibleSpaceBarSettings? settings =
+        context.dependOnInheritedWidgetOfExactType<FlexibleSpaceBarSettings>();
+    final bool visible =
         settings == null || settings.currentExtent <= settings.minExtent;
     if (_visible != visible) {
       setState(() {

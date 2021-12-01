@@ -13,10 +13,10 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   final GetPathFunction getPathFunction;
 
   /// The string to return if the key is not found.
-  final String notFoundString;
+  final String? notFoundString;
 
   /// The locale to force (if specified, not recommended except under special circumstances).
-  final Locale locale;
+  final Locale? locale;
 
   /// Creates a new app localization delegate instance.
   const AppLocalizationsDelegate(
@@ -44,19 +44,19 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   bool shouldReload(AppLocalizationsDelegate old) => true;
 
   /// The default locale resolution callback.
-  Locale localeResolutionCallback(
-    Locale locale,
+  Locale? localeResolutionCallback(
+    Locale? locale,
     Iterable<Locale> supportedLocales,
   ) {
     if (this.locale != null) {
-      return this.locale;
+      return locale;
     }
 
     if (locale == null) {
       return supportedLocales.first;
     }
 
-    return _isLocaleSupported(supportedLocales, locale) ??
+    return _isLocaleSupported(supportedLocales.toList(), locale) ??
         supportedLocales.first;
   }
 
@@ -69,7 +69,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
       ];
 
   /// Returns the locale if it's supported by this localization delegate, null otherwise.
-  Locale _isLocaleSupported(List<Locale> supportedLocales, Locale locale) {
+  Locale? _isLocaleSupported(List<Locale> supportedLocales, Locale locale) {
     for (Locale supportedLocale in supportedLocales) {
       if (supportedLocale.languageCode == locale.languageCode ||
           supportedLocale.countryCode == locale.countryCode) {

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
 
 class Goals extends StatefulWidget {
-  const Goals({Key key}) : super(key: key);
+  const Goals({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _GoalsState createState() => _GoalsState();
@@ -30,7 +32,8 @@ class _GoalsState extends State<Goals> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 ContentTextWidget(
-                    content: context.getString(LocaleKeys.GOALS_CONTENT1))
+                  content: context.getString(LocaleKeys.GOALS_CONTENT1) ?? '',
+                )
               ]),
             ),
           )

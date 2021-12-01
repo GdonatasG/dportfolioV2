@@ -19,7 +19,7 @@ class AfterTutorialPage extends StatefulWidget {
 
 class _AfterTutorialPageState extends State<AfterTutorialPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
   final List<Widget> _pages = [
     const AboutMePage(),
     const PortfolioPage(),
@@ -41,12 +41,14 @@ class _AfterTutorialPageState extends State<AfterTutorialPage>
       onWillPop: _onBackPressed,
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
-            statusBarColor: currentTheme.primaryColor,
-            statusBarIconBrightness:
-                currentTheme == themeLight ? Brightness.dark : Brightness.light,
-            statusBarBrightness: currentTheme == themeLight
-                ? Brightness.light
-                : Brightness.dark),
+          statusBarColor: Theme.of(context).primaryColor,
+          statusBarIconBrightness:
+              Theme.of(context).brightness == Brightness.light
+                  ? Brightness.dark
+                  : Brightness.light,
+          /*currentTheme == themeLight ? Brightness.dark : Brightness.light,*/
+          statusBarBrightness: Theme.of(context).brightness,
+        ),
         child: Scaffold(
           bottomNavigationBar: BottomBar(),
           body: Consumer<CurrentBottomBarPage>(
