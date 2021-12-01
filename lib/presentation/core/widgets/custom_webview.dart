@@ -4,27 +4,28 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
 
-class CustomWebViewArguments {
-  final Key key;
-  final String url;
-
-  CustomWebViewArguments(this.key, @required this.url);
-}
+import '../locale_keys.dart';
 
 class CustomWebView extends StatefulWidget {
   final String url;
 
-  const CustomWebView({Key key, @required this.url}) : super(key: key);
+  const CustomWebView({
+    Key? key,
+    required this.url,
+  }) : super(key: key);
 
   @override
   _CustomWebViewState createState() => _CustomWebViewState();
 }
 
 class _CustomWebViewState extends State<CustomWebView> {
-  Completer<WebViewController> _controller = Completer<WebViewController>();
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
+
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      new GlobalKey<RefreshIndicatorState>();
+      GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,39 +33,79 @@ class _CustomWebViewState extends State<CustomWebView> {
       appBar: AppBar(
         actionsIconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        actions: [
-          NavigationControls(_controller.future),
-          IconButton(
-            icon: Icon(Icons.refresh),
-            onPressed: () {
-              _refreshIndicatorKey.currentState.show();
-            },
-          ),
-        ],
+        actions: widget.url.isNotEmpty
+            ? [
+                NavigationControls(_controller.future),
+                IconButton(
+                  icon: Icon(Icons.refresh),
+                  onPressed: () {
+                    _refreshIndicatorKey.currentState?.show();
+                  },
+                ),
+              ]
+            : [],
       ),
-      body: RefreshIndicator(
-        key: _refreshIndicatorKey,
-        onRefresh: () async {
-          final Completer completer = Completer();
-          await Future.delayed(Duration(seconds: 1));
-          _controller.future.then((value) {
-            value.reload();
-            completer.complete();
-          });
-          return completer.future;
+      body: widget.url.isNotEmpty
+          ? ShowWebView(
+              url: this.widget.url,
+              controller: _controller,
+              refreshIndicatorKey: _refreshIndicatorKey)
+          : ShowEmptyUrlMessageLayout(),
+    );
+  }
+}
+
+class ShowEmptyUrlMessageLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(context.getString(LocaleKeys.ERROR_EMPTY_WEBVIEW_URL) ?? '',
+          style: Theme.of(context).textTheme.bodyText1),
+    );
+  }
+}
+
+class ShowWebView extends StatefulWidget {
+  final String url;
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey;
+  final Completer<WebViewController> controller;
+
+  const ShowWebView({
+    Key? key,
+    required this.url,
+    required this.refreshIndicatorKey,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  _ShowWebViewState createState() => _ShowWebViewState();
+}
+
+class _ShowWebViewState extends State<ShowWebView> {
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      key: widget.refreshIndicatorKey,
+      onRefresh: () async {
+        final Completer completer = Completer();
+        await Future.delayed(const Duration(seconds: 1));
+        this.widget.controller.future.then((value) {
+          value.reload();
+          completer.complete();
+        });
+        return completer.future;
+      },
+      child: WebView(
+        initialUrl: this.widget.url,
+        javascriptMode: JavascriptMode.unrestricted,
+        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+          Factory<VerticalDragGestureRecognizer>(
+            () => VerticalDragGestureRecognizer(),
+          ),
         },
-        child: WebView(
-          initialUrl: this.widget.url,
-          javascriptMode: JavascriptMode.unrestricted,
-          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-            Factory<VerticalDragGestureRecognizer>(
-              () => VerticalDragGestureRecognizer(),
-            ),
-          },
-          onWebViewCreated: (WebViewController webViewController) {
-            _controller.complete(webViewController);
-          },
-        ),
+        onWebViewCreated: (WebViewController webViewController) {
+          this.widget.controller.complete(webViewController);
+        },
       ),
     );
   }
@@ -84,26 +125,23 @@ class NavigationControls extends StatelessWidget {
           (BuildContext context, AsyncSnapshot<WebViewController> snapshot) {
         final bool webViewReady =
             snapshot.connectionState == ConnectionState.done;
-        final WebViewController controller = snapshot.data;
+        final WebViewController? controller = snapshot.data;
         return Row(
           children: <Widget>[
             IconButton(
-              icon: IconTheme(
-                data: Theme.of(context).appBarTheme.actionsIconTheme,
-                child: const Icon(Icons.arrow_back_ios),
-              ),
+              icon: const Icon(Icons.arrow_back_ios),
               onPressed: !webViewReady
                   ? null
-                  : () => navigate(context, controller, goBack: true),
+                  : () => controller != null
+                      ? navigate(context, controller, goBack: true)
+                      : null,
             ),
             IconButton(
-              icon: IconTheme(
-                data: Theme.of(context).appBarTheme.actionsIconTheme,
-                child: const Icon(Icons.arrow_forward_ios),
-              ),
+              icon: const Icon(Icons.arrow_forward_ios),
               onPressed: !webViewReady
                   ? null
-                  : () => navigate(context, controller, goBack: false),
+                  : () =>
+                      controller != null ? navigate(context, controller) : null,
             ),
           ],
         );
@@ -111,8 +149,11 @@ class NavigationControls extends StatelessWidget {
     );
   }
 
-  navigate(BuildContext context, WebViewController controller,
-      {bool goBack: false}) async {
+  navigate(
+    BuildContext context,
+    WebViewController controller, {
+    bool goBack = false,
+  }) async {
     bool canNavigate =
         goBack ? await controller.canGoBack() : await controller.canGoForward();
     if (canNavigate) {

@@ -7,28 +7,32 @@ class AppDataBuilder extends StatefulWidget {
   final AppLocalizationsDelegate delegate;
 
   /// The widget builder.
-  final Widget Function(BuildContext context,
-      AppLocalizationsDelegate appDataDelegate, ThemeData theme) builder;
+  final Widget Function(
+    BuildContext context,
+    AppLocalizationsDelegate appDataDelegate,
+    ThemeData? theme,
+  ) builder;
 
-  final ThemeData appTheme;
+  final ThemeData? appTheme;
 
-  const AppDataBuilder(
-      {this.delegate = const AppLocalizationsDelegate(),
-      @required this.builder,
-      this.appTheme});
+  const AppDataBuilder({
+    this.delegate = const AppLocalizationsDelegate(),
+    required this.builder,
+    this.appTheme,
+  });
 
   @override
   State<StatefulWidget> createState() => AppDataBuilderState();
 
   /// Allows to change the preferred locale (if using the builder).
-  static AppDataBuilderState of(BuildContext context) =>
+  static AppDataBuilderState? of(BuildContext context) =>
       context.findAncestorStateOfType<AppDataBuilderState>();
 }
 
 class AppDataBuilderState extends State<AppDataBuilder> {
   /// The current EzLocalization delegate.
-  AppLocalizationsDelegate _appDataDelegate;
-  ThemeData _appTheme;
+  late AppLocalizationsDelegate _appDataDelegate;
+  late ThemeData? _appTheme;
 
   @override
   void initState() {

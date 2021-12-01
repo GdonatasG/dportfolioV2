@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 import 'timeline_item.dart';
@@ -14,19 +15,20 @@ class TimelineProperties {
   final double lineWidth;
   final double iconSize;
 
-  const TimelineProperties({Color lineColor, double lineWidth, double iconSize})
+  const TimelineProperties(
+      {Color? lineColor, double? lineWidth, double? iconSize})
       : lineColor = lineColor ?? const Color(0xFF333333),
         lineWidth = lineWidth ?? 2.5,
         iconSize = iconSize ?? TimelineBoxDecoration.DEFAULT_ICON_SIZE;
 }
 
 class Timeline extends StatelessWidget {
-  final ScrollController controller;
+  final ScrollController? controller;
   final IndexedTimelineModelBuilder itemBuilder;
   final int itemCount;
   final TimelinePosition position;
   final TimelineProperties properties;
-  final ScrollPhysics physics;
+  final ScrollPhysics? physics;
   final bool isSliverList;
   final bool shrinkWrap;
   final bool primary;
@@ -35,19 +37,19 @@ class Timeline extends StatelessWidget {
   /// Creates a scrollable timeline of widgets that are created befirehand.
   /// Note: [TimelineModel.icon]'s size is ignored when `position` is not
   /// [TimelinePosition.Center].
-  Timeline(
-      {List<TimelineModel> children,
-      Color lineColor,
-      double lineWidth,
-      double iconSize,
-      this.controller,
-      this.isSliverList = false,
-      this.position = TimelinePosition.Center,
-      this.physics,
-      this.shrinkWrap = false,
-      this.primary = false,
-      this.reverse = false})
-      : itemCount = children.length,
+  Timeline({
+    required List<TimelineModel> children,
+    Color? lineColor,
+    double? lineWidth,
+    double? iconSize,
+    required this.controller,
+    this.isSliverList = false,
+    this.position = TimelinePosition.Center,
+    required this.physics,
+    this.shrinkWrap = false,
+    this.primary = false,
+    this.reverse = false,
+  })  : itemCount = children.length,
         properties = TimelineProperties(
             lineColor: lineColor, lineWidth: lineWidth, iconSize: iconSize),
         itemBuilder = ((BuildContext context, int i) => children[i]);
@@ -56,20 +58,23 @@ class Timeline extends StatelessWidget {
   /// Note: `itemBuilder` position and [TimelineModel.icon]'s size is ignored
   /// when `position` is not [TimelinePosition.Center].
   Timeline.builder(
-      {@required this.itemBuilder,
-      this.itemCount,
+      {required this.itemBuilder,
+      required this.itemCount,
       this.controller,
       this.isSliverList = false,
-      Color lineColor,
-      double lineWidth,
-      double iconSize,
+      Color? lineColor,
+      double? lineWidth,
+      double? iconSize,
       this.position = TimelinePosition.Center,
       this.physics,
       this.shrinkWrap = false,
       this.primary = false,
       this.reverse = false})
       : properties = TimelineProperties(
-            lineColor: lineColor, lineWidth: lineWidth, iconSize: iconSize);
+          lineColor: lineColor,
+          lineWidth: lineWidth,
+          iconSize: iconSize,
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -121,3 +126,4 @@ class Timeline extends StatelessWidget {
     );
   }
 }
+*/

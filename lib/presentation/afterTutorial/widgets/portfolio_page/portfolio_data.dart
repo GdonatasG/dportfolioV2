@@ -3,24 +3,24 @@ import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 
 class PortfolioItem {
   final String title;
-  final String htmlUrl;
-  final String googlePlayUrl;
-  final String appStoreUrl;
-  final String githubUrl;
-  final String about;
+  final String? htmlUrl;
+  final String? googlePlayUrl;
+  final String? appStoreUrl;
+  final String? githubUrl;
+  final String? about;
   final bool isAboutTranslated; // for local translations by language
-  final List<String> platformsAndTechnologies;
-  final String coverUrl;
-  final List<String> listOfImagesUrl;
+  final List<String>? platformsAndTechnologies;
+  final String? coverUrl;
+  final List<String>? listOfImagesUrl;
 
   const PortfolioItem({
-    @required this.title,
+    required this.title,
     this.htmlUrl,
     this.googlePlayUrl,
     this.appStoreUrl,
     this.githubUrl,
     this.about,
-    @required this.isAboutTranslated,
+    required this.isAboutTranslated,
     this.platformsAndTechnologies,
     this.coverUrl,
     this.listOfImagesUrl,

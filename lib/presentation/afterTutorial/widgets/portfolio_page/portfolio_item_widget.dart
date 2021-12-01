@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dportfolio_v2/presentation/core/widgets/backgrounded_tag.dart';
 import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:platform_info/platform_info.dart';
@@ -14,7 +15,10 @@ import 'portfolio_data.dart';
 class PortfolioItemWidget extends StatefulWidget {
   final PortfolioItem item;
 
-  const PortfolioItemWidget({Key key, @required this.item}) : super(key: key);
+  const PortfolioItemWidget({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
 
   @override
   _PortfolioItemWidgetState createState() => _PortfolioItemWidgetState();
@@ -29,7 +33,7 @@ class _PortfolioItemWidgetState extends State<PortfolioItemWidget>
       child: Column(
         children: [
           Image.asset(
-            widget.item.coverUrl,
+            widget.item.coverUrl ?? '',
             height: 230.0,
             fit: BoxFit.cover,
           ),
@@ -53,9 +57,11 @@ class _PortfolioItemWidgetState extends State<PortfolioItemWidget>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Text(
-              widget.item.isAboutTranslated
-                  ? context.getString(widget.item.about)
-                  : widget.item.about,
+              widget.item.about != null
+                  ? (widget.item.isAboutTranslated
+                      ? context.getString(widget.item.about ?? '') ?? ''
+                      : widget.item.about ?? '')
+                  : '',
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
@@ -63,7 +69,8 @@ class _PortfolioItemWidgetState extends State<PortfolioItemWidget>
             height: 10.0,
           ),
           PlatformsAndTechnologies(
-              platformItems: widget.item.platformsAndTechnologies),
+            platformItems: widget.item.platformsAndTechnologies ?? [],
+          ),
         ],
       ),
     );
@@ -76,7 +83,10 @@ class _PortfolioItemWidgetState extends State<PortfolioItemWidget>
 class UrlIcons extends StatefulWidget {
   final PortfolioItem item;
 
-  const UrlIcons({Key key, @required this.item}) : super(key: key);
+  const UrlIcons({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
 
   @override
   _UrlIconsState createState() => _UrlIconsState();
@@ -96,9 +106,9 @@ class _UrlIconsState extends State<UrlIcons>
       children: [
         if (widget.item.listOfImagesUrl != null)
           CustomIconButton(
-              icon: const Icon(FontAwesome.picture_o),
+              icon: const Icon(FontAwesome.picture),
               action: () {
-                _openGallery(widget.item.listOfImagesUrl, context);
+                _openGallery(widget.item.listOfImagesUrl ?? [], context);
               })
         else
           const SizedBox(),
@@ -106,22 +116,21 @@ class _UrlIconsState extends State<UrlIcons>
           CustomIconButton(
             icon: const Icon(Icons.web),
             action: () {
-              ExtendedNavigator.of(context).push(Routes.customWebView,
-                  arguments: CustomWebViewArguments(url: widget.item.htmlUrl));
+              context.router
+                  .push(CustomWebViewRoute(url: widget.item.htmlUrl ?? ''));
             },
           )
         else
           const SizedBox(),
         if (widget.item.googlePlayUrl != null)
           CustomIconButton(
-            icon: const Icon(MaterialCommunityIcons.google_play),
+            icon: const Icon(FontAwesome5.google_play),
             action: () {
               if (Platform.I.isAndroid) {
-                context.openAppOrBrowser(widget.item.googlePlayUrl);
+                context.openAppOrBrowser(widget.item.googlePlayUrl!);
               } else {
-                ExtendedNavigator.of(context).push(Routes.customWebView,
-                    arguments:
-                        CustomWebViewArguments(url: widget.item.googlePlayUrl));
+                context.router.push(
+                    CustomWebViewRoute(url: widget.item.googlePlayUrl ?? ''));
               }
             },
           )
@@ -129,14 +138,13 @@ class _UrlIconsState extends State<UrlIcons>
           const SizedBox(),
         if (widget.item.appStoreUrl != null)
           CustomIconButton(
-            icon: const Icon(Ionicons.ios_appstore),
+            icon: const Icon(FontAwesome5.app_store_ios),
             action: () {
               if (Platform.I.isIOS) {
-                context.openAppOrBrowser(widget.item.appStoreUrl);
+                context.openAppOrBrowser(widget.item.appStoreUrl!);
               } else {
-                ExtendedNavigator.of(context).push(Routes.customWebView,
-                    arguments:
-                        CustomWebViewArguments(url: widget.item.appStoreUrl));
+                context.router.push(
+                    CustomWebViewRoute(url: widget.item.appStoreUrl ?? ''));
               }
             },
           )
@@ -144,11 +152,10 @@ class _UrlIconsState extends State<UrlIcons>
           const SizedBox(),
         if (widget.item.githubUrl != null)
           CustomIconButton(
-            icon: const Icon(Ionicons.logo_github),
+            icon: const Icon(FontAwesome5.github),
             action: () {
-              ExtendedNavigator.of(context).push(Routes.customWebView,
-                  arguments:
-                      CustomWebViewArguments(url: widget.item.githubUrl));
+              context.router
+                  .push(CustomWebViewRoute(url: widget.item.githubUrl ?? ''));
             },
           )
         else
@@ -209,10 +216,11 @@ class _UrlIconsState extends State<UrlIcons>
                         width: 20.0,
                         height: 20.0,
                         child: CircularProgressIndicator(
-                          value: event == null
-                              ? 0
-                              : event.cumulativeBytesLoaded /
-                                  event.expectedTotalBytes,
+                          value:
+                              event == null || event.expectedTotalBytes == null
+                                  ? 0
+                                  : event.cumulativeBytesLoaded /
+                                      event.expectedTotalBytes!,
                         ),
                       ),
                     ),
@@ -228,18 +236,22 @@ class _UrlIconsState extends State<UrlIcons>
                   children: pictures.map((url) {
                     final int index = pictures.indexOf(url);
                     return GestureDetector(
-                      onTap: () => pageController.animateToPage(index,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.ease),
+                      onTap: () => pageController.animateToPage(
+                        index,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      ),
                       child: Container(
                         width: 8.0,
                         height: 8.0,
                         margin: const EdgeInsets.symmetric(
-                            vertical: 3.0, horizontal: 3.0),
+                          vertical: 3.0,
+                          horizontal: 3.0,
+                        ),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: _currentPicture == index
-                              ? Theme.of(context).accentColor
+                              ? Theme.of(context).colorScheme.secondary
                               : Colors.grey[100],
                         ),
                       ),
@@ -261,8 +273,10 @@ class _UrlIconsState extends State<UrlIcons>
 class PlatformsAndTechnologies extends StatelessWidget {
   final List<String> platformItems;
 
-  const PlatformsAndTechnologies({Key key, @required this.platformItems})
-      : super(key: key);
+  const PlatformsAndTechnologies({
+    Key? key,
+    required this.platformItems,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -270,16 +284,18 @@ class PlatformsAndTechnologies extends StatelessWidget {
       alignment: WrapAlignment.center,
       spacing: 4.0,
       children: platformItems
-          .map((e) => BackgroundedTag(
-                text: Text(
-                  e,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      .copyWith(fontWeight: FontWeight.w500),
-                ),
-                bgColor: Theme.of(context).primaryColor,
-              ))
+          .map(
+            (e) => BackgroundedTag(
+              text: Text(
+                e,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(fontWeight: FontWeight.w500),
+              ),
+              bgColor: Theme.of(context).primaryColor,
+            ),
+          )
           .toList(),
     );
   }
@@ -287,10 +303,13 @@ class PlatformsAndTechnologies extends StatelessWidget {
 
 class CustomIconButton extends StatelessWidget {
   final Widget icon;
-  final Function action;
+  final VoidCallback action;
 
-  const CustomIconButton({Key key, @required this.icon, @required this.action})
-      : super(key: key);
+  const CustomIconButton({
+    Key? key,
+    required this.icon,
+    required this.action,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'github_failure.dart';
 
@@ -9,67 +10,86 @@ part of 'github_failure.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$GithubFailureTearOff {
   const _$GithubFailureTearOff();
 
-// ignore: unused_element
   _UserLoadingFailure userLoadingFailure() {
     return const _UserLoadingFailure();
   }
 
-// ignore: unused_element
   _ReposLoadingFailure reposLoadingFailure() {
     return const _ReposLoadingFailure();
   }
 
-// ignore: unused_element
   _UserDataLoadingFailure userDataLoadingFailure() {
     return const _UserDataLoadingFailure();
   }
 
-// ignore: unused_element
   _Unexpected unexpected() {
     return const _Unexpected();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $GithubFailure = _$GithubFailureTearOff();
 
 /// @nodoc
 mixin _$GithubFailure {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoadingFailure(),
-    @required Result reposLoadingFailure(),
-    @required Result userDataLoadingFailure(),
-    @required Result unexpected(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() userLoadingFailure,
+    required TResult Function() reposLoadingFailure,
+    required TResult Function() userDataLoadingFailure,
+    required TResult Function() unexpected,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoadingFailure(),
-    Result reposLoadingFailure(),
-    Result userDataLoadingFailure(),
-    Result unexpected(),
-    @required Result orElse(),
-  });
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoadingFailure(_UserLoadingFailure value),
-    @required Result reposLoadingFailure(_ReposLoadingFailure value),
-    @required Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    @required Result unexpected(_Unexpected value),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoadingFailure(_UserLoadingFailure value),
-    Result reposLoadingFailure(_ReposLoadingFailure value),
-    Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    Result unexpected(_Unexpected value),
-    @required Result orElse(),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserLoadingFailure value) userLoadingFailure,
+    required TResult Function(_ReposLoadingFailure value) reposLoadingFailure,
+    required TResult Function(_UserDataLoadingFailure value)
+        userDataLoadingFailure,
+    required TResult Function(_Unexpected value) unexpected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -109,6 +129,7 @@ class __$UserLoadingFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_UserLoadingFailure implements _UserLoadingFailure {
   const _$_UserLoadingFailure();
 
@@ -119,7 +140,8 @@ class _$_UserLoadingFailure implements _UserLoadingFailure {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UserLoadingFailure);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _UserLoadingFailure);
   }
 
   @override
@@ -127,29 +149,35 @@ class _$_UserLoadingFailure implements _UserLoadingFailure {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoadingFailure(),
-    @required Result reposLoadingFailure(),
-    @required Result userDataLoadingFailure(),
-    @required Result unexpected(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() userLoadingFailure,
+    required TResult Function() reposLoadingFailure,
+    required TResult Function() userDataLoadingFailure,
+    required TResult Function() unexpected,
   }) {
-    assert(userLoadingFailure != null);
-    assert(reposLoadingFailure != null);
-    assert(userDataLoadingFailure != null);
-    assert(unexpected != null);
     return userLoadingFailure();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoadingFailure(),
-    Result reposLoadingFailure(),
-    Result userDataLoadingFailure(),
-    Result unexpected(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
   }) {
-    assert(orElse != null);
+    return userLoadingFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) {
     if (userLoadingFailure != null) {
       return userLoadingFailure();
     }
@@ -158,29 +186,36 @@ class _$_UserLoadingFailure implements _UserLoadingFailure {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoadingFailure(_UserLoadingFailure value),
-    @required Result reposLoadingFailure(_ReposLoadingFailure value),
-    @required Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    @required Result unexpected(_Unexpected value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserLoadingFailure value) userLoadingFailure,
+    required TResult Function(_ReposLoadingFailure value) reposLoadingFailure,
+    required TResult Function(_UserDataLoadingFailure value)
+        userDataLoadingFailure,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
-    assert(userLoadingFailure != null);
-    assert(reposLoadingFailure != null);
-    assert(userDataLoadingFailure != null);
-    assert(unexpected != null);
     return userLoadingFailure(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoadingFailure(_UserLoadingFailure value),
-    Result reposLoadingFailure(_ReposLoadingFailure value),
-    Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    Result unexpected(_Unexpected value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
-    assert(orElse != null);
+    return userLoadingFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) {
     if (userLoadingFailure != null) {
       return userLoadingFailure(this);
     }
@@ -212,6 +247,7 @@ class __$ReposLoadingFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_ReposLoadingFailure implements _ReposLoadingFailure {
   const _$_ReposLoadingFailure();
 
@@ -222,7 +258,8 @@ class _$_ReposLoadingFailure implements _ReposLoadingFailure {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ReposLoadingFailure);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ReposLoadingFailure);
   }
 
   @override
@@ -230,29 +267,35 @@ class _$_ReposLoadingFailure implements _ReposLoadingFailure {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoadingFailure(),
-    @required Result reposLoadingFailure(),
-    @required Result userDataLoadingFailure(),
-    @required Result unexpected(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() userLoadingFailure,
+    required TResult Function() reposLoadingFailure,
+    required TResult Function() userDataLoadingFailure,
+    required TResult Function() unexpected,
   }) {
-    assert(userLoadingFailure != null);
-    assert(reposLoadingFailure != null);
-    assert(userDataLoadingFailure != null);
-    assert(unexpected != null);
     return reposLoadingFailure();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoadingFailure(),
-    Result reposLoadingFailure(),
-    Result userDataLoadingFailure(),
-    Result unexpected(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
   }) {
-    assert(orElse != null);
+    return reposLoadingFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) {
     if (reposLoadingFailure != null) {
       return reposLoadingFailure();
     }
@@ -261,29 +304,36 @@ class _$_ReposLoadingFailure implements _ReposLoadingFailure {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoadingFailure(_UserLoadingFailure value),
-    @required Result reposLoadingFailure(_ReposLoadingFailure value),
-    @required Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    @required Result unexpected(_Unexpected value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserLoadingFailure value) userLoadingFailure,
+    required TResult Function(_ReposLoadingFailure value) reposLoadingFailure,
+    required TResult Function(_UserDataLoadingFailure value)
+        userDataLoadingFailure,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
-    assert(userLoadingFailure != null);
-    assert(reposLoadingFailure != null);
-    assert(userDataLoadingFailure != null);
-    assert(unexpected != null);
     return reposLoadingFailure(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoadingFailure(_UserLoadingFailure value),
-    Result reposLoadingFailure(_ReposLoadingFailure value),
-    Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    Result unexpected(_Unexpected value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
-    assert(orElse != null);
+    return reposLoadingFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) {
     if (reposLoadingFailure != null) {
       return reposLoadingFailure(this);
     }
@@ -315,6 +365,7 @@ class __$UserDataLoadingFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_UserDataLoadingFailure implements _UserDataLoadingFailure {
   const _$_UserDataLoadingFailure();
 
@@ -325,7 +376,8 @@ class _$_UserDataLoadingFailure implements _UserDataLoadingFailure {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UserDataLoadingFailure);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _UserDataLoadingFailure);
   }
 
   @override
@@ -333,29 +385,35 @@ class _$_UserDataLoadingFailure implements _UserDataLoadingFailure {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoadingFailure(),
-    @required Result reposLoadingFailure(),
-    @required Result userDataLoadingFailure(),
-    @required Result unexpected(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() userLoadingFailure,
+    required TResult Function() reposLoadingFailure,
+    required TResult Function() userDataLoadingFailure,
+    required TResult Function() unexpected,
   }) {
-    assert(userLoadingFailure != null);
-    assert(reposLoadingFailure != null);
-    assert(userDataLoadingFailure != null);
-    assert(unexpected != null);
     return userDataLoadingFailure();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoadingFailure(),
-    Result reposLoadingFailure(),
-    Result userDataLoadingFailure(),
-    Result unexpected(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
   }) {
-    assert(orElse != null);
+    return userDataLoadingFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) {
     if (userDataLoadingFailure != null) {
       return userDataLoadingFailure();
     }
@@ -364,29 +422,36 @@ class _$_UserDataLoadingFailure implements _UserDataLoadingFailure {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoadingFailure(_UserLoadingFailure value),
-    @required Result reposLoadingFailure(_ReposLoadingFailure value),
-    @required Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    @required Result unexpected(_Unexpected value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserLoadingFailure value) userLoadingFailure,
+    required TResult Function(_ReposLoadingFailure value) reposLoadingFailure,
+    required TResult Function(_UserDataLoadingFailure value)
+        userDataLoadingFailure,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
-    assert(userLoadingFailure != null);
-    assert(reposLoadingFailure != null);
-    assert(userDataLoadingFailure != null);
-    assert(unexpected != null);
     return userDataLoadingFailure(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoadingFailure(_UserLoadingFailure value),
-    Result reposLoadingFailure(_ReposLoadingFailure value),
-    Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    Result unexpected(_Unexpected value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
-    assert(orElse != null);
+    return userDataLoadingFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) {
     if (userDataLoadingFailure != null) {
       return userDataLoadingFailure(this);
     }
@@ -417,6 +482,7 @@ class __$UnexpectedCopyWithImpl<$Res> extends _$GithubFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Unexpected implements _Unexpected {
   const _$_Unexpected();
 
@@ -427,7 +493,8 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Unexpected);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Unexpected);
   }
 
   @override
@@ -435,29 +502,35 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoadingFailure(),
-    @required Result reposLoadingFailure(),
-    @required Result userDataLoadingFailure(),
-    @required Result unexpected(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() userLoadingFailure,
+    required TResult Function() reposLoadingFailure,
+    required TResult Function() userDataLoadingFailure,
+    required TResult Function() unexpected,
   }) {
-    assert(userLoadingFailure != null);
-    assert(reposLoadingFailure != null);
-    assert(userDataLoadingFailure != null);
-    assert(unexpected != null);
     return unexpected();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoadingFailure(),
-    Result reposLoadingFailure(),
-    Result userDataLoadingFailure(),
-    Result unexpected(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
   }) {
-    assert(orElse != null);
+    return unexpected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? userLoadingFailure,
+    TResult Function()? reposLoadingFailure,
+    TResult Function()? userDataLoadingFailure,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) {
     if (unexpected != null) {
       return unexpected();
     }
@@ -466,29 +539,36 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoadingFailure(_UserLoadingFailure value),
-    @required Result reposLoadingFailure(_ReposLoadingFailure value),
-    @required Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    @required Result unexpected(_Unexpected value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserLoadingFailure value) userLoadingFailure,
+    required TResult Function(_ReposLoadingFailure value) reposLoadingFailure,
+    required TResult Function(_UserDataLoadingFailure value)
+        userDataLoadingFailure,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
-    assert(userLoadingFailure != null);
-    assert(reposLoadingFailure != null);
-    assert(userDataLoadingFailure != null);
-    assert(unexpected != null);
     return unexpected(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoadingFailure(_UserLoadingFailure value),
-    Result reposLoadingFailure(_ReposLoadingFailure value),
-    Result userDataLoadingFailure(_UserDataLoadingFailure value),
-    Result unexpected(_Unexpected value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
-    assert(orElse != null);
+    return unexpected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserLoadingFailure value)? userLoadingFailure,
+    TResult Function(_ReposLoadingFailure value)? reposLoadingFailure,
+    TResult Function(_UserDataLoadingFailure value)? userDataLoadingFailure,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) {
     if (unexpected != null) {
       return unexpected(this);
     }

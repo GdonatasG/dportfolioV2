@@ -16,9 +16,9 @@ class AboutMePage extends StatefulWidget {
 
 class _AboutMePageState extends State<AboutMePage>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  List<Widget> tabItems;
-  List<Widget> tabContentItems;
-  TabController _controller;
+  late List<Widget> tabItems;
+  late List<Widget> tabContentItems;
+  late TabController _controller;
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _AboutMePageState extends State<AboutMePage>
 
   @override
   void dispose() {
-    _controller?.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -70,25 +70,37 @@ class _AboutMePageState extends State<AboutMePage>
 
   // ignore: always_declare_return_types
   _initTabTitles() {
+    final titleTab1 = context.getString(LocaleKeys.TITLE_ROAD_TO_PROGRAMMING);
+    final titleTab2 = context.getString(LocaleKeys.TITLE_THE_BEGINNING);
+    final titleTab3 = context.getString(LocaleKeys.TITLE_UNIVERSITY);
+    final titleTab4 = context.getString(LocaleKeys.TITLE_GOALS);
+    final titleTab5 = context.getString(LocaleKeys.TITLE_SKILLS);
+    final titleTab6 = context.getString(LocaleKeys.TITLE_EDUCATION);
     tabItems = [
-      Tab(
-        child: Text(context.getString(LocaleKeys.TITLE_ROAD_TO_PROGRAMMING)),
-      ),
-      Tab(
-        child: Text(context.getString(LocaleKeys.TITLE_THE_BEGINNING)),
-      ),
-      Tab(
-        child: Text(context.getString(LocaleKeys.TITLE_UNIVERSITY)),
-      ),
-      Tab(
-        child: Text(context.getString(LocaleKeys.TITLE_GOALS)),
-      ),
-      Tab(
-        child: Text(context.getString(LocaleKeys.TITLE_SKILLS)),
-      ),
-      Tab(
-        child: Text(context.getString(LocaleKeys.TITLE_EDUCATION)),
-      ),
+      if (titleTab1 != null)
+        Tab(
+          child: Text(titleTab1),
+        ),
+      if (titleTab2 != null)
+        Tab(
+          child: Text(titleTab2),
+        ),
+      if (titleTab3 != null)
+        Tab(
+          child: Text(titleTab3),
+        ),
+      if (titleTab4 != null)
+        Tab(
+          child: Text(titleTab4),
+        ),
+      if (titleTab5 != null)
+        Tab(
+          child: Text(titleTab5),
+        ),
+      if (titleTab6 != null)
+        Tab(
+          child: Text(titleTab6),
+        ),
     ];
   }
 

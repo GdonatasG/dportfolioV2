@@ -11,10 +11,9 @@ class WrapperPage extends StatelessWidget {
       listener: (context, state) {
         state.map(
           initial: (_) {},
-          tutorial: (_) =>
-              ExtendedNavigator.of(context).replace(Routes.tutorialPage),
+          tutorial: (_) => context.router.replace(const TutorialPageRoute()),
           afterTutorial: (_) =>
-              ExtendedNavigator.of(context).replace(Routes.afterTutorialPage),
+              context.router.replace(const AfterTutorialPageRoute()),
         );
       },
       child: Scaffold(

@@ -4,7 +4,9 @@ import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/material.dart';
 
 class RoadToProgramming extends StatefulWidget {
-  const RoadToProgramming({Key key}) : super(key: key);
+  const RoadToProgramming({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _RoadToProgrammingState createState() => _RoadToProgrammingState();
@@ -31,11 +33,17 @@ class _RoadToProgrammingState extends State<RoadToProgramming> {
               delegate: SliverChildListDelegate(
                 [
                   ContentTextWidget(
-                      content: context
-                          .getString(LocaleKeys.ROAD_TO_PROGRAMMING_CONTENT1)),
+                    content: context.getString(
+                          LocaleKeys.ROAD_TO_PROGRAMMING_CONTENT1,
+                        ) ??
+                        '',
+                  ),
                   ContentTextWidget(
-                      content: context
-                          .getString(LocaleKeys.ROAD_TO_PROGRAMMING_CONTENT2)),
+                    content: context.getString(
+                          LocaleKeys.ROAD_TO_PROGRAMMING_CONTENT2,
+                        ) ??
+                        '',
+                  ),
                 ],
               ),
             ),

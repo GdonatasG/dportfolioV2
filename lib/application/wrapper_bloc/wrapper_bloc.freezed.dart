@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'wrapper_bloc.dart';
 
@@ -9,49 +10,65 @@ part of 'wrapper_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$WrapperEventTearOff {
   const _$WrapperEventTearOff();
 
-// ignore: unused_element
   TutorialCheckRequest tutorialCheckRequest() {
     return const TutorialCheckRequest();
   }
 
-// ignore: unused_element
   TutorialCompleted tutorialCompleted() {
     return const TutorialCompleted();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $WrapperEvent = _$WrapperEventTearOff();
 
 /// @nodoc
 mixin _$WrapperEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result tutorialCheckRequest(),
-    @required Result tutorialCompleted(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() tutorialCheckRequest,
+    required TResult Function() tutorialCompleted,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result tutorialCheckRequest(),
-    Result tutorialCompleted(),
-    @required Result orElse(),
-  });
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? tutorialCheckRequest,
+    TResult Function()? tutorialCompleted,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result tutorialCheckRequest(TutorialCheckRequest value),
-    @required Result tutorialCompleted(TutorialCompleted value),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? tutorialCheckRequest,
+    TResult Function()? tutorialCompleted,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result tutorialCheckRequest(TutorialCheckRequest value),
-    Result tutorialCompleted(TutorialCompleted value),
-    @required Result orElse(),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(TutorialCheckRequest value) tutorialCheckRequest,
+    required TResult Function(TutorialCompleted value) tutorialCompleted,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TutorialCheckRequest value)? tutorialCheckRequest,
+    TResult Function(TutorialCompleted value)? tutorialCompleted,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TutorialCheckRequest value)? tutorialCheckRequest,
+    TResult Function(TutorialCompleted value)? tutorialCompleted,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -90,6 +107,7 @@ class _$TutorialCheckRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$TutorialCheckRequest implements TutorialCheckRequest {
   const _$TutorialCheckRequest();
 
@@ -100,7 +118,8 @@ class _$TutorialCheckRequest implements TutorialCheckRequest {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TutorialCheckRequest);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TutorialCheckRequest);
   }
 
   @override
@@ -108,23 +127,29 @@ class _$TutorialCheckRequest implements TutorialCheckRequest {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result tutorialCheckRequest(),
-    @required Result tutorialCompleted(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() tutorialCheckRequest,
+    required TResult Function() tutorialCompleted,
   }) {
-    assert(tutorialCheckRequest != null);
-    assert(tutorialCompleted != null);
     return tutorialCheckRequest();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result tutorialCheckRequest(),
-    Result tutorialCompleted(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? tutorialCheckRequest,
+    TResult Function()? tutorialCompleted,
   }) {
-    assert(orElse != null);
+    return tutorialCheckRequest?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? tutorialCheckRequest,
+    TResult Function()? tutorialCompleted,
+    required TResult orElse(),
+  }) {
     if (tutorialCheckRequest != null) {
       return tutorialCheckRequest();
     }
@@ -133,23 +158,29 @@ class _$TutorialCheckRequest implements TutorialCheckRequest {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result tutorialCheckRequest(TutorialCheckRequest value),
-    @required Result tutorialCompleted(TutorialCompleted value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(TutorialCheckRequest value) tutorialCheckRequest,
+    required TResult Function(TutorialCompleted value) tutorialCompleted,
   }) {
-    assert(tutorialCheckRequest != null);
-    assert(tutorialCompleted != null);
     return tutorialCheckRequest(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result tutorialCheckRequest(TutorialCheckRequest value),
-    Result tutorialCompleted(TutorialCompleted value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TutorialCheckRequest value)? tutorialCheckRequest,
+    TResult Function(TutorialCompleted value)? tutorialCompleted,
   }) {
-    assert(orElse != null);
+    return tutorialCheckRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TutorialCheckRequest value)? tutorialCheckRequest,
+    TResult Function(TutorialCompleted value)? tutorialCompleted,
+    required TResult orElse(),
+  }) {
     if (tutorialCheckRequest != null) {
       return tutorialCheckRequest(this);
     }
@@ -181,6 +212,7 @@ class _$TutorialCompletedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$TutorialCompleted implements TutorialCompleted {
   const _$TutorialCompleted();
 
@@ -191,7 +223,8 @@ class _$TutorialCompleted implements TutorialCompleted {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TutorialCompleted);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TutorialCompleted);
   }
 
   @override
@@ -199,23 +232,29 @@ class _$TutorialCompleted implements TutorialCompleted {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result tutorialCheckRequest(),
-    @required Result tutorialCompleted(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() tutorialCheckRequest,
+    required TResult Function() tutorialCompleted,
   }) {
-    assert(tutorialCheckRequest != null);
-    assert(tutorialCompleted != null);
     return tutorialCompleted();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result tutorialCheckRequest(),
-    Result tutorialCompleted(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? tutorialCheckRequest,
+    TResult Function()? tutorialCompleted,
   }) {
-    assert(orElse != null);
+    return tutorialCompleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? tutorialCheckRequest,
+    TResult Function()? tutorialCompleted,
+    required TResult orElse(),
+  }) {
     if (tutorialCompleted != null) {
       return tutorialCompleted();
     }
@@ -224,23 +263,29 @@ class _$TutorialCompleted implements TutorialCompleted {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result tutorialCheckRequest(TutorialCheckRequest value),
-    @required Result tutorialCompleted(TutorialCompleted value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(TutorialCheckRequest value) tutorialCheckRequest,
+    required TResult Function(TutorialCompleted value) tutorialCompleted,
   }) {
-    assert(tutorialCheckRequest != null);
-    assert(tutorialCompleted != null);
     return tutorialCompleted(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result tutorialCheckRequest(TutorialCheckRequest value),
-    Result tutorialCompleted(TutorialCompleted value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TutorialCheckRequest value)? tutorialCheckRequest,
+    TResult Function(TutorialCompleted value)? tutorialCompleted,
   }) {
-    assert(orElse != null);
+    return tutorialCompleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TutorialCheckRequest value)? tutorialCheckRequest,
+    TResult Function(TutorialCompleted value)? tutorialCompleted,
+    required TResult orElse(),
+  }) {
     if (tutorialCompleted != null) {
       return tutorialCompleted(this);
     }
@@ -256,54 +301,68 @@ abstract class TutorialCompleted implements WrapperEvent {
 class _$WrapperStateTearOff {
   const _$WrapperStateTearOff();
 
-// ignore: unused_element
   Initial initial() {
     return const Initial();
   }
 
-// ignore: unused_element
   Tutorial tutorial() {
     return const Tutorial();
   }
 
-// ignore: unused_element
   AfterTutorial afterTutorial() {
     return const AfterTutorial();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $WrapperState = _$WrapperStateTearOff();
 
 /// @nodoc
 mixin _$WrapperState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result tutorial(),
-    @required Result afterTutorial(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() tutorial,
+    required TResult Function() afterTutorial,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result tutorial(),
-    Result afterTutorial(),
-    @required Result orElse(),
-  });
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? tutorial,
+    TResult Function()? afterTutorial,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result tutorial(Tutorial value),
-    @required Result afterTutorial(AfterTutorial value),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? tutorial,
+    TResult Function()? afterTutorial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result tutorial(Tutorial value),
-    Result afterTutorial(AfterTutorial value),
-    @required Result orElse(),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Tutorial value) tutorial,
+    required TResult Function(AfterTutorial value) afterTutorial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Tutorial value)? tutorial,
+    TResult Function(AfterTutorial value)? afterTutorial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Tutorial value)? tutorial,
+    TResult Function(AfterTutorial value)? afterTutorial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -339,6 +398,7 @@ class _$InitialCopyWithImpl<$Res> extends _$WrapperStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Initial implements Initial {
   const _$Initial();
 
@@ -349,7 +409,8 @@ class _$Initial implements Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Initial);
   }
 
   @override
@@ -357,26 +418,32 @@ class _$Initial implements Initial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result tutorial(),
-    @required Result afterTutorial(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() tutorial,
+    required TResult Function() afterTutorial,
   }) {
-    assert(initial != null);
-    assert(tutorial != null);
-    assert(afterTutorial != null);
     return initial();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result tutorial(),
-    Result afterTutorial(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? tutorial,
+    TResult Function()? afterTutorial,
   }) {
-    assert(orElse != null);
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? tutorial,
+    TResult Function()? afterTutorial,
+    required TResult orElse(),
+  }) {
     if (initial != null) {
       return initial();
     }
@@ -385,26 +452,32 @@ class _$Initial implements Initial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result tutorial(Tutorial value),
-    @required Result afterTutorial(AfterTutorial value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Tutorial value) tutorial,
+    required TResult Function(AfterTutorial value) afterTutorial,
   }) {
-    assert(initial != null);
-    assert(tutorial != null);
-    assert(afterTutorial != null);
     return initial(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result tutorial(Tutorial value),
-    Result afterTutorial(AfterTutorial value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Tutorial value)? tutorial,
+    TResult Function(AfterTutorial value)? afterTutorial,
   }) {
-    assert(orElse != null);
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Tutorial value)? tutorial,
+    TResult Function(AfterTutorial value)? afterTutorial,
+    required TResult orElse(),
+  }) {
     if (initial != null) {
       return initial(this);
     }
@@ -433,6 +506,7 @@ class _$TutorialCopyWithImpl<$Res> extends _$WrapperStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Tutorial implements Tutorial {
   const _$Tutorial();
 
@@ -443,7 +517,8 @@ class _$Tutorial implements Tutorial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Tutorial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Tutorial);
   }
 
   @override
@@ -451,26 +526,32 @@ class _$Tutorial implements Tutorial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result tutorial(),
-    @required Result afterTutorial(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() tutorial,
+    required TResult Function() afterTutorial,
   }) {
-    assert(initial != null);
-    assert(tutorial != null);
-    assert(afterTutorial != null);
     return tutorial();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result tutorial(),
-    Result afterTutorial(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? tutorial,
+    TResult Function()? afterTutorial,
   }) {
-    assert(orElse != null);
+    return tutorial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? tutorial,
+    TResult Function()? afterTutorial,
+    required TResult orElse(),
+  }) {
     if (tutorial != null) {
       return tutorial();
     }
@@ -479,26 +560,32 @@ class _$Tutorial implements Tutorial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result tutorial(Tutorial value),
-    @required Result afterTutorial(AfterTutorial value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Tutorial value) tutorial,
+    required TResult Function(AfterTutorial value) afterTutorial,
   }) {
-    assert(initial != null);
-    assert(tutorial != null);
-    assert(afterTutorial != null);
     return tutorial(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result tutorial(Tutorial value),
-    Result afterTutorial(AfterTutorial value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Tutorial value)? tutorial,
+    TResult Function(AfterTutorial value)? afterTutorial,
   }) {
-    assert(orElse != null);
+    return tutorial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Tutorial value)? tutorial,
+    TResult Function(AfterTutorial value)? afterTutorial,
+    required TResult orElse(),
+  }) {
     if (tutorial != null) {
       return tutorial(this);
     }
@@ -529,6 +616,7 @@ class _$AfterTutorialCopyWithImpl<$Res> extends _$WrapperStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$AfterTutorial implements AfterTutorial {
   const _$AfterTutorial();
 
@@ -539,7 +627,8 @@ class _$AfterTutorial implements AfterTutorial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AfterTutorial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AfterTutorial);
   }
 
   @override
@@ -547,26 +636,32 @@ class _$AfterTutorial implements AfterTutorial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result tutorial(),
-    @required Result afterTutorial(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() tutorial,
+    required TResult Function() afterTutorial,
   }) {
-    assert(initial != null);
-    assert(tutorial != null);
-    assert(afterTutorial != null);
     return afterTutorial();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result tutorial(),
-    Result afterTutorial(),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? tutorial,
+    TResult Function()? afterTutorial,
   }) {
-    assert(orElse != null);
+    return afterTutorial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? tutorial,
+    TResult Function()? afterTutorial,
+    required TResult orElse(),
+  }) {
     if (afterTutorial != null) {
       return afterTutorial();
     }
@@ -575,26 +670,32 @@ class _$AfterTutorial implements AfterTutorial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result tutorial(Tutorial value),
-    @required Result afterTutorial(AfterTutorial value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Tutorial value) tutorial,
+    required TResult Function(AfterTutorial value) afterTutorial,
   }) {
-    assert(initial != null);
-    assert(tutorial != null);
-    assert(afterTutorial != null);
     return afterTutorial(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result tutorial(Tutorial value),
-    Result afterTutorial(AfterTutorial value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Tutorial value)? tutorial,
+    TResult Function(AfterTutorial value)? afterTutorial,
   }) {
-    assert(orElse != null);
+    return afterTutorial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Tutorial value)? tutorial,
+    TResult Function(AfterTutorial value)? afterTutorial,
+    required TResult orElse(),
+  }) {
     if (afterTutorial != null) {
       return afterTutorial(this);
     }

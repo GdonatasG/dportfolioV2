@@ -12,8 +12,10 @@ import 'sticky_header_widget.dart';
 class ReposWithStickyHeaderWidget extends StatefulWidget {
   final List<GithubRepo> listOfRepos;
 
-  const ReposWithStickyHeaderWidget({Key key, @required this.listOfRepos})
-      : super(key: key);
+  const ReposWithStickyHeaderWidget({
+    Key? key,
+    required this.listOfRepos,
+  }) : super(key: key);
 
   @override
   _ReposWithStickyHeaderWidgetState createState() =>
@@ -28,21 +30,23 @@ class _ReposWithStickyHeaderWidgetState
       overlapHeaders: true,
       header: StickyHeaderWidget(
         title: context.getString(
-            LocaleKeys.REPOS_TITLE, {'repos': widget.listOfRepos.length}),
+              LocaleKeys.REPOS_TITLE,
+              {'repos': widget.listOfRepos.length},
+            ) ??
+            '',
       ),
       content: RefreshIndicator(
         onRefresh: () {
-          context
-              .bloc<GithubBloc>()
+          BlocProvider.of<GithubBloc>(context)
               .add(const GithubEvent.getUserDataByName('GdonatasG', true));
 
-          return context
-              .bloc<GithubBloc>()
-              .firstWhere((element) => element.maybeMap(
-                    refreshError: (_) => true,
-                    listFiltered: (_) => true,
-                    orElse: () => false,
-                  ));
+          return BlocProvider.of<GithubBloc>(context).stream.firstWhere(
+                (element) => element.maybeMap(
+                  refreshError: (_) => true,
+                  listFiltered: (_) => true,
+                  orElse: () => false,
+                ),
+              );
         },
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),

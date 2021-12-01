@@ -13,9 +13,9 @@ class AboutSliverAppBar extends StatelessWidget {
   final List<Widget> tabItems;
 
   const AboutSliverAppBar({
-    Key key,
-    @required this.tabController,
-    @required this.tabItems,
+    Key? key,
+    required this.tabController,
+    required this.tabItems,
   }) : super(key: key);
 
   @override
@@ -26,10 +26,9 @@ class AboutSliverAppBar extends StatelessWidget {
       centerTitle: true,
       pinned: true,
       forceElevated: true,
-      title: SABT(
+      title: const SABT(
         child: Text(
           GlobalConst.APP_NAME,
-          style: Theme.of(context).appBarTheme.textTheme.headline6,
         ),
       ),
       flexibleSpace: FlexibleSpaceBar(
@@ -48,15 +47,16 @@ class AboutSliverAppBar extends StatelessWidget {
             ),
             Text(
               "Donatas Žitkus",
-              style: Theme.of(context).textTheme.headline4.copyWith(
-                  color: Theme.of(context).accentColor,
-                  fontFamily: "ComicSansMs"),
+              style: Theme.of(context).textTheme.headline4?.copyWith(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontFamily: "ComicSansMs",
+                  ),
             ),
             const SizedBox(
               height: 10,
             ),
             Text(
-              context.getString(LocaleKeys.TITLE_MOBILE_DEVELOPER),
+              context.getString(LocaleKeys.TITLE_MOBILE_DEVELOPER) ?? '',
               style: Theme.of(context).textTheme.headline5,
             ),
             const SizedBox(
@@ -67,7 +67,7 @@ class AboutSliverAppBar extends StatelessWidget {
               children: [
                 Icon(
                   Icons.location_on,
-                  color: Theme.of(context).textTheme.headline5.color,
+                  color: Theme.of(context).textTheme.headline5?.color,
                 ),
                 const SizedBox(
                   width: 5,
@@ -77,7 +77,7 @@ class AboutSliverAppBar extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .headline5
-                      .copyWith(fontSize: 14),
+                      ?.copyWith(fontSize: 14),
                 )
               ],
             ),
@@ -96,10 +96,10 @@ class AboutSliverAppBar extends StatelessWidget {
   }
 
   String _getImageAssetSrcByTheme(BuildContext context) {
-    final currentTheme = context.getCurrentTheme;
-    if (currentTheme == themeLight) {
+    if (Theme.of(context).brightness == Brightness.dark) {
+      return GlobalConst.SRC_FACE_WHITE;
+    } else {
       return GlobalConst.SRC_FACE_BLACK;
-    } else if (currentTheme == themeDark) return GlobalConst.SRC_FACE_WHITE;
-    return GlobalConst.SRC_FACE_BLACK;
+    }
   }
 }

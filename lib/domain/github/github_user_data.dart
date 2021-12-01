@@ -10,7 +10,7 @@ abstract class GithubUserData with _$GithubUserData {
   const GithubUserData._();
 
   const factory GithubUserData({
-    @required GithubUser user,
-    @required List<GithubRepo> repos,
+    required GithubUser user,
+    required List<GithubRepo> repos,
   }) = _GithubUserData;
 }

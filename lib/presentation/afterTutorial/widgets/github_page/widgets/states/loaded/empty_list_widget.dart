@@ -44,20 +44,21 @@ class LoadedEmptyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('${context.getString(LocaleKeys.NOTHING_FOUND)} 🙁',
-            style: Theme.of(context).textTheme.bodyText1),
+        Text(
+          '${context.getString(LocaleKeys.NOTHING_FOUND)} 🙁',
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
         const SizedBox(
           height: 10,
         ),
         // data reload button
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
-            context
-                .bloc<GithubBloc>()
+            BlocProvider.of<GithubBloc>(context)
                 .add(const GithubEvent.getUserDataByName('GdonatasG', true));
           },
           child: Text(
-            context.getString(LocaleKeys.REFRESH),
+            context.getString(LocaleKeys.REFRESH) ?? '',
             textAlign: TextAlign.center,
           ),
         )

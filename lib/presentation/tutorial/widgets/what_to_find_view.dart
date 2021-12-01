@@ -10,11 +10,9 @@ class WhatToFindView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               'assets/images/code_icon.png',
@@ -22,8 +20,8 @@ class WhatToFindView extends StatelessWidget {
               height: 220,
             ),
             Text(
-              context.getString(LocaleKeys.TUTORIAL_WHAT_TO_FIND_MESSAGE),
-              style: themeLight.textTheme.headline2,
+              context.getString(LocaleKeys.TUTORIAL_WHAT_TO_FIND_MESSAGE) ?? '',
+              style: Theme.of(context).textTheme.headline2,
             ),
           ],
         ),

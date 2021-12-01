@@ -1,5 +1,6 @@
 {
   "error_try_again": "Įvyko klaida, bandykite dar kartą",
+  "error_empty_webview_url": "Nepavyko atidaryti šios svetainės :(",
   "tryAgainText": "Bandyti dar",
   "refresh": "Atnaujinti",
   "nothing_found": "Nieko nerasta",

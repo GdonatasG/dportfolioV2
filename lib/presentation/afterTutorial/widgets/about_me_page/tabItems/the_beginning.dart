@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'widgets/content_text_widget.dart';
 
 class TheBeginning extends StatefulWidget {
-  const TheBeginning({Key key}) : super(key: key);
+  const TheBeginning({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _TheBeginningState createState() => _TheBeginningState();
@@ -32,7 +34,8 @@ class _TheBeginningState extends State<TheBeginning> {
               delegate: SliverChildListDelegate([
                 ContentTextWidget(
                     content:
-                        context.getString(LocaleKeys.THE_BEGINNING_CONTENT1))
+                        context.getString(LocaleKeys.THE_BEGINNING_CONTENT1) ??
+                            '')
               ]),
             ),
           )

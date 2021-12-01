@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadingSliverAppBar extends StatefulWidget {
-  const LoadingSliverAppBar({Key key}) : super(key: key);
+  const LoadingSliverAppBar({Key? key}) : super(key: key);
 
   @override
   _LoadingSliverAppBarState createState() => _LoadingSliverAppBarState();
@@ -12,7 +12,7 @@ class LoadingSliverAppBar extends StatefulWidget {
 
 class _LoadingSliverAppBarState extends State<LoadingSliverAppBar>
     with TickerProviderStateMixin {
-  AnimationController animation;
+  late AnimationController animation;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _LoadingSliverAppBarState extends State<LoadingSliverAppBar>
       title: SABT(
         child: Text(
           'Github',
-          style: Theme.of(context).appBarTheme.textTheme.headline6,
+          style: Theme.of(context).textTheme.headline6,
         ),
       ),
       flexibleSpace: FlexibleSpaceBar(

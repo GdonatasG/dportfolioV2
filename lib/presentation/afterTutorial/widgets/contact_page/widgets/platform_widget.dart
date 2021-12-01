@@ -7,16 +7,16 @@ class PlatformWidget extends StatelessWidget {
   final Color iconColor;
   final String description;
   final String buttonText;
-  final Function action;
+  final VoidCallback action;
 
-  const PlatformWidget(
-      {Key key,
-      @required this.icon,
-      @required this.iconColor,
-      @required this.description,
-      @required this.buttonText,
-      @required this.action})
-      : super(key: key);
+  const PlatformWidget({
+    Key? key,
+    required this.icon,
+    required this.iconColor,
+    required this.description,
+    required this.buttonText,
+    required this.action,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +64,7 @@ class PlatformWidget extends StatelessWidget {
             // ignore: sized_box_for_whitespace
             Container(
               width: MediaQuery.of(context).size.width,
-              child: RaisedButton(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.0),
+              child: ElevatedButton(
                 onPressed: action,
                 child: Text(
                   buttonText.toUpperCase(),

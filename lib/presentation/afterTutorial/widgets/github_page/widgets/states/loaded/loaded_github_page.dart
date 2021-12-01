@@ -14,8 +14,10 @@ import 'repos_with_sticky_header_widget.dart';
 class LoadedGithubPage extends StatefulWidget {
   final GithubUserData githubUserData;
 
-  const LoadedGithubPage({Key key, @required this.githubUserData})
-      : super(key: key);
+  const LoadedGithubPage({
+    Key? key,
+    required this.githubUserData,
+  }) : super(key: key);
 
   @override
   _LoadedGithubPageState createState() => _LoadedGithubPageState();
@@ -37,9 +39,12 @@ class _LoadedGithubPageState extends State<LoadedGithubPage> {
       listener: (ctx, state) {
         state.maybeMap(
           refreshError: (s) {
-            Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text(context.getString(LocaleKeys.ERROR_TRY_AGAIN)),
-            ));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content:
+                    Text(context.getString(LocaleKeys.ERROR_TRY_AGAIN) ?? ''),
+              ),
+            );
           },
           orElse: () {},
         );
@@ -57,7 +62,8 @@ class _LoadedGithubPageState extends State<LoadedGithubPage> {
                   sliver: SliverSafeArea(
                     top: false,
                     sliver: LoadedSliverAppBar(
-                        githubUser: widget.githubUserData.user),
+                      githubUser: widget.githubUserData.user,
+                    ),
                   ),
                 ),
               ],
@@ -68,11 +74,13 @@ class _LoadedGithubPageState extends State<LoadedGithubPage> {
                 ),
                 builder: (context, state) {
                   return state.maybeMap(
-                    listFiltered: (s) => s.listOfFilteredRepos.isNotEmpty
-                        ? ReposWithStickyHeaderWidget(
-                            listOfRepos: s.listOfFilteredRepos,
-                          )
-                        : EmptyListWidget(),
+                    listFiltered: (s) {
+                      return s.listOfFilteredRepos.isNotEmpty
+                          ? ReposWithStickyHeaderWidget(
+                              listOfRepos: s.listOfFilteredRepos,
+                            )
+                          : EmptyListWidget();
+                    },
                     orElse: () => const Center(
                       child: CircularProgressIndicator(
                         strokeWidth:

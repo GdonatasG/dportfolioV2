@@ -4,115 +4,103 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-// ignore_for_file: public_member_api_docs
+import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:dportfolio_v2/presentation/afterTutorial/after_tutorial_page.dart'
+    as _i3;
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/language_page.dart'
+    as _i5;
+import 'package:dportfolio_v2/presentation/core/widgets/custom_webview.dart'
+    as _i4;
+import 'package:dportfolio_v2/presentation/tutorial/tutorial_page.dart' as _i2;
+import 'package:dportfolio_v2/presentation/wrapper/wrapper_page.dart' as _i1;
+import 'package:flutter/material.dart' as _i7;
 
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
+class AppRouter extends _i6.RootStackRouter {
+  AppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])
+      : super(navigatorKey);
 
-import '../afterTutorial/after_tutorial_page.dart';
-import '../afterTutorial/widgets/settings_page/widgets/language_page.dart';
-import '../core/widgets/custom_webview.dart';
-import '../tutorial/tutorial_page.dart';
-import '../wrapper/wrapper_page.dart';
-
-class Routes {
-  static const String wrapperPage = '/';
-  static const String tutorialPage = '/tutorial-page';
-  static const String afterTutorialPage = '/after-tutorial-page';
-  static const String customWebView = '/custom-web-view';
-  static const String languagePage = '/language-page';
-  static const all = <String>{
-    wrapperPage,
-    tutorialPage,
-    afterTutorialPage,
-    customWebView,
-    languagePage,
-  };
-}
-
-class Router extends RouterBase {
   @override
-  List<RouteDef> get routes => _routes;
-  final _routes = <RouteDef>[
-    RouteDef(Routes.wrapperPage, page: WrapperPage),
-    RouteDef(Routes.tutorialPage, page: TutorialPage),
-    RouteDef(Routes.afterTutorialPage, page: AfterTutorialPage),
-    RouteDef(Routes.customWebView, page: CustomWebView),
-    RouteDef(Routes.languagePage, page: LanguagePage),
-  ];
-  @override
-  Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
-  final _pagesMap = <Type, AutoRouteFactory>{
-    WrapperPage: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => WrapperPage(),
-        settings: data,
-      );
+  final Map<String, _i6.PageFactory> pagesMap = {
+    WrapperPageRoute.name: (routeData) {
+      return _i6.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i1.WrapperPage());
     },
-    TutorialPage: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => TutorialPage(),
-        settings: data,
-      );
+    TutorialPageRoute.name: (routeData) {
+      return _i6.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i2.TutorialPage());
     },
-    AfterTutorialPage: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => AfterTutorialPage(),
-        settings: data,
-      );
+    AfterTutorialPageRoute.name: (routeData) {
+      return _i6.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.AfterTutorialPage());
     },
-    CustomWebView: (data) {
-      final args = data.getArgs<CustomWebViewArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => CustomWebView(
-          key: args.key,
-          url: args.url,
-        ),
-        settings: data,
-        fullscreenDialog: true,
-      );
+    CustomWebViewRoute.name: (routeData) {
+      final args = routeData.argsAs<CustomWebViewRouteArgs>();
+      return _i6.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i4.CustomWebView(key: args.key, url: args.url),
+          fullscreenDialog: true);
     },
-    LanguagePage: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => LanguagePage(),
-        settings: data,
-        fullscreenDialog: true,
-      );
-    },
+    LanguagePageRoute.name: (routeData) {
+      return _i6.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i5.LanguagePage(),
+          fullscreenDialog: true);
+    }
   };
+
+  @override
+  List<_i6.RouteConfig> get routes => [
+        _i6.RouteConfig(WrapperPageRoute.name, path: '/'),
+        _i6.RouteConfig(TutorialPageRoute.name, path: '/tutorial-page'),
+        _i6.RouteConfig(AfterTutorialPageRoute.name,
+            path: '/after-tutorial-page'),
+        _i6.RouteConfig(CustomWebViewRoute.name, path: '/custom-web-view'),
+        _i6.RouteConfig(LanguagePageRoute.name, path: '/language-page')
+      ];
 }
 
-/// ************************************************************************
-/// Navigation helper methods extension
-/// *************************************************************************
+/// generated route for [_i1.WrapperPage]
+class WrapperPageRoute extends _i6.PageRouteInfo<void> {
+  const WrapperPageRoute() : super(name, path: '/');
 
-extension RouterExtendedNavigatorStateX on ExtendedNavigatorState {
-  Future<dynamic> pushWrapperPage() => push<dynamic>(Routes.wrapperPage);
-
-  Future<dynamic> pushTutorialPage() => push<dynamic>(Routes.tutorialPage);
-
-  Future<dynamic> pushAfterTutorialPage() =>
-      push<dynamic>(Routes.afterTutorialPage);
-
-  Future<dynamic> pushCustomWebView({
-    Key key,
-    @required String url,
-  }) =>
-      push<dynamic>(
-        Routes.customWebView,
-        arguments: CustomWebViewArguments(key: key, url: url),
-      );
-
-  Future<dynamic> pushLanguagePage() => push<dynamic>(Routes.languagePage);
+  static const String name = 'WrapperPageRoute';
 }
 
-/// ************************************************************************
-/// Arguments holder classes
-/// *************************************************************************
+/// generated route for [_i2.TutorialPage]
+class TutorialPageRoute extends _i6.PageRouteInfo<void> {
+  const TutorialPageRoute() : super(name, path: '/tutorial-page');
 
-/// CustomWebView arguments holder class
-class CustomWebViewArguments {
-  final Key key;
+  static const String name = 'TutorialPageRoute';
+}
+
+/// generated route for [_i3.AfterTutorialPage]
+class AfterTutorialPageRoute extends _i6.PageRouteInfo<void> {
+  const AfterTutorialPageRoute() : super(name, path: '/after-tutorial-page');
+
+  static const String name = 'AfterTutorialPageRoute';
+}
+
+/// generated route for [_i4.CustomWebView]
+class CustomWebViewRoute extends _i6.PageRouteInfo<CustomWebViewRouteArgs> {
+  CustomWebViewRoute({_i7.Key? key, required String url})
+      : super(name,
+            path: '/custom-web-view',
+            args: CustomWebViewRouteArgs(key: key, url: url));
+
+  static const String name = 'CustomWebViewRoute';
+}
+
+class CustomWebViewRouteArgs {
+  const CustomWebViewRouteArgs({this.key, required this.url});
+
+  final _i7.Key? key;
+
   final String url;
-  CustomWebViewArguments({this.key, @required this.url});
+}
+
+/// generated route for [_i5.LanguagePage]
+class LanguagePageRoute extends _i6.PageRouteInfo<void> {
+  const LanguagePageRoute() : super(name, path: '/language-page');
+
+  static const String name = 'LanguagePageRoute';
 }

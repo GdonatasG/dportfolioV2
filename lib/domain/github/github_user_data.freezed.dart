@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'github_user_data.dart';
 
@@ -9,13 +10,15 @@ part of 'github_user_data.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$GithubUserDataTearOff {
   const _$GithubUserDataTearOff();
 
-// ignore: unused_element
   _GithubUserData call(
-      {@required GithubUser user, @required List<GithubRepo> repos}) {
+      {required GithubUser user, required List<GithubRepo> repos}) {
     return _GithubUserData(
       user: user,
       repos: repos,
@@ -24,15 +27,16 @@ class _$GithubUserDataTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $GithubUserData = _$GithubUserDataTearOff();
 
 /// @nodoc
 mixin _$GithubUserData {
-  GithubUser get user;
-  List<GithubRepo> get repos;
+  GithubUser get user => throw _privateConstructorUsedError;
+  List<GithubRepo> get repos => throw _privateConstructorUsedError;
 
-  $GithubUserDataCopyWith<GithubUserData> get copyWith;
+  @JsonKey(ignore: true)
+  $GithubUserDataCopyWith<GithubUserData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -56,20 +60,23 @@ class _$GithubUserDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object user = freezed,
-    Object repos = freezed,
+    Object? user = freezed,
+    Object? repos = freezed,
   }) {
     return _then(_value.copyWith(
-      user: user == freezed ? _value.user : user as GithubUser,
-      repos: repos == freezed ? _value.repos : repos as List<GithubRepo>,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as GithubUser,
+      repos: repos == freezed
+          ? _value.repos
+          : repos // ignore: cast_nullable_to_non_nullable
+              as List<GithubRepo>,
     ));
   }
 
   @override
   $GithubUserCopyWith<$Res> get user {
-    if (_value.user == null) {
-      return null;
-    }
     return $GithubUserCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
@@ -102,22 +109,27 @@ class __$GithubUserDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object user = freezed,
-    Object repos = freezed,
+    Object? user = freezed,
+    Object? repos = freezed,
   }) {
     return _then(_GithubUserData(
-      user: user == freezed ? _value.user : user as GithubUser,
-      repos: repos == freezed ? _value.repos : repos as List<GithubRepo>,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as GithubUser,
+      repos: repos == freezed
+          ? _value.repos
+          : repos // ignore: cast_nullable_to_non_nullable
+              as List<GithubRepo>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_GithubUserData extends _GithubUserData {
-  const _$_GithubUserData({@required this.user, @required this.repos})
-      : assert(user != null),
-        assert(repos != null),
-        super._();
+  const _$_GithubUserData({required this.user, required this.repos})
+      : super._();
 
   @override
   final GithubUser user;
@@ -132,34 +144,34 @@ class _$_GithubUserData extends _GithubUserData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GithubUserData &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.repos, repos) ||
-                const DeepCollectionEquality().equals(other.repos, repos)));
+        (other.runtimeType == runtimeType &&
+            other is _GithubUserData &&
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other.repos, repos));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(repos);
+  int get hashCode => Object.hash(
+      runtimeType, user, const DeepCollectionEquality().hash(repos));
 
+  @JsonKey(ignore: true)
   @override
   _$GithubUserDataCopyWith<_GithubUserData> get copyWith =>
       __$GithubUserDataCopyWithImpl<_GithubUserData>(this, _$identity);
 }
 
 abstract class _GithubUserData extends GithubUserData {
-  const _GithubUserData._() : super._();
   const factory _GithubUserData(
-      {@required GithubUser user,
-      @required List<GithubRepo> repos}) = _$_GithubUserData;
+      {required GithubUser user,
+      required List<GithubRepo> repos}) = _$_GithubUserData;
+  const _GithubUserData._() : super._();
 
   @override
   GithubUser get user;
   @override
   List<GithubRepo> get repos;
   @override
-  _$GithubUserDataCopyWith<_GithubUserData> get copyWith;
+  @JsonKey(ignore: true)
+  _$GithubUserDataCopyWith<_GithubUserData> get copyWith =>
+      throw _privateConstructorUsedError;
 }

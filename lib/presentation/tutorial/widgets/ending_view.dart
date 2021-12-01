@@ -10,11 +10,9 @@ class EndingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               'assets/images/message_happy.png',
@@ -22,8 +20,8 @@ class EndingView extends StatelessWidget {
               height: 200,
             ),
             Text(
-              context.getString(LocaleKeys.TUTORIAL_ENDING_PAGE_MESSAGE),
-              style: themeLight.textTheme.headline2,
+              context.getString(LocaleKeys.TUTORIAL_ENDING_PAGE_MESSAGE) ?? '',
+              style: Theme.of(context).textTheme.headline2,
             ),
           ],
         ),

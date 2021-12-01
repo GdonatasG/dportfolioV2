@@ -7,9 +7,11 @@ class StickyHeaderWidget extends StatelessWidget {
   final String title;
   final bool isCenteredVertically;
 
-  const StickyHeaderWidget(
-      {Key key, @required this.title, this.isCenteredVertically = false})
-      : super(key: key);
+  const StickyHeaderWidget({
+    Key? key,
+    required this.title,
+    this.isCenteredVertically = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,8 @@ class StickyHeaderWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
         child: Text(
           title,
-          style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 17.0),
+          style:
+              Theme.of(context).textTheme.headline4?.copyWith(fontSize: 17.0),
         ));
   }
 }

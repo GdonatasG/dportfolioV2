@@ -10,7 +10,6 @@ import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/wid
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
-import 'package:preferences/preferences.dart';
 
 part 'github_event.dart';
 
@@ -22,9 +21,9 @@ part 'github_bloc.freezed.dart';
 class GithubBloc extends Bloc<GithubEvent, GithubState> {
   final IGithubRepository _iGithubRepository;
 
-  GithubUserData githubUserData;
+  GithubUserData? githubUserData;
 
-  List<GithubRepo> filteredRepoList;
+  List<GithubRepo>? filteredRepoList;
 
   final String PREF_GITHUB_FILTER = 'github_filter';
   final String PREF_GITHUB_IS_FILTERED = 'github_is_filtered';
@@ -38,31 +37,36 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
     'HTML': false,
   };
 
-  GithubBloc(this._iGithubRepository) : super(const GithubState.initial());
-
-  @override
-  Stream<GithubState> mapEventToState(
-    GithubEvent event,
-  ) async* {
-    yield* event.map(
-        getUserDataByName: (e) =>
-            _getUserDataByNameEvent(e.name, isRefresh: e.isRefresh),
-        filterList: (e) => _filterListEvent(e.filterOptions),
-        filterCheckRequest: (e) => _filterCheckRequest(),
-        loadFilterOptions: (e) async* {
-          yield GithubState.filterOptionsLoaded(_loadFilterOptions());
-        });
+  GithubBloc(this._iGithubRepository) : super(const GithubState.initial()) {
+    on<GithubEvent>((event, emit) async {
+      await event.map(
+        getUserDataByName: (e) async => _getUserDataByNameEvent(
+          e.name,
+          isRefresh: e.isRefresh,
+          emit: emit,
+        ),
+        filterList: (e) async => _filterListEvent(e.filterOptions, emit: emit),
+        filterCheckRequest: (e) async => _filterCheckRequest(emit: emit),
+        loadFilterOptions: (e) async {
+          emit(GithubState.filterOptionsLoaded(_loadFilterOptions()));
+        },
+      );
+    });
   }
 
-  Stream<GithubState> _getUserDataByNameEvent(String name,
-      {bool isRefresh = false}) async* {
+  void _getUserDataByNameEvent(
+    String name, {
+    bool isRefresh = false,
+    required Emitter<GithubState> emit,
+  }) async {
     if (isRefresh) {
-      yield const GithubState.refreshing();
+      emit(const GithubState.refreshing());
     } else {
-      yield const GithubState.loading();
+      emit(const GithubState.loading());
     }
     final failureOrUserData = await _iGithubRepository.getUserDataByName(name);
-    yield failureOrUserData.fold(
+    print(failureOrUserData.toString());
+    final GithubState finalState = failureOrUserData.fold(
       (l) {
         return !isRefresh
             ? GithubState.userDataLoadingError(l)
@@ -71,13 +75,16 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
       (r) {
         githubUserData = r;
         add(const GithubEvent.filterCheckRequest());
-        return GithubState.userDataLoaded(githubUserData);
+        return GithubState.userDataLoaded(githubUserData!);
       },
     );
+    emit(finalState);
   }
 
-  Stream<GithubState> _filterCheckRequest() async* {
-    final bool prefValue = PrefService.getBool(PREF_GITHUB_IS_FILTERED);
+  void _filterCheckRequest({
+    required Emitter<GithubState> emit,
+  }) {
+    /*final bool prefValue = PrefService.getBool(PREF_GITHUB_IS_FILTERED);
     final isFiltered = prefValue ?? false;
     if (isFiltered) {
       final filterOptions = _loadFilterOptions();
@@ -85,45 +92,57 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
       yield GithubState.listFiltered(filteredRepoList);
     } else {
       yield GithubState.listFiltered(githubUserData.repos);
-    }
+    }*/
+    emit(
+      GithubState.listFiltered(
+        githubUserData?.repos ?? [],
+      ),
+    );
   }
 
-  Stream<GithubState> _filterListEvent(Map<String, bool> filterOptions) async* {
+  void _filterListEvent(
+    Map<String, bool> filterOptions, {
+    required Emitter<GithubState> emit,
+  }) async {
     // 'All' option is selected, yielding original (full) list
     if (filterOptions.keys.elementAt(0) ==
             GithubFilterLocaleKeys.FILTER_OPTION_ALL &&
-        filterOptions[filterOptions.keys.elementAt(0)]) {
-      PrefService.setBool(PREF_GITHUB_IS_FILTERED, false);
-      yield GithubState.listFiltered(githubUserData.repos);
+        (filterOptions[filterOptions.keys.elementAt(0)] ?? false)) {
+      //PrefService.setBool(PREF_GITHUB_IS_FILTERED, false);
+      emit(GithubState.listFiltered(githubUserData!.repos));
     } else {
-      PrefService.setBool(PREF_GITHUB_IS_FILTERED, true);
+      //PrefService.setBool(PREF_GITHUB_IS_FILTERED, true);
       filteredRepoList = _filter(filterOptions);
-      yield GithubState.listFiltered(filteredRepoList);
+      emit(GithubState.listFiltered(filteredRepoList!));
     }
     _saveFilterToSharedPref(filterOptions);
   }
 
-  List<GithubRepo> _filter(Map<String, bool> filterOptions) =>
-      List.from(githubUserData.repos.where((element) {
-        for (int i = 0; i < filterOptions.length; i++) {
-          // Value is selected (== true) and repo language is
-          // the same as the key from filter options Map
-          if (filterOptions.values.elementAt(i) &&
-              element.language == filterOptions.keys.elementAt(i)) return true;
-        }
-        return false;
-      }));
+  List<GithubRepo> _filter(Map<String, bool> filterOptions) => List.from(
+        githubUserData!.repos.where((element) {
+          for (int i = 0; i < filterOptions.length; i++) {
+            // Value is selected (== true) and repo language is
+            // the same as the key from filter options Map
+            if (filterOptions.values.elementAt(i) &&
+                element.language == filterOptions.keys.elementAt(i)) {
+              return true;
+            }
+          }
+          return false;
+        }),
+      );
 
   Map<String, bool> _loadFilterOptions() {
-    final filterOptionsPref = PrefService.getString(PREF_GITHUB_FILTER);
+    /*final filterOptionsPref = PrefService.getString(PREF_GITHUB_FILTER);
     final Map<String, bool> filterOptions = filterOptionsPref == null
         ? defaultFilterOptions
         : Map<String, bool>.from(json.decode(filterOptionsPref));
-    return filterOptions;
+    return filterOptions;*/
+    return defaultFilterOptions;
   }
 
   _saveFilterToSharedPref(Map<String, bool> filterOptions) {
-    final filterOptionsJson = json.encode(filterOptions);
-    PrefService.setString(PREF_GITHUB_FILTER, filterOptionsJson);
+    /*final filterOptionsJson = json.encode(filterOptions);
+    PrefService.setString(PREF_GITHUB_FILTER, filterOptionsJson);*/
   }
 }
