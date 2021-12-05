@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/core/widgets/backgrounded_tag.dart';
 import 'package:flutter/material.dart';
@@ -71,8 +71,7 @@ class _SkillsState extends State<Skills> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 Text(
-                  context.getString(LocaleKeys.ADDITIONAL_SKILLS_CONTENT1) ??
-                      '',
+                  context.getString(LocaleKeys.ADDITIONAL_SKILLS_CONTENT1),
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1

@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:dportfolio_v2/injection.dart';
+import 'package:dportfolio_v2/presentation/wrapper/wrapper_constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 part 'wrapper_event.dart';
 
@@ -14,38 +17,26 @@ class WrapperBloc extends Bloc<WrapperEvent, WrapperState> {
     on<WrapperEvent>((event, emit) async {
       event.map(
         tutorialCheckRequest: (e) async {
-          /*final showTutorial = PrefService.getBool(WrapperConst.SHOW_TUTORIAL);
-        if (showTutorial == null || showTutorial) {
-          yield const WrapperState.tutorial();
-        } else {
-          yield const WrapperState.afterTutorial();
-        }*/
-          emit(const WrapperState.afterTutorial());
+          final showTutorial = getIt<StreamingSharedPreferences>()
+              .getBool(
+                WrapperConst.SHOW_TUTORIAL,
+                defaultValue: true,
+              )
+              .getValue();
+
+          if (showTutorial) {
+            emit(const WrapperState.tutorial());
+          } else {
+            emit(const WrapperState.afterTutorial());
+          }
         },
         tutorialCompleted: (e) async {
-          //PrefService.setBool(WrapperConst.SHOW_TUTORIAL, false);
+          await getIt<StreamingSharedPreferences>().setBool(
+            WrapperConst.SHOW_TUTORIAL,
+            false,
+          );
         },
       );
     });
   }
-
-/*@override
-  Stream<WrapperState> mapEventToState(
-    WrapperEvent event,
-  ) async* {
-    yield* event.map(
-      tutorialCheckRequest: (e) async* {
-        /*final showTutorial = PrefService.getBool(WrapperConst.SHOW_TUTORIAL);
-        if (showTutorial == null || showTutorial) {
-          yield const WrapperState.tutorial();
-        } else {
-          yield const WrapperState.afterTutorial();
-        }*/
-        yield const WrapperState.afterTutorial();
-      },
-      tutorialCompleted: (e) async* {
-        //PrefService.setBool(WrapperConst.SHOW_TUTORIAL, false);
-      },
-    );
-  }*/
 }

@@ -3,7 +3,7 @@ import 'package:dportfolio_v2/domain/github/github_repo.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'github_repo_item.dart';
@@ -30,10 +30,9 @@ class _ReposWithStickyHeaderWidgetState
       overlapHeaders: true,
       header: StickyHeaderWidget(
         title: context.getString(
-              LocaleKeys.REPOS_TITLE,
-              {'repos': widget.listOfRepos.length},
-            ) ??
-            '',
+          LocaleKeys.REPOS_TITLE,
+          {'repos': widget.listOfRepos.length},
+        ),
       ),
       content: RefreshIndicator(
         onRefresh: () {

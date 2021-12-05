@@ -2,16 +2,11 @@ import 'dart:io';
 
 import 'package:chopper/chopper.dart';
 import 'package:dportfolio_v2/hidden.dart';
-import 'package:dportfolio_v2/infrastructure/core/converters/built_value_converter.dart';
 import 'package:dportfolio_v2/infrastructure/core/converters/json_to_type_converter.dart';
 import 'package:dportfolio_v2/infrastructure/github/github_repo_dto.dart';
 import 'package:dportfolio_v2/infrastructure/github/github_user_dto.dart';
 import 'package:http/io_client.dart' as http;
-import 'package:built_collection/built_collection.dart';
 import 'package:injectable/injectable.dart';
-
-import 'built_github_repo.dart';
-import 'built_github_user.dart';
 
 part 'github_service.chopper.dart';
 

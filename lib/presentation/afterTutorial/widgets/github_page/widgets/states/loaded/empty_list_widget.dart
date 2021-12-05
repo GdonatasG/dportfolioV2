@@ -1,6 +1,6 @@
 import 'package:dportfolio_v2/application/github_bloc/github_bloc.dart';
 import 'package:dportfolio_v2/presentation/core/app_dimensions.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +58,7 @@ class LoadedEmptyWidget extends StatelessWidget {
                 .add(const GithubEvent.getUserDataByName('GdonatasG', true));
           },
           child: Text(
-            context.getString(LocaleKeys.REFRESH) ?? '',
+            context.getString(LocaleKeys.REFRESH),
             textAlign: TextAlign.center,
           ),
         )

@@ -3,7 +3,7 @@ import 'package:dportfolio_v2/presentation/afterTutorial/widgets/contact_page/wi
 import 'package:dportfolio_v2/presentation/core/widgets/custom_webview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
 import 'package:dportfolio_v2/presentation/core/extensions/url_extensions.dart';
@@ -61,8 +61,8 @@ class _ContactPageState extends State<ContactPage>
           final Uri uri = Uri(scheme: 'mailto', path: 'zitkusd@gmail.com');
           context.openAppOrBrowser(uri.toString());
         },
-        description: context.getString(LocaleKeys.EMAIL_DESC) ?? '',
-        btnText: context.getString(LocaleKeys.EMAIL_BTN) ?? '',
+        description: context.getString(LocaleKeys.EMAIL_DESC),
+        btnText: context.getString(LocaleKeys.EMAIL_BTN),
       ),
       PlatformItem(
         icon: const Icon(FontAwesome5.linkedin),
@@ -72,8 +72,8 @@ class _ContactPageState extends State<ContactPage>
               'https://www.linkedin.com/in/donatas-%C5%BEitkus-50a4b6163/';
           context.openAppOrBrowser(url);
         },
-        description: context.getString(LocaleKeys.LINKEDIN_DESC) ?? '',
-        btnText: context.getString(LocaleKeys.LINKEDIN_BTN) ?? '',
+        description: context.getString(LocaleKeys.LINKEDIN_DESC),
+        btnText: context.getString(LocaleKeys.LINKEDIN_BTN),
       ),
       PlatformItem(
         icon: Image.asset(
@@ -87,8 +87,8 @@ class _ContactPageState extends State<ContactPage>
               'https://www.upwork.com/freelancers/~01d46d21775488abb6';
           _openWebView(url);
         },
-        description: context.getString(LocaleKeys.UPWORK_DESC) ?? '',
-        btnText: context.getString(LocaleKeys.UPWORK_BTN) ?? '',
+        description: context.getString(LocaleKeys.UPWORK_DESC),
+        btnText: context.getString(LocaleKeys.UPWORK_BTN),
       ),
       PlatformItem(
         icon: Image.asset(
@@ -101,8 +101,8 @@ class _ContactPageState extends State<ContactPage>
           const String url = 'https://www.freelancer.com/u/zitkusd';
           _openWebView(url);
         },
-        description: context.getString(LocaleKeys.FREELANCER_DESC) ?? '',
-        btnText: context.getString(LocaleKeys.FREELANCER_BTN) ?? '',
+        description: context.getString(LocaleKeys.FREELANCER_DESC),
+        btnText: context.getString(LocaleKeys.FREELANCER_BTN),
       ),
     ];
   }
@@ -124,7 +124,7 @@ class _ContactPageState extends State<ContactPage>
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Text(
-              context.getString(LocaleKeys.GET_IN_TOUCH) ?? '',
+              context.getString(LocaleKeys.GET_IN_TOUCH),
             ),
             centerTitle: true,
           ),

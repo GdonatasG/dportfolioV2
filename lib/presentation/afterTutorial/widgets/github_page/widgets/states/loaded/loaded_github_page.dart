@@ -5,7 +5,7 @@ import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 
 import 'empty_list_widget.dart';
 import 'loaded_sliver_app_bar.dart';
@@ -41,8 +41,7 @@ class _LoadedGithubPageState extends State<LoadedGithubPage> {
           refreshError: (s) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content:
-                    Text(context.getString(LocaleKeys.ERROR_TRY_AGAIN) ?? ''),
+                content: Text(context.getString(LocaleKeys.ERROR_TRY_AGAIN)),
               ),
             );
           },

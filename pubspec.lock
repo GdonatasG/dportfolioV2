@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "30.0.0"
+  adaptive_theme:
+    dependency: "direct main"
+    description:
+      name: adaptive_theme
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.0"
   analyzer:
     dependency: transitive
     description:
@@ -225,6 +232,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0"
+  ez_localization:
+    dependency: "direct main"
+    description:
+      name: ez_localization
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+2"
   fake_async:
     dependency: transitive
     description:
@@ -265,6 +279,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"
+  flutter_awesome_select:
+    dependency: "direct main"
+    description:
+      name: flutter_awesome_select
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.1"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -723,6 +744,13 @@ packages:
     dependency: transitive
     description:
       name: stream_transform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+  streaming_shared_preferences:
+    dependency: "direct main"
+    description:
+      name: streaming_shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"

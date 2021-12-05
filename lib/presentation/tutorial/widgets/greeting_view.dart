@@ -1,7 +1,7 @@
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/core/themes/theme_light.dart';
 import 'package:flutter/material.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 
 class GreetingView extends StatelessWidget {
   const GreetingView();
@@ -20,7 +20,7 @@ class GreetingView extends StatelessWidget {
               height: 220,
             ),
             Text(
-              context.getString(LocaleKeys.TUTORIAL_GREETING_MESSAGE) ?? '',
+              context.getString(LocaleKeys.TUTORIAL_GREETING_MESSAGE),
               style: Theme.of(context).textTheme.headline2,
             ),
           ],

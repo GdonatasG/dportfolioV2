@@ -98,7 +98,11 @@ abstract class LocaleKeys {
   static const BUILT_WITH = "settingsPage.built_with";
   static const PERSONALIZATION = "settingsPage.personalization";
   static const DARK_THEME = "settingsPage.dark_theme";
+  static const LIGHT_THEME = "settingsPage.light_theme";
+  static const DEVICE_THEME = "settingsPage.device_theme";
+  static const THEME = "settingsPage.theme";
   static const LANGUAGE_TITLE = "settingsPage.language.title";
   static const LANGUAGE_EN = "settingsPage.language.en";
   static const LANGUAGE_LT = "settingsPage.language.lt";
+  static const LANGUAGE_DEVICE = "settingsPage.language.device";
 }

@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 
 import '../locale_keys.dart';
 
@@ -59,7 +59,7 @@ class ShowEmptyUrlMessageLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(context.getString(LocaleKeys.ERROR_EMPTY_WEBVIEW_URL) ?? '',
+      child: Text(context.getString(LocaleKeys.ERROR_EMPTY_WEBVIEW_URL),
           style: Theme.of(context).textTheme.bodyText1),
     );
   }

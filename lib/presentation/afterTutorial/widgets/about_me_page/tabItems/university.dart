@@ -1,7 +1,7 @@
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/about_me_page/tabItems/widgets/content_text_widget.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/material.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 
 class University extends StatefulWidget {
   const University({
@@ -32,8 +32,7 @@ class _UniversityState extends State<University> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 ContentTextWidget(
-                    content:
-                        context.getString(LocaleKeys.UNIVERSITY_CONTENT1) ?? '')
+                    content: context.getString(LocaleKeys.UNIVERSITY_CONTENT1))
               ]),
             ),
           )
