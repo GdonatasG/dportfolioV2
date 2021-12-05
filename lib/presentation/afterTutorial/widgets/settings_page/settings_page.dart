@@ -1,7 +1,13 @@
-import 'package:dportfolio_v2/application/app_data_builder/app_data_export.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
+import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:package_info/package_info.dart';
+
+import 'widgets/text_tile.dart';
+import 'widgets/title_widget.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage();
@@ -12,7 +18,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage>
     with AutomaticKeepAliveClientMixin {
-  late String appVersion;
+  String appVersion = "";
 
   @override
   void initState() {
@@ -29,8 +35,54 @@ class _SettingsPageState extends State<SettingsPage>
     });
   }
 
+  List<Widget> _initWidgets(BuildContext context) => [
+        TitleWidget(
+          title: context.getString(LocaleKeys.ABOUT_APPLICATION),
+        ),
+        TextTile(
+          leading: const Icon(FontAwesome5.info_circle),
+          title: context.getString(LocaleKeys.VERSION, {'version': appVersion}),
+          isSingleLine: true,
+        ),
+        TextTile(
+          leading: const Icon(Icons.person),
+          title: context.getString(
+            LocaleKeys.CREATORS,
+            {'creators': 'Donatas Žitkus'},
+          ),
+          isSingleLine: true,
+        ),
+        TextTile(
+          leading: const Icon(Icons.phone_android),
+          title: context.getString(LocaleKeys.BUILT_WITH),
+          isSingleLine: true,
+        ),
+        TitleWidget(
+          title: context.getString(LocaleKeys.PERSONALIZATION),
+        ),
+        TextTile(
+          leading: const Icon(Icons.color_lens_outlined),
+          trailing: const Icon(Icons.arrow_forward),
+          title: context.getString(LocaleKeys.THEME),
+          onTap: () {
+            context.router.push(const ThemePageRoute());
+          },
+          isSingleLine: true,
+        ),
+        TextTile(
+          leading: const Icon(Icons.language),
+          trailing: const Icon(Icons.arrow_forward),
+          title: context.getString(LocaleKeys.LANGUAGE_TITLE),
+          onTap: () {
+            context.router.push(const LanguagePageRoute());
+          },
+          isSingleLine: true,
+        ),
+      ];
+
   @override
   Widget build(BuildContext context) {
+    final listOfWidgets = _initWidgets(context);
     super.build(context);
     return Container(
       color: Theme.of(context).primaryColor,
@@ -39,81 +91,17 @@ class _SettingsPageState extends State<SettingsPage>
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Text(
-              context.getString(LocaleKeys.SETTINGS_TITLE) ?? '',
+              context.getString(LocaleKeys.SETTINGS_TITLE),
             ),
             centerTitle: true,
           ),
-          body:
-              Container(), /*PreferencePage(
-            [
-              TitleWidget(
-                title: context.getString(LocaleKeys.ABOUT_APPLICATION),
-              ),
-              const Divider(
-                height: 1.0,
-              ),
-              TextTile(
-                leading: const Icon(FontAwesome.info_circle),
-                title: context
-                    .getString(LocaleKeys.VERSION, {'version': appVersion}),
-                isSingleLine: true,
-              ),
-              const Divider(
-                height: 1.0,
-              ),
-              TextTile(
-                leading: const Icon(Ionicons.ios_person),
-                title: context.getString(
-                    LocaleKeys.CREATORS, {'creators': 'Donatas Žitkus'}),
-                isSingleLine: true,
-              ),
-              const Divider(
-                height: 1.0,
-              ),
-              TextTile(
-                leading: const Icon(Icons.phone_android),
-                title: context.getString(LocaleKeys.BUILT_WITH),
-                isSingleLine: true,
-              ),
-              const Divider(
-                height: 1.0,
-              ),
-              TitleWidget(
-                title: context.getString(LocaleKeys.PERSONALIZATION),
-              ),
-              const Divider(
-                height: 1.0,
-              ),
-              EditedSwitchPreference(
-                Text(
-                  context.getString(LocaleKeys.DARK_THEME),
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                ThemeConstants.IS_THEME_DARK,
-                onEnable: () {
-                  AppDataBuilder.of(context).changeTheme(themeDark);
-                },
-                onDisable: () {
-                  AppDataBuilder.of(context).changeTheme(themeLight);
-                },
-              ),
-              const Divider(
-                height: 1.0,
-              ),
-              TextTile(
-                leading: const Icon(Icons.language),
-                trailing: const Icon(Icons.arrow_forward),
-                title: context.getString(LocaleKeys.LANGUAGE_TITLE),
-                onTap: () {
-                  ExtendedNavigator.of(context).push(Routes.languagePage);
-                },
-                isSingleLine: true,
-              ),
-              const Divider(
-                height: 1.0,
-              ),
-            ],
-          ),*/
+          body: ListView.separated(
+            itemBuilder: (ctx, i) => listOfWidgets[i],
+            separatorBuilder: (ctx, i) => const Divider(
+              height: 1.0,
+            ),
+            itemCount: listOfWidgets.length,
+          ),
         ),
       ),
     );

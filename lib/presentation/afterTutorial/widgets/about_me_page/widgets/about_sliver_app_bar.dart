@@ -2,8 +2,7 @@ import 'package:dportfolio_v2/presentation/core/app_dimensions.dart';
 import 'package:dportfolio_v2/presentation/core/global_constants.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/core/themes/theme_dark.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/theme_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/themes/theme_light.dart';
 import 'package:dportfolio_v2/presentation/core/widgets/sabt.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +55,7 @@ class AboutSliverAppBar extends StatelessWidget {
               height: 10,
             ),
             Text(
-              context.getString(LocaleKeys.TITLE_MOBILE_DEVELOPER) ?? '',
+              context.getString(LocaleKeys.TITLE_MOBILE_DEVELOPER),
               style: Theme.of(context).textTheme.headline5,
             ),
             const SizedBox(

@@ -37,6 +37,10 @@ dependencies:
   photo_view: ^0.13.0
   json_serializable: ^6.0.1
   json_annotation: ^4.3.0
+  streaming_shared_preferences: ^2.0.0
+  flutter_awesome_select: ^6.0.1
+  adaptive_theme: ^2.3.0
+  ez_localization: ^1.0.0+2
 
 
 dev_dependencies:

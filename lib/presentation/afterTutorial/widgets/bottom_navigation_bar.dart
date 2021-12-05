@@ -2,7 +2,7 @@ import 'package:dportfolio_v2/presentation/afterTutorial/misc/current_bottom_bar
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/misc/build_context_x.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:provider/provider.dart';
 

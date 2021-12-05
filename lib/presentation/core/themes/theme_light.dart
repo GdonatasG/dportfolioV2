@@ -16,6 +16,8 @@ Color SELECTED_COLOR = Colors.redAccent;
 Color FOCUSED_COLOR = Colors.black;
 Color UNSELECTED_COLOR = Colors.grey[600]!;
 
+final typography = Typography(platform: TargetPlatform.iOS).black;
+
 final ThemeData themeLight = ThemeData.light().copyWith(
   primaryColor: PRIMARY_COLOR,
   indicatorColor: SELECTED_COLOR,
@@ -44,7 +46,7 @@ final ThemeData themeLight = ThemeData.light().copyWith(
     size: AppDimensions.UNSELECTED_ICON_SIZE,
   ),
   dividerTheme: DividerThemeData(thickness: 0.25, color: UNSELECTED_COLOR),
-  textTheme: TextTheme(
+  textTheme: typography.copyWith(
     headline2: TextStyle(fontSize: 22.0, color: UNSELECTED_COLOR),
     bodyText1: TextStyle(
       fontSize: 13.0,

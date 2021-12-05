@@ -1,5 +1,5 @@
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/about_me_page/tabItems/widgets/content_text_widget.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/material.dart';
 
@@ -34,15 +34,13 @@ class _RoadToProgrammingState extends State<RoadToProgramming> {
                 [
                   ContentTextWidget(
                     content: context.getString(
-                          LocaleKeys.ROAD_TO_PROGRAMMING_CONTENT1,
-                        ) ??
-                        '',
+                      LocaleKeys.ROAD_TO_PROGRAMMING_CONTENT1,
+                    ),
                   ),
                   ContentTextWidget(
                     content: context.getString(
-                          LocaleKeys.ROAD_TO_PROGRAMMING_CONTENT2,
-                        ) ??
-                        '',
+                      LocaleKeys.ROAD_TO_PROGRAMMING_CONTENT2,
+                    ),
                   ),
                 ],
               ),

@@ -1,4 +1,4 @@
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +43,7 @@ class _PortfolioPageState extends State<PortfolioPage>
             automaticallyImplyLeading: false,
             centerTitle: true,
             title: Text(
-              context.getString(LocaleKeys.PORTFOLIO_PAGE_TITLE) ?? '',
+              context.getString(LocaleKeys.PORTFOLIO_PAGE_TITLE),
             ),
             bottom: TabBar(
               tabs: tabItems,

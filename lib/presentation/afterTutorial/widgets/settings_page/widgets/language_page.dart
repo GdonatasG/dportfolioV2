@@ -1,8 +1,10 @@
-import 'package:dportfolio_v2/application/app_data_builder/app_data_export.dart';
-import 'package:dportfolio_v2/application/app_data_builder/locale_constants.dart';
+import 'package:dportfolio_v2/injection.dart';
+import 'package:dportfolio_v2/presentation/core/locale_constants.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
-import 'package:dportfolio_v2/presentation/core/widgets/custom_radio_preference.dart';
+import 'package:ez_localization/ez_localization.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class LanguagePage extends StatefulWidget {
   @override
@@ -10,6 +12,67 @@ class LanguagePage extends StatefulWidget {
 }
 
 class _LanguagePageState extends State<LanguagePage> {
+  List<Widget> _rebuildChoices(BuildContext context, String lang) => [
+        RadioListTile(
+          title: Text(context.getString(LocaleKeys.LANGUAGE_EN)),
+          activeColor: Theme.of(context).colorScheme.secondary,
+          value: LocaleConstants.LANG_EN,
+          groupValue: lang,
+          onChanged: (value) async {
+            await _updateLocale(
+              context,
+              const Locale(LocaleConstants.LANG_EN),
+              LocaleConstants.LANG_EN,
+            );
+          },
+        ),
+        RadioListTile(
+          title: Text(context.getString(LocaleKeys.LANGUAGE_LT)),
+          activeColor: Theme.of(context).colorScheme.secondary,
+          value: LocaleConstants.LANG_LT,
+          groupValue: lang,
+          onChanged: (value) async {
+            await _updateLocale(
+              context,
+              const Locale(LocaleConstants.LANG_LT),
+              LocaleConstants.LANG_LT,
+            );
+          },
+        ),
+        RadioListTile(
+          title: Text(context.getString(LocaleKeys.LANGUAGE_DEVICE)),
+          activeColor: Theme.of(context).colorScheme.secondary,
+          value: LocaleConstants.LANG_DEVICE,
+          groupValue: lang,
+          onChanged: (value) async {
+            final List<Locale>? systemLocales =
+                WidgetsBinding.instance?.window.locales;
+
+            await _updateLocale(
+              context,
+              systemLocales?[0] ?? const Locale(LocaleConstants.LANG_EN),
+              LocaleConstants.LANG_DEVICE,
+            );
+          },
+        ),
+      ];
+
+  Future<void> _updateLocale(
+    BuildContext context,
+    Locale locale,
+    String prefValue,
+  ) async {
+    if (prefValue == LocaleConstants.LANG_LT ||
+        prefValue == LocaleConstants.LANG_EN ||
+        prefValue == LocaleConstants.LANG_DEVICE) {
+      await getIt<StreamingSharedPreferences>().setString(
+        LocaleConstants.PREFERENCE_LANGUAGE,
+        prefValue,
+      );
+      if (mounted) EzLocalizationBuilder.of(context)!.changeLocale(locale);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,56 +81,26 @@ class _LanguagePageState extends State<LanguagePage> {
         child: Scaffold(
           appBar: AppBar(
             title: Text(
-              context.getString(LocaleKeys.LANGUAGE_TITLE) ?? '',
-              style: Theme.of(context).textTheme.headline6,
+              context.getString(LocaleKeys.LANGUAGE_TITLE),
             ),
             centerTitle: true,
           ),
-          body:
-              Container() /*PreferencePage([
-            const Divider(
-              height: 1.0,
-            ),
-            CustomRadioPreference(
-              Text(
-                context.getString(LocaleKeys.LANGUAGE_EN),
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              LocaleConstants.LANG_EN,
+          body: PreferenceBuilder<String>(
+            preference: getIt<StreamingSharedPreferences>().getString(
               LocaleConstants.PREFERENCE_LANGUAGE,
-              isDefault: context.getCurrentLocale?.languageCode ==
-                  LocaleConstants.LANG_EN,
-              onSelect: () {
-                WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-                  AppDataBuilder.of(context)
-                      ?.changeLocale(const Locale(LocaleConstants.LANG_EN));
-                });
-              },
+              defaultValue: LocaleConstants.LANG_DEVICE,
             ),
-            const Divider(
-              height: 1.0,
-            ),
-            CustomRadioPreference(
-              Text(
-                context.getString(LocaleKeys.LANGUAGE_LT),
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              LocaleConstants.LANG_LT,
-              LocaleConstants.PREFERENCE_LANGUAGE,
-              isDefault: context.getCurrentLocale.languageCode ==
-                  LocaleConstants.LANG_LT,
-              onSelect: () {
-                WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                  AppDataBuilder.of(context)
-                      .changeLocale(const Locale(LocaleConstants.LANG_LT));
-                });
-              },
-            ),
-            const Divider(
-              height: 1.0,
-            ),
-          ])*/
-          ,
+            builder: (ctx, lang) {
+              final List<Widget> widgets = _rebuildChoices(context, lang);
+              return ListView.separated(
+                itemBuilder: (ctx, i) => widgets[i],
+                separatorBuilder: (ctx, i) => const Divider(
+                  height: 1.0,
+                ),
+                itemCount: widgets.length,
+              );
+            },
+          ),
         ),
       ),
     );

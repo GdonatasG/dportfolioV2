@@ -91,11 +91,15 @@
     "creators": "Kūrėjai: {creators}",
     "built_with": "Aplikacija sukurta naudojantis Flutter karkasu",
     "personalization": "Išvaizda",
+    "light_theme": "Šviesi tema",
     "dark_theme": "Tamsi tema",
+    "device_theme": "Įrenginio tema",
+    "theme": "Išvaizda",
     "language": {
       "title": "Kalba",
       "en": "Anglų",
-      "lt": "Lietuvių"
+      "lt": "Lietuvių",
+      "device": "Įrenginio kalba"
     }
   }
 }

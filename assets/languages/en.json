@@ -91,11 +91,15 @@
     "creators": "Creators: {creators}",
     "built_with": "Application built with Flutter",
     "personalization": "Personalization",
-    "dark_theme": "Dark Theme",
+    "light_theme": "Light theme",
+    "dark_theme": "Dark theme",
+    "device_theme": "Device theme",
+    "theme": "Theme",
     "language": {
       "title": "Language",
       "en": "English",
-      "lt": "Lithuanian"
+      "lt": "Lithuanian",
+      "device": "Device language"
     }
   }
 }

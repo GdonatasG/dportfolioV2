@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:dportfolio_v2/injection.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/misc/current_bottom_bar_page.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/about_me_page/about_me_page.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/bottom_navigation_bar.dart';
@@ -5,12 +7,13 @@ import 'package:dportfolio_v2/presentation/afterTutorial/widgets/contact_page/co
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/github_page.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/portfolio_page/portfolio_page.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/settings_page.dart';
+import 'package:dportfolio_v2/presentation/core/themes/theme_constants.dart';
 import 'package:dportfolio_v2/presentation/core/themes/theme_light.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/misc/build_context_x.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/theme_extensions.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class AfterTutorialPage extends StatefulWidget {
   @override
@@ -36,7 +39,6 @@ class _AfterTutorialPageState extends State<AfterTutorialPage>
 
   @override
   Widget build(BuildContext context) {
-    final currentTheme = context.getCurrentTheme;
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -46,20 +48,20 @@ class _AfterTutorialPageState extends State<AfterTutorialPage>
               Theme.of(context).brightness == Brightness.light
                   ? Brightness.dark
                   : Brightness.light,
-          /*currentTheme == themeLight ? Brightness.dark : Brightness.light,*/
           statusBarBrightness: Theme.of(context).brightness,
         ),
         child: Scaffold(
           bottomNavigationBar: BottomBar(),
           body: Consumer<CurrentBottomBarPage>(
-              builder: (context, currentPage, child) {
-            _tabController.index = context.currentPage;
-            return TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: _tabController,
-              children: _pages,
-            );
-          }),
+            builder: (context, currentPage, child) {
+              _tabController.index = context.currentPage;
+              return TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _tabController,
+                children: _pages,
+              );
+            },
+          ),
         ),
       ),
     );

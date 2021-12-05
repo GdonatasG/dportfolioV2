@@ -7,7 +7,7 @@ import 'package:dportfolio_v2/presentation/tutorial/widgets/ending_view.dart';
 import 'package:dportfolio_v2/presentation/tutorial/widgets/greeting_view.dart';
 import 'package:dportfolio_v2/presentation/tutorial/widgets/what_to_find_view.dart';
 import 'package:flutter/material.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -158,7 +158,7 @@ class FooterControls extends StatelessWidget {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(
-              context.getString(LocaleKeys.CONFIRMATION) ?? '',
+              context.getString(LocaleKeys.CONFIRMATION),
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
@@ -168,7 +168,7 @@ class FooterControls extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(context.getString(LocaleKeys.BTN_CANCEL) ?? ''),
+                child: Text(context.getString(LocaleKeys.BTN_CANCEL)),
               ), // cancel button
               TextButton(
                 onPressed: () {
@@ -177,7 +177,7 @@ class FooterControls extends StatelessWidget {
                   context.router.replace(const AfterTutorialPageRoute());
                 },
                 child: Text(
-                  context.getString(LocaleKeys.BTN_CONFIRM) ?? '',
+                  context.getString(LocaleKeys.BTN_CONFIRM),
                 ),
               ), // confirm button
             ],

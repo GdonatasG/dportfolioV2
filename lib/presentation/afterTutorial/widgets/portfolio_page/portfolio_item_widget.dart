@@ -8,7 +8,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:platform_info/platform_info.dart';
 import 'package:dportfolio_v2/presentation/core/extensions/url_extensions.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
 
 import 'portfolio_data.dart';
 
@@ -59,7 +59,7 @@ class _PortfolioItemWidgetState extends State<PortfolioItemWidget>
             child: Text(
               widget.item.about != null
                   ? (widget.item.isAboutTranslated
-                      ? context.getString(widget.item.about ?? '') ?? ''
+                      ? context.getString(widget.item.about ?? '')
                       : widget.item.about ?? '')
                   : '',
               style: Theme.of(context).textTheme.bodyText1,

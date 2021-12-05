@@ -1,5 +1,4 @@
 import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/theme_extensions.dart';
 import 'package:dportfolio_v2/presentation/core/themes/theme_light.dart';
 import 'package:flutter/material.dart';
 
