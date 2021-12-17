@@ -73,7 +73,12 @@
   },
   "githubPage": {
     "visit_profile": "Peržiūrėti profilį",
+    "search_hint": "Įveskite repozitorijos pavadinimą",
+    "search_page_initial": "Ieškokite repozitorijų",
     "repos_title": "{repos} repozitorijos",
+    "select_language": "Pasirinkite kalbą",
+    "load_more": "Rodyti daugiau",
+    "search_through_all_github": "Ieškoti visame GitHub",
     "filter": {
       "title": "Filtruoti repozitorijas",
       "button_filter": "Filtruoti",

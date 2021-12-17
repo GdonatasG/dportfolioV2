@@ -18,15 +18,45 @@ class _$GithubService extends GithubService {
 
   @override
   Future<Response<GithubUserDTO>> getGithubUserByName(String name) {
-    final $url = '/users/${name}?client_id=2683db51e60b2522b6f7';
-    final $request = Request('GET', $url, client.baseUrl);
+    final $url = 'https://api.github.com/users/${name}';
+    final $headers = {
+      'Authorization': 'token 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',
+    };
+
+    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
     return client.send<GithubUserDTO, GithubUserDTO>($request);
   }
 
   @override
-  Future<Response<List<GithubRepoDTO>>> getUserReposByName(String name) {
-    final $url = '/users/${name}/repos?client_id=2683db51e60b2522b6f7';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<GithubRepoDTO>, GithubRepoDTO>($request);
+  Future<Response<GithubSearchReposDTO>> searchUserRepos(
+      {String query = "",
+      required String user,
+      String language = "",
+      required int per_page,
+      int page = 1}) {
+    final $url =
+        'https://api.github.com/search/repositories?q=${query}+user:${user}+language:${language}&per_page=${per_page}&page=${page}';
+    final $headers = {
+      'Authorization': 'token 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',
+    };
+
+    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    return client.send<GithubSearchReposDTO, GithubSearchReposDTO>($request);
+  }
+
+  @override
+  Future<Response<GithubSearchReposDTO>> searchReposGlobally(
+      {String query = "",
+      String language = "",
+      required int per_page,
+      int page = 1}) {
+    final $url =
+        'https://api.github.com/search/repositories?q=${query}+language:${language}&per_page=${per_page}&page=${page}';
+    final $headers = {
+      'Authorization': 'token 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',
+    };
+
+    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    return client.send<GithubSearchReposDTO, GithubSearchReposDTO>($request);
   }
 }

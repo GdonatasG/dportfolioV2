@@ -1,22 +1,24 @@
 import 'package:dportfolio_v2/application/github_bloc/github_bloc.dart';
-import 'package:dportfolio_v2/domain/github/github_user_data.dart';
-import 'package:dportfolio_v2/presentation/core/app_dimensions.dart';
+import 'package:dportfolio_v2/domain/github/github_search_repos.dart';
+import 'package:dportfolio_v2/domain/github/github_user.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/empty_list_widget.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/github_loaded_repos.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/sticky_header_widget.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
+import 'package:dportfolio_v2/presentation/core/utils/always_disabled_focus_node.dart';
+import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ez_localization/src/extension.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 
-import 'empty_list_widget.dart';
 import 'loaded_sliver_app_bar.dart';
-import 'repos_with_sticky_header_widget.dart';
 
 class LoadedGithubPage extends StatefulWidget {
-  final GithubUserData githubUserData;
-
   const LoadedGithubPage({
     Key? key,
-    required this.githubUserData,
   }) : super(key: key);
 
   @override
@@ -25,74 +27,154 @@ class LoadedGithubPage extends StatefulWidget {
 
 class _LoadedGithubPageState extends State<LoadedGithubPage> {
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GithubBloc, GithubState>(
+    return BlocConsumer<GithubBloc, GithubState>(
       listenWhen: (previous, current) => current.maybeWhen(
-        refreshError: (_) => true,
+        userWithReposLoaded: (u, r, f, _) => f != null,
+        loadingMoreError: (_) => true,
         orElse: () => false,
       ),
       listener: (ctx, state) {
         state.maybeMap(
-          refreshError: (s) {
+          userWithReposLoaded: (s) {
+            if (s.failure != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    context.getString(LocaleKeys.ERROR_TRY_AGAIN),
+                  ),
+                ),
+              );
+            }
+          },
+          loadingMoreError: (s) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(context.getString(LocaleKeys.ERROR_TRY_AGAIN)),
+                content: Text(
+                  context.getString(LocaleKeys.ERROR_TRY_AGAIN),
+                ),
               ),
             );
           },
           orElse: () {},
         );
       },
-      child: Container(
-        color: Theme.of(context).primaryColor,
-        child: SafeArea(
-          child: Scaffold(
-            body: NestedScrollView(
-              physics: const BouncingScrollPhysics(),
-              headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                SliverOverlapAbsorber(
-                  handle:
-                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                  sliver: SliverSafeArea(
-                    top: false,
-                    sliver: LoadedSliverAppBar(
-                      githubUser: widget.githubUserData.user,
-                    ),
-                  ),
-                ),
-              ],
-              body: BlocBuilder<GithubBloc, GithubState>(
-                buildWhen: (previous, current) => current.maybeWhen(
-                  listFiltered: (_) => true,
-                  orElse: () => false,
-                ),
-                builder: (context, state) {
-                  return state.maybeMap(
-                    listFiltered: (s) {
-                      return s.listOfFilteredRepos.isNotEmpty
-                          ? ReposWithStickyHeaderWidget(
-                              listOfRepos: s.listOfFilteredRepos,
-                            )
-                          : EmptyListWidget();
-                    },
-                    orElse: () => const Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth:
-                            AppDimensions.CIRCULAR_PROGRESS_INDICATOR_STROKE,
-                      ),
-                    ),
-                  );
-                },
-              ),
+      buildWhen: (previous, current) => current.maybeWhen(
+        userWithReposLoaded: (u, r, f, _) => true,
+        orElse: () => false,
+      ),
+      builder: (ctx, state) => state.maybeMap(
+        userWithReposLoaded: (s) => Container(
+          color: Theme.of(context).primaryColor,
+          child: SafeArea(
+            child: Scaffold(
+              body: _body(
+                  context, s.githubSearchRepos, s.githubUser, s.canLoadMore),
             ),
           ),
         ),
+        orElse: () => Container(),
       ),
     );
   }
+
+  Widget _body(
+    BuildContext context,
+    GithubSearchRepos githubSearchRepos,
+    GithubUser githubUser,
+    bool canLoadMore,
+  ) =>
+      RefreshIndicator(
+        onRefresh: () {
+          BlocProvider.of<GithubBloc>(context).add(
+            const GithubEvent.getUserAndRepos(
+              name: 'GdonatasG',
+              isRefresh: true,
+            ),
+          );
+
+          return BlocProvider.of<GithubBloc>(context).stream.firstWhere(
+                (element) => element.maybeMap(
+                  userWithReposLoaded: (_) => true,
+                  orElse: () => false,
+                ),
+              );
+        },
+        child: CustomScrollView(
+          slivers: [
+            LoadedSliverAppBar(
+              githubUser: githubUser,
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15.0,
+                  vertical: 10.0,
+                ),
+                child: _searchTextField(context),
+              ),
+            ),
+            if (githubSearchRepos.items?.isNotEmpty ?? false)
+              SliverStickyHeader(
+                header: StickyHeaderWidget(
+                  title: context.getString(
+                    LocaleKeys.REPOS_TITLE,
+                    {
+                      'repos': githubSearchRepos.total_count ??
+                          githubSearchRepos.items?.length ??
+                          0
+                    },
+                  ),
+                ),
+                sliver: GithubLoadedRepos(
+                  githubSearchRepos: githubSearchRepos,
+                  canLoadMore: canLoadMore,
+                ),
+              )
+            else
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: EmptyListWidget(),
+              )
+          ],
+        ),
+      );
+
+  TextField _searchTextField(BuildContext context) => TextField(
+        focusNode: AlwaysDisabledFocusNode(),
+        onTap: () {
+          context.router.push(GithubSearchPageRoute(username: 'GdonatasG'));
+        },
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.search),
+          hintText: context.getString(LocaleKeys.GITHUB_SEARCH_HINT),
+          fillColor: Theme.of(context).brightness == Brightness.dark
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).primaryColorDark,
+          filled: true,
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            borderSide: BorderSide.none,
+          ),
+          enabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            borderSide: BorderSide.none,
+          ),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
+        ),
+      );
 }

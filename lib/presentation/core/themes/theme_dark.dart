@@ -16,6 +16,7 @@ Color UNSELECTED_COLOR = Colors.white;
 
 final ThemeData themeDark = ThemeData.dark().copyWith(
   primaryColor: PRIMARY_COLOR,
+  primaryColorDark: Colors.grey[900],
   scaffoldBackgroundColor: Colors.grey[900],
   textSelectionTheme: TextSelectionThemeData(
     cursorColor: UNSELECTED_COLOR,
@@ -105,7 +106,7 @@ final ThemeData themeDark = ThemeData.dark().copyWith(
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      textStyle: TextStyle(color: SELECTED_COLOR),
+      primary: PRIMARY_TEXT_COLOR,
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(

@@ -88,7 +88,13 @@ abstract class LocaleKeys {
 
   // github page
   static const VISIT_PROFILE = "githubPage.visit_profile";
+  static const GITHUB_SEARCH_HINT = "githubPage.search_hint";
+  static const GITHUB_SEARCH_PAGE_INITIAL = "githubPage.search_page_initial";
   static const REPOS_TITLE = "githubPage.repos_title";
+  static const LOAD_MORE = "githubPage.load_more";
+  static const SEARCH_THROUGH_ALL_GITHUB =
+      "githubPage.search_through_all_github";
+  static const TITLE_SELECT_LANGUAGE = "githubPage.select_language";
 
   // settings page
   static const SETTINGS_TITLE = "settingsPage.title";

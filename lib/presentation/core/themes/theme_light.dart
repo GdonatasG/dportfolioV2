@@ -20,6 +20,7 @@ final typography = Typography(platform: TargetPlatform.iOS).black;
 
 final ThemeData themeLight = ThemeData.light().copyWith(
   primaryColor: PRIMARY_COLOR,
+  primaryColorDark: Colors.grey[200],
   indicatorColor: SELECTED_COLOR,
   colorScheme: ColorScheme.light(
     primary: SELECTED_COLOR,
@@ -109,7 +110,7 @@ final ThemeData themeLight = ThemeData.light().copyWith(
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      textStyle: TextStyle(color: SELECTED_COLOR),
+      primary: PRIMARY_TEXT_COLOR,
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(

@@ -1,11 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dportfolio_v2/domain/github/github_failure.dart';
-import 'package:dportfolio_v2/domain/github/github_repo.dart';
+import 'package:dportfolio_v2/domain/github/github_search_repos.dart';
 import 'package:dportfolio_v2/domain/github/github_user.dart';
-import 'package:dportfolio_v2/domain/github/github_user_data.dart';
 import 'package:dportfolio_v2/domain/github/i_github_repository.dart';
 import 'package:dportfolio_v2/infrastructure/github/github_service.dart';
-import 'package:dportfolio_v2/infrastructure/github/github_user_dto.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IGithubRepository)
@@ -15,10 +13,12 @@ class GithubRepository implements IGithubRepository {
   GithubRepository(this._githubService);
 
   @override
-  Future<Either<GithubFailure, GithubUser>> getUserByName(String name) async {
+  Future<Either<GithubFailure, GithubUser>> getUserByName({
+    required String name,
+  }) async {
     try {
       final response = await _githubService.getGithubUserByName(name);
-      if (response.body != null) {
+      if (response.isSuccessful && response.body != null) {
         return right(response.body!.toDomain());
       } else {
         throw Error();
@@ -29,13 +29,24 @@ class GithubRepository implements IGithubRepository {
   }
 
   @override
-  Future<Either<GithubFailure, List<GithubRepo>>> getUserReposByName(
-    String name,
-  ) async {
+  Future<Either<GithubFailure, GithubSearchRepos>> searchUserRepos({
+    required String name,
+    required int per_page,
+    required int page,
+    String query = "",
+    String language = "",
+  }) async {
     try {
-      final response = await _githubService.getUserReposByName(name);
-      if (response.body != null) {
-        return right(response.body!.map((repo) => repo.toDomain()).toList());
+      final response = await _githubService.searchUserRepos(
+        user: name,
+        per_page: per_page,
+        page: page,
+        query: query,
+        language: language,
+      );
+
+      if (response.isSuccessful && response.body != null) {
+        return right(response.body!.toDomain());
       } else {
         throw Error();
       }
@@ -45,39 +56,27 @@ class GithubRepository implements IGithubRepository {
   }
 
   @override
-  Future<Either<GithubFailure, GithubUserData>> getUserDataByName(
-    String name,
-  ) async {
+  Future<Either<GithubFailure, GithubSearchRepos>> searchReposGlobally({
+    required int per_page,
+    required int page,
+    String query = "",
+    String language = "",
+  }) async {
     try {
-      GithubUser user;
-      List<GithubRepo> listOfRepos;
-      final userResponse = await _githubService.getGithubUserByName(name);
-      if (userResponse.body != null) {
-        user = userResponse.body!.toDomain();
-      } else {
-        throw Error();
-      }
+      final response = await _githubService.searchReposGlobally(
+        per_page: per_page,
+        page: page,
+        query: query,
+        language: language,
+      );
 
-      if (user.login != null) {
-        final reposResponse =
-            await _githubService.getUserReposByName(user.login!);
-        if (reposResponse.body != null) {
-          listOfRepos =
-              reposResponse.body!.map((repo) => repo.toDomain()).toList();
-
-          final GithubUserData githubUserData =
-              GithubUserData(user: user, repos: listOfRepos);
-
-          return right(githubUserData);
-        } else {
-          throw Error();
-        }
+      if (response.isSuccessful && response.body != null) {
+        return right(response.body!.toDomain());
       } else {
         throw Error();
       }
     } catch (e) {
-      print(e.toString());
-      return left(const GithubFailure.userDataLoadingFailure());
+      return left(const GithubFailure.reposLoadingFailure());
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dportfolio_v2/injection.dart';
 import 'package:dportfolio_v2/presentation/wrapper/wrapper_constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -13,11 +12,14 @@ part 'wrapper_bloc.freezed.dart';
 
 @injectable
 class WrapperBloc extends Bloc<WrapperEvent, WrapperState> {
-  WrapperBloc() : super(const WrapperState.initial()) {
+  final StreamingSharedPreferences _streamingSharedPreferences;
+
+  WrapperBloc(this._streamingSharedPreferences)
+      : super(const WrapperState.initial()) {
     on<WrapperEvent>((event, emit) async {
       event.map(
         tutorialCheckRequest: (e) async {
-          final showTutorial = getIt<StreamingSharedPreferences>()
+          final showTutorial = _streamingSharedPreferences
               .getBool(
                 WrapperConst.SHOW_TUTORIAL,
                 defaultValue: true,
@@ -31,7 +33,7 @@ class WrapperBloc extends Bloc<WrapperEvent, WrapperState> {
           }
         },
         tutorialCompleted: (e) async {
-          await getIt<StreamingSharedPreferences>().setBool(
+          await _streamingSharedPreferences.setBool(
             WrapperConst.SHOW_TUTORIAL,
             false,
           );
