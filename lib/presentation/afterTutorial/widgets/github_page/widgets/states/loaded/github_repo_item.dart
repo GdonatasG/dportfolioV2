@@ -3,8 +3,6 @@ import 'package:dportfolio_v2/domain/github/github_repo.dart';
 import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttericon/iconic_icons.dart';
 
 class GithubRepoItem extends StatelessWidget {
   final GithubRepo repo;

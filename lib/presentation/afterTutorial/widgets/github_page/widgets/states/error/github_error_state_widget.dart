@@ -11,13 +11,6 @@ class GithubErrorStateWidget extends StatelessWidget {
       color: Theme.of(context).primaryColor,
       child: SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Text(
-              'Github',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ),
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -33,9 +26,8 @@ class GithubErrorStateWidget extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<GithubBloc>(context).add(
-                      const GithubEvent.getUserDataByName(
-                        'GdonatasG',
-                        false,
+                      const GithubEvent.getUserAndRepos(
+                        name: 'GdonatasG',
                       ),
                     );
                   },

@@ -17,25 +17,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GithubEventTearOff {
   const _$GithubEventTearOff();
 
-  GetUserDataByName getUserDataByName(String name, bool isRefresh) {
-    return GetUserDataByName(
-      name,
-      isRefresh,
+  GetUserAndRepos getUserAndRepos(
+      {required String name, bool isRefresh = false}) {
+    return GetUserAndRepos(
+      name: name,
+      isRefresh: isRefresh,
     );
   }
 
-  FilterList filterList(Map<String, bool> filterOptions) {
-    return FilterList(
-      filterOptions,
-    );
-  }
-
-  LoadFilterOptions loadFilterOptions() {
-    return const LoadFilterOptions();
-  }
-
-  FilterCheckRequest filterCheckRequest() {
-    return const FilterCheckRequest();
+  Paginate paginate() {
+    return const Paginate();
   }
 }
 
@@ -46,51 +37,39 @@ const $GithubEvent = _$GithubEventTearOff();
 mixin _$GithubEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, bool isRefresh) getUserDataByName,
-    required TResult Function(Map<String, bool> filterOptions) filterList,
-    required TResult Function() loadFilterOptions,
-    required TResult Function() filterCheckRequest,
+    required TResult Function(String name, bool isRefresh) getUserAndRepos,
+    required TResult Function() paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
+    TResult Function(String name, bool isRefresh)? getUserAndRepos,
+    TResult Function()? paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
+    TResult Function(String name, bool isRefresh)? getUserAndRepos,
+    TResult Function()? paginate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetUserDataByName value) getUserDataByName,
-    required TResult Function(FilterList value) filterList,
-    required TResult Function(LoadFilterOptions value) loadFilterOptions,
-    required TResult Function(FilterCheckRequest value) filterCheckRequest,
+    required TResult Function(GetUserAndRepos value) getUserAndRepos,
+    required TResult Function(Paginate value) paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
+    TResult Function(GetUserAndRepos value)? getUserAndRepos,
+    TResult Function(Paginate value)? paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
+    TResult Function(GetUserAndRepos value)? getUserAndRepos,
+    TResult Function(Paginate value)? paginate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,35 +92,35 @@ class _$GithubEventCopyWithImpl<$Res> implements $GithubEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $GetUserDataByNameCopyWith<$Res> {
-  factory $GetUserDataByNameCopyWith(
-          GetUserDataByName value, $Res Function(GetUserDataByName) then) =
-      _$GetUserDataByNameCopyWithImpl<$Res>;
+abstract class $GetUserAndReposCopyWith<$Res> {
+  factory $GetUserAndReposCopyWith(
+          GetUserAndRepos value, $Res Function(GetUserAndRepos) then) =
+      _$GetUserAndReposCopyWithImpl<$Res>;
   $Res call({String name, bool isRefresh});
 }
 
 /// @nodoc
-class _$GetUserDataByNameCopyWithImpl<$Res>
+class _$GetUserAndReposCopyWithImpl<$Res>
     extends _$GithubEventCopyWithImpl<$Res>
-    implements $GetUserDataByNameCopyWith<$Res> {
-  _$GetUserDataByNameCopyWithImpl(
-      GetUserDataByName _value, $Res Function(GetUserDataByName) _then)
-      : super(_value, (v) => _then(v as GetUserDataByName));
+    implements $GetUserAndReposCopyWith<$Res> {
+  _$GetUserAndReposCopyWithImpl(
+      GetUserAndRepos _value, $Res Function(GetUserAndRepos) _then)
+      : super(_value, (v) => _then(v as GetUserAndRepos));
 
   @override
-  GetUserDataByName get _value => super._value as GetUserDataByName;
+  GetUserAndRepos get _value => super._value as GetUserAndRepos;
 
   @override
   $Res call({
     Object? name = freezed,
     Object? isRefresh = freezed,
   }) {
-    return _then(GetUserDataByName(
-      name == freezed
+    return _then(GetUserAndRepos(
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isRefresh == freezed
+      isRefresh: isRefresh == freezed
           ? _value.isRefresh
           : isRefresh // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -151,24 +130,25 @@ class _$GetUserDataByNameCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetUserDataByName implements GetUserDataByName {
-  const _$GetUserDataByName(this.name, this.isRefresh);
+class _$GetUserAndRepos implements GetUserAndRepos {
+  const _$GetUserAndRepos({required this.name, this.isRefresh = false});
 
   @override
   final String name;
+  @JsonKey(defaultValue: false)
   @override
   final bool isRefresh;
 
   @override
   String toString() {
-    return 'GithubEvent.getUserDataByName(name: $name, isRefresh: $isRefresh)';
+    return 'GithubEvent.getUserAndRepos(name: $name, isRefresh: $isRefresh)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GetUserDataByName &&
+            other is GetUserAndRepos &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isRefresh, isRefresh) ||
                 other.isRefresh == isRefresh));
@@ -179,42 +159,36 @@ class _$GetUserDataByName implements GetUserDataByName {
 
   @JsonKey(ignore: true)
   @override
-  $GetUserDataByNameCopyWith<GetUserDataByName> get copyWith =>
-      _$GetUserDataByNameCopyWithImpl<GetUserDataByName>(this, _$identity);
+  $GetUserAndReposCopyWith<GetUserAndRepos> get copyWith =>
+      _$GetUserAndReposCopyWithImpl<GetUserAndRepos>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, bool isRefresh) getUserDataByName,
-    required TResult Function(Map<String, bool> filterOptions) filterList,
-    required TResult Function() loadFilterOptions,
-    required TResult Function() filterCheckRequest,
+    required TResult Function(String name, bool isRefresh) getUserAndRepos,
+    required TResult Function() paginate,
   }) {
-    return getUserDataByName(name, isRefresh);
+    return getUserAndRepos(name, isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
+    TResult Function(String name, bool isRefresh)? getUserAndRepos,
+    TResult Function()? paginate,
   }) {
-    return getUserDataByName?.call(name, isRefresh);
+    return getUserAndRepos?.call(name, isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
+    TResult Function(String name, bool isRefresh)? getUserAndRepos,
+    TResult Function()? paginate,
     required TResult orElse(),
   }) {
-    if (getUserDataByName != null) {
-      return getUserDataByName(name, isRefresh);
+    if (getUserAndRepos != null) {
+      return getUserAndRepos(name, isRefresh);
     }
     return orElse();
   }
@@ -222,230 +196,76 @@ class _$GetUserDataByName implements GetUserDataByName {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetUserDataByName value) getUserDataByName,
-    required TResult Function(FilterList value) filterList,
-    required TResult Function(LoadFilterOptions value) loadFilterOptions,
-    required TResult Function(FilterCheckRequest value) filterCheckRequest,
+    required TResult Function(GetUserAndRepos value) getUserAndRepos,
+    required TResult Function(Paginate value) paginate,
   }) {
-    return getUserDataByName(this);
+    return getUserAndRepos(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
+    TResult Function(GetUserAndRepos value)? getUserAndRepos,
+    TResult Function(Paginate value)? paginate,
   }) {
-    return getUserDataByName?.call(this);
+    return getUserAndRepos?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
+    TResult Function(GetUserAndRepos value)? getUserAndRepos,
+    TResult Function(Paginate value)? paginate,
     required TResult orElse(),
   }) {
-    if (getUserDataByName != null) {
-      return getUserDataByName(this);
+    if (getUserAndRepos != null) {
+      return getUserAndRepos(this);
     }
     return orElse();
   }
 }
 
-abstract class GetUserDataByName implements GithubEvent {
-  const factory GetUserDataByName(String name, bool isRefresh) =
-      _$GetUserDataByName;
+abstract class GetUserAndRepos implements GithubEvent {
+  const factory GetUserAndRepos({required String name, bool isRefresh}) =
+      _$GetUserAndRepos;
 
   String get name;
   bool get isRefresh;
   @JsonKey(ignore: true)
-  $GetUserDataByNameCopyWith<GetUserDataByName> get copyWith =>
+  $GetUserAndReposCopyWith<GetUserAndRepos> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FilterListCopyWith<$Res> {
-  factory $FilterListCopyWith(
-          FilterList value, $Res Function(FilterList) then) =
-      _$FilterListCopyWithImpl<$Res>;
-  $Res call({Map<String, bool> filterOptions});
+abstract class $PaginateCopyWith<$Res> {
+  factory $PaginateCopyWith(Paginate value, $Res Function(Paginate) then) =
+      _$PaginateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FilterListCopyWithImpl<$Res> extends _$GithubEventCopyWithImpl<$Res>
-    implements $FilterListCopyWith<$Res> {
-  _$FilterListCopyWithImpl(FilterList _value, $Res Function(FilterList) _then)
-      : super(_value, (v) => _then(v as FilterList));
+class _$PaginateCopyWithImpl<$Res> extends _$GithubEventCopyWithImpl<$Res>
+    implements $PaginateCopyWith<$Res> {
+  _$PaginateCopyWithImpl(Paginate _value, $Res Function(Paginate) _then)
+      : super(_value, (v) => _then(v as Paginate));
 
   @override
-  FilterList get _value => super._value as FilterList;
-
-  @override
-  $Res call({
-    Object? filterOptions = freezed,
-  }) {
-    return _then(FilterList(
-      filterOptions == freezed
-          ? _value.filterOptions
-          : filterOptions // ignore: cast_nullable_to_non_nullable
-              as Map<String, bool>,
-    ));
-  }
+  Paginate get _value => super._value as Paginate;
 }
 
 /// @nodoc
 
-class _$FilterList implements FilterList {
-  const _$FilterList(this.filterOptions);
-
-  @override
-  final Map<String, bool> filterOptions;
+class _$Paginate implements Paginate {
+  const _$Paginate();
 
   @override
   String toString() {
-    return 'GithubEvent.filterList(filterOptions: $filterOptions)';
+    return 'GithubEvent.paginate()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is FilterList &&
-            const DeepCollectionEquality()
-                .equals(other.filterOptions, filterOptions));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(filterOptions));
-
-  @JsonKey(ignore: true)
-  @override
-  $FilterListCopyWith<FilterList> get copyWith =>
-      _$FilterListCopyWithImpl<FilterList>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name, bool isRefresh) getUserDataByName,
-    required TResult Function(Map<String, bool> filterOptions) filterList,
-    required TResult Function() loadFilterOptions,
-    required TResult Function() filterCheckRequest,
-  }) {
-    return filterList(filterOptions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
-  }) {
-    return filterList?.call(filterOptions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
-    required TResult orElse(),
-  }) {
-    if (filterList != null) {
-      return filterList(filterOptions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetUserDataByName value) getUserDataByName,
-    required TResult Function(FilterList value) filterList,
-    required TResult Function(LoadFilterOptions value) loadFilterOptions,
-    required TResult Function(FilterCheckRequest value) filterCheckRequest,
-  }) {
-    return filterList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
-  }) {
-    return filterList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
-    required TResult orElse(),
-  }) {
-    if (filterList != null) {
-      return filterList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FilterList implements GithubEvent {
-  const factory FilterList(Map<String, bool> filterOptions) = _$FilterList;
-
-  Map<String, bool> get filterOptions;
-  @JsonKey(ignore: true)
-  $FilterListCopyWith<FilterList> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LoadFilterOptionsCopyWith<$Res> {
-  factory $LoadFilterOptionsCopyWith(
-          LoadFilterOptions value, $Res Function(LoadFilterOptions) then) =
-      _$LoadFilterOptionsCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$LoadFilterOptionsCopyWithImpl<$Res>
-    extends _$GithubEventCopyWithImpl<$Res>
-    implements $LoadFilterOptionsCopyWith<$Res> {
-  _$LoadFilterOptionsCopyWithImpl(
-      LoadFilterOptions _value, $Res Function(LoadFilterOptions) _then)
-      : super(_value, (v) => _then(v as LoadFilterOptions));
-
-  @override
-  LoadFilterOptions get _value => super._value as LoadFilterOptions;
-}
-
-/// @nodoc
-
-class _$LoadFilterOptions implements LoadFilterOptions {
-  const _$LoadFilterOptions();
-
-  @override
-  String toString() {
-    return 'GithubEvent.loadFilterOptions()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is LoadFilterOptions);
+        (other.runtimeType == runtimeType && other is Paginate);
   }
 
   @override
@@ -454,36 +274,30 @@ class _$LoadFilterOptions implements LoadFilterOptions {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, bool isRefresh) getUserDataByName,
-    required TResult Function(Map<String, bool> filterOptions) filterList,
-    required TResult Function() loadFilterOptions,
-    required TResult Function() filterCheckRequest,
+    required TResult Function(String name, bool isRefresh) getUserAndRepos,
+    required TResult Function() paginate,
   }) {
-    return loadFilterOptions();
+    return paginate();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
+    TResult Function(String name, bool isRefresh)? getUserAndRepos,
+    TResult Function()? paginate,
   }) {
-    return loadFilterOptions?.call();
+    return paginate?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
+    TResult Function(String name, bool isRefresh)? getUserAndRepos,
+    TResult Function()? paginate,
     required TResult orElse(),
   }) {
-    if (loadFilterOptions != null) {
-      return loadFilterOptions();
+    if (paginate != null) {
+      return paginate();
     }
     return orElse();
   }
@@ -491,160 +305,37 @@ class _$LoadFilterOptions implements LoadFilterOptions {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetUserDataByName value) getUserDataByName,
-    required TResult Function(FilterList value) filterList,
-    required TResult Function(LoadFilterOptions value) loadFilterOptions,
-    required TResult Function(FilterCheckRequest value) filterCheckRequest,
+    required TResult Function(GetUserAndRepos value) getUserAndRepos,
+    required TResult Function(Paginate value) paginate,
   }) {
-    return loadFilterOptions(this);
+    return paginate(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
+    TResult Function(GetUserAndRepos value)? getUserAndRepos,
+    TResult Function(Paginate value)? paginate,
   }) {
-    return loadFilterOptions?.call(this);
+    return paginate?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
+    TResult Function(GetUserAndRepos value)? getUserAndRepos,
+    TResult Function(Paginate value)? paginate,
     required TResult orElse(),
   }) {
-    if (loadFilterOptions != null) {
-      return loadFilterOptions(this);
+    if (paginate != null) {
+      return paginate(this);
     }
     return orElse();
   }
 }
 
-abstract class LoadFilterOptions implements GithubEvent {
-  const factory LoadFilterOptions() = _$LoadFilterOptions;
-}
-
-/// @nodoc
-abstract class $FilterCheckRequestCopyWith<$Res> {
-  factory $FilterCheckRequestCopyWith(
-          FilterCheckRequest value, $Res Function(FilterCheckRequest) then) =
-      _$FilterCheckRequestCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$FilterCheckRequestCopyWithImpl<$Res>
-    extends _$GithubEventCopyWithImpl<$Res>
-    implements $FilterCheckRequestCopyWith<$Res> {
-  _$FilterCheckRequestCopyWithImpl(
-      FilterCheckRequest _value, $Res Function(FilterCheckRequest) _then)
-      : super(_value, (v) => _then(v as FilterCheckRequest));
-
-  @override
-  FilterCheckRequest get _value => super._value as FilterCheckRequest;
-}
-
-/// @nodoc
-
-class _$FilterCheckRequest implements FilterCheckRequest {
-  const _$FilterCheckRequest();
-
-  @override
-  String toString() {
-    return 'GithubEvent.filterCheckRequest()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is FilterCheckRequest);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name, bool isRefresh) getUserDataByName,
-    required TResult Function(Map<String, bool> filterOptions) filterList,
-    required TResult Function() loadFilterOptions,
-    required TResult Function() filterCheckRequest,
-  }) {
-    return filterCheckRequest();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
-  }) {
-    return filterCheckRequest?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, bool isRefresh)? getUserDataByName,
-    TResult Function(Map<String, bool> filterOptions)? filterList,
-    TResult Function()? loadFilterOptions,
-    TResult Function()? filterCheckRequest,
-    required TResult orElse(),
-  }) {
-    if (filterCheckRequest != null) {
-      return filterCheckRequest();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetUserDataByName value) getUserDataByName,
-    required TResult Function(FilterList value) filterList,
-    required TResult Function(LoadFilterOptions value) loadFilterOptions,
-    required TResult Function(FilterCheckRequest value) filterCheckRequest,
-  }) {
-    return filterCheckRequest(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
-  }) {
-    return filterCheckRequest?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetUserDataByName value)? getUserDataByName,
-    TResult Function(FilterList value)? filterList,
-    TResult Function(LoadFilterOptions value)? loadFilterOptions,
-    TResult Function(FilterCheckRequest value)? filterCheckRequest,
-    required TResult orElse(),
-  }) {
-    if (filterCheckRequest != null) {
-      return filterCheckRequest(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FilterCheckRequest implements GithubEvent {
-  const factory FilterCheckRequest() = _$FilterCheckRequest;
+abstract class Paginate implements GithubEvent {
+  const factory Paginate() = _$Paginate;
 }
 
 /// @nodoc
@@ -659,38 +350,35 @@ class _$GithubStateTearOff {
     return const _Loading();
   }
 
-  _UserDataLoaded userDataLoaded(GithubUserData githubUserData) {
-    return _UserDataLoaded(
-      githubUserData,
-    );
-  }
-
-  _UserDataLoadingError userDataLoadingError(GithubFailure githubFailure) {
-    return _UserDataLoadingError(
-      githubFailure,
-    );
-  }
-
-  _ListFiltered listFiltered(List<GithubRepo> listOfFilteredRepos) {
-    return _ListFiltered(
-      listOfFilteredRepos,
-    );
-  }
-
-  _FilterOptionsLoaded filterOptionsLoaded(Map<String, bool> filterOptions) {
-    return _FilterOptionsLoaded(
-      filterOptions,
-    );
-  }
-
-  _RefreshError refreshError(GithubFailure githubFailure) {
-    return _RefreshError(
-      githubFailure,
-    );
+  _Filtering loadingMore() {
+    return const _Filtering();
   }
 
   _Refreshing refreshing() {
     return const _Refreshing();
+  }
+
+  _UserWithReposLoaded userWithReposLoaded(
+      GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+      {GithubFailure? failure, required bool canLoadMore}) {
+    return _UserWithReposLoaded(
+      githubUser,
+      githubSearchRepos,
+      failure: failure,
+      canLoadMore: canLoadMore,
+    );
+  }
+
+  _InitialLoadingError initialLoadingError(GithubFailure failure) {
+    return _InitialLoadingError(
+      failure,
+    );
+  }
+
+  _LoadingMoreError loadingMoreError(GithubFailure failure) {
+    return _LoadingMoreError(
+      failure,
+    );
   }
 }
 
@@ -703,38 +391,42 @@ mixin _$GithubState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
+    required TResult Function() loadingMore,
     required TResult Function() refreshing,
+    required TResult Function(
+            GithubUser githubUser,
+            GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure,
+            bool canLoadMore)
+        userWithReposLoaded,
+    required TResult Function(GithubFailure failure) initialLoadingError,
+    required TResult Function(GithubFailure failure) loadingMoreError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -742,36 +434,33 @@ mixin _$GithubState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
+    required TResult Function(_Filtering value) loadingMore,
     required TResult Function(_Refreshing value) refreshing,
+    required TResult Function(_UserWithReposLoaded value) userWithReposLoaded,
+    required TResult Function(_InitialLoadingError value) initialLoadingError,
+    required TResult Function(_LoadingMoreError value) loadingMoreError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -833,14 +522,16 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
+    required TResult Function() loadingMore,
     required TResult Function() refreshing,
+    required TResult Function(
+            GithubUser githubUser,
+            GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure,
+            bool canLoadMore)
+        userWithReposLoaded,
+    required TResult Function(GithubFailure failure) initialLoadingError,
+    required TResult Function(GithubFailure failure) loadingMoreError,
   }) {
     return initial();
   }
@@ -850,12 +541,13 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
   }) {
     return initial?.call();
   }
@@ -865,12 +557,13 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -884,12 +577,11 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
+    required TResult Function(_Filtering value) loadingMore,
     required TResult Function(_Refreshing value) refreshing,
+    required TResult Function(_UserWithReposLoaded value) userWithReposLoaded,
+    required TResult Function(_InitialLoadingError value) initialLoadingError,
+    required TResult Function(_LoadingMoreError value) loadingMoreError,
   }) {
     return initial(this);
   }
@@ -899,12 +591,11 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
   }) {
     return initial?.call(this);
   }
@@ -914,12 +605,11 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -973,14 +663,16 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
+    required TResult Function() loadingMore,
     required TResult Function() refreshing,
+    required TResult Function(
+            GithubUser githubUser,
+            GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure,
+            bool canLoadMore)
+        userWithReposLoaded,
+    required TResult Function(GithubFailure failure) initialLoadingError,
+    required TResult Function(GithubFailure failure) loadingMoreError,
   }) {
     return loading();
   }
@@ -990,12 +682,13 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
   }) {
     return loading?.call();
   }
@@ -1005,12 +698,13 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1024,12 +718,11 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
+    required TResult Function(_Filtering value) loadingMore,
     required TResult Function(_Refreshing value) refreshing,
+    required TResult Function(_UserWithReposLoaded value) userWithReposLoaded,
+    required TResult Function(_InitialLoadingError value) initialLoadingError,
+    required TResult Function(_LoadingMoreError value) loadingMoreError,
   }) {
     return loading(this);
   }
@@ -1039,12 +732,11 @@ class _$_Loading implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
   }) {
     return loading?.call(this);
   }
@@ -1054,12 +746,11 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1074,91 +765,58 @@ abstract class _Loading implements GithubState {
 }
 
 /// @nodoc
-abstract class _$UserDataLoadedCopyWith<$Res> {
-  factory _$UserDataLoadedCopyWith(
-          _UserDataLoaded value, $Res Function(_UserDataLoaded) then) =
-      __$UserDataLoadedCopyWithImpl<$Res>;
-  $Res call({GithubUserData githubUserData});
-
-  $GithubUserDataCopyWith<$Res> get githubUserData;
+abstract class _$FilteringCopyWith<$Res> {
+  factory _$FilteringCopyWith(
+          _Filtering value, $Res Function(_Filtering) then) =
+      __$FilteringCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UserDataLoadedCopyWithImpl<$Res>
-    extends _$GithubStateCopyWithImpl<$Res>
-    implements _$UserDataLoadedCopyWith<$Res> {
-  __$UserDataLoadedCopyWithImpl(
-      _UserDataLoaded _value, $Res Function(_UserDataLoaded) _then)
-      : super(_value, (v) => _then(v as _UserDataLoaded));
+class __$FilteringCopyWithImpl<$Res> extends _$GithubStateCopyWithImpl<$Res>
+    implements _$FilteringCopyWith<$Res> {
+  __$FilteringCopyWithImpl(_Filtering _value, $Res Function(_Filtering) _then)
+      : super(_value, (v) => _then(v as _Filtering));
 
   @override
-  _UserDataLoaded get _value => super._value as _UserDataLoaded;
-
-  @override
-  $Res call({
-    Object? githubUserData = freezed,
-  }) {
-    return _then(_UserDataLoaded(
-      githubUserData == freezed
-          ? _value.githubUserData
-          : githubUserData // ignore: cast_nullable_to_non_nullable
-              as GithubUserData,
-    ));
-  }
-
-  @override
-  $GithubUserDataCopyWith<$Res> get githubUserData {
-    return $GithubUserDataCopyWith<$Res>(_value.githubUserData, (value) {
-      return _then(_value.copyWith(githubUserData: value));
-    });
-  }
+  _Filtering get _value => super._value as _Filtering;
 }
 
 /// @nodoc
 
-class _$_UserDataLoaded implements _UserDataLoaded {
-  const _$_UserDataLoaded(this.githubUserData);
-
-  @override
-  final GithubUserData githubUserData;
+class _$_Filtering implements _Filtering {
+  const _$_Filtering();
 
   @override
   String toString() {
-    return 'GithubState.userDataLoaded(githubUserData: $githubUserData)';
+    return 'GithubState.loadingMore()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _UserDataLoaded &&
-            (identical(other.githubUserData, githubUserData) ||
-                other.githubUserData == githubUserData));
+        (other.runtimeType == runtimeType && other is _Filtering);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, githubUserData);
-
-  @JsonKey(ignore: true)
-  @override
-  _$UserDataLoadedCopyWith<_UserDataLoaded> get copyWith =>
-      __$UserDataLoadedCopyWithImpl<_UserDataLoaded>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
+    required TResult Function() loadingMore,
     required TResult Function() refreshing,
+    required TResult Function(
+            GithubUser githubUser,
+            GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure,
+            bool canLoadMore)
+        userWithReposLoaded,
+    required TResult Function(GithubFailure failure) initialLoadingError,
+    required TResult Function(GithubFailure failure) loadingMoreError,
   }) {
-    return userDataLoaded(githubUserData);
+    return loadingMore();
   }
 
   @override
@@ -1166,14 +824,15 @@ class _$_UserDataLoaded implements _UserDataLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
   }) {
-    return userDataLoaded?.call(githubUserData);
+    return loadingMore?.call();
   }
 
   @override
@@ -1181,16 +840,17 @@ class _$_UserDataLoaded implements _UserDataLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
     required TResult orElse(),
   }) {
-    if (userDataLoaded != null) {
-      return userDataLoaded(githubUserData);
+    if (loadingMore != null) {
+      return loadingMore();
     }
     return orElse();
   }
@@ -1200,14 +860,13 @@ class _$_UserDataLoaded implements _UserDataLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
+    required TResult Function(_Filtering value) loadingMore,
     required TResult Function(_Refreshing value) refreshing,
+    required TResult Function(_UserWithReposLoaded value) userWithReposLoaded,
+    required TResult Function(_InitialLoadingError value) initialLoadingError,
+    required TResult Function(_LoadingMoreError value) loadingMoreError,
   }) {
-    return userDataLoaded(this);
+    return loadingMore(this);
   }
 
   @override
@@ -1215,14 +874,13 @@ class _$_UserDataLoaded implements _UserDataLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
   }) {
-    return userDataLoaded?.call(this);
+    return loadingMore?.call(this);
   }
 
   @override
@@ -1230,740 +888,22 @@ class _$_UserDataLoaded implements _UserDataLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
     required TResult orElse(),
   }) {
-    if (userDataLoaded != null) {
-      return userDataLoaded(this);
+    if (loadingMore != null) {
+      return loadingMore(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserDataLoaded implements GithubState {
-  const factory _UserDataLoaded(GithubUserData githubUserData) =
-      _$_UserDataLoaded;
-
-  GithubUserData get githubUserData;
-  @JsonKey(ignore: true)
-  _$UserDataLoadedCopyWith<_UserDataLoaded> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$UserDataLoadingErrorCopyWith<$Res> {
-  factory _$UserDataLoadingErrorCopyWith(_UserDataLoadingError value,
-          $Res Function(_UserDataLoadingError) then) =
-      __$UserDataLoadingErrorCopyWithImpl<$Res>;
-  $Res call({GithubFailure githubFailure});
-
-  $GithubFailureCopyWith<$Res> get githubFailure;
-}
-
-/// @nodoc
-class __$UserDataLoadingErrorCopyWithImpl<$Res>
-    extends _$GithubStateCopyWithImpl<$Res>
-    implements _$UserDataLoadingErrorCopyWith<$Res> {
-  __$UserDataLoadingErrorCopyWithImpl(
-      _UserDataLoadingError _value, $Res Function(_UserDataLoadingError) _then)
-      : super(_value, (v) => _then(v as _UserDataLoadingError));
-
-  @override
-  _UserDataLoadingError get _value => super._value as _UserDataLoadingError;
-
-  @override
-  $Res call({
-    Object? githubFailure = freezed,
-  }) {
-    return _then(_UserDataLoadingError(
-      githubFailure == freezed
-          ? _value.githubFailure
-          : githubFailure // ignore: cast_nullable_to_non_nullable
-              as GithubFailure,
-    ));
-  }
-
-  @override
-  $GithubFailureCopyWith<$Res> get githubFailure {
-    return $GithubFailureCopyWith<$Res>(_value.githubFailure, (value) {
-      return _then(_value.copyWith(githubFailure: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_UserDataLoadingError implements _UserDataLoadingError {
-  const _$_UserDataLoadingError(this.githubFailure);
-
-  @override
-  final GithubFailure githubFailure;
-
-  @override
-  String toString() {
-    return 'GithubState.userDataLoadingError(githubFailure: $githubFailure)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _UserDataLoadingError &&
-            (identical(other.githubFailure, githubFailure) ||
-                other.githubFailure == githubFailure));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, githubFailure);
-
-  @JsonKey(ignore: true)
-  @override
-  _$UserDataLoadingErrorCopyWith<_UserDataLoadingError> get copyWith =>
-      __$UserDataLoadingErrorCopyWithImpl<_UserDataLoadingError>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
-    required TResult Function() refreshing,
-  }) {
-    return userDataLoadingError(githubFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
-    TResult Function()? refreshing,
-  }) {
-    return userDataLoadingError?.call(githubFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
-    TResult Function()? refreshing,
-    required TResult orElse(),
-  }) {
-    if (userDataLoadingError != null) {
-      return userDataLoadingError(githubFailure);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
-    required TResult Function(_Refreshing value) refreshing,
-  }) {
-    return userDataLoadingError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
-    TResult Function(_Refreshing value)? refreshing,
-  }) {
-    return userDataLoadingError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
-    TResult Function(_Refreshing value)? refreshing,
-    required TResult orElse(),
-  }) {
-    if (userDataLoadingError != null) {
-      return userDataLoadingError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserDataLoadingError implements GithubState {
-  const factory _UserDataLoadingError(GithubFailure githubFailure) =
-      _$_UserDataLoadingError;
-
-  GithubFailure get githubFailure;
-  @JsonKey(ignore: true)
-  _$UserDataLoadingErrorCopyWith<_UserDataLoadingError> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$ListFilteredCopyWith<$Res> {
-  factory _$ListFilteredCopyWith(
-          _ListFiltered value, $Res Function(_ListFiltered) then) =
-      __$ListFilteredCopyWithImpl<$Res>;
-  $Res call({List<GithubRepo> listOfFilteredRepos});
-}
-
-/// @nodoc
-class __$ListFilteredCopyWithImpl<$Res> extends _$GithubStateCopyWithImpl<$Res>
-    implements _$ListFilteredCopyWith<$Res> {
-  __$ListFilteredCopyWithImpl(
-      _ListFiltered _value, $Res Function(_ListFiltered) _then)
-      : super(_value, (v) => _then(v as _ListFiltered));
-
-  @override
-  _ListFiltered get _value => super._value as _ListFiltered;
-
-  @override
-  $Res call({
-    Object? listOfFilteredRepos = freezed,
-  }) {
-    return _then(_ListFiltered(
-      listOfFilteredRepos == freezed
-          ? _value.listOfFilteredRepos
-          : listOfFilteredRepos // ignore: cast_nullable_to_non_nullable
-              as List<GithubRepo>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ListFiltered implements _ListFiltered {
-  const _$_ListFiltered(this.listOfFilteredRepos);
-
-  @override
-  final List<GithubRepo> listOfFilteredRepos;
-
-  @override
-  String toString() {
-    return 'GithubState.listFiltered(listOfFilteredRepos: $listOfFilteredRepos)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _ListFiltered &&
-            const DeepCollectionEquality()
-                .equals(other.listOfFilteredRepos, listOfFilteredRepos));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(listOfFilteredRepos));
-
-  @JsonKey(ignore: true)
-  @override
-  _$ListFilteredCopyWith<_ListFiltered> get copyWith =>
-      __$ListFilteredCopyWithImpl<_ListFiltered>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
-    required TResult Function() refreshing,
-  }) {
-    return listFiltered(listOfFilteredRepos);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
-    TResult Function()? refreshing,
-  }) {
-    return listFiltered?.call(listOfFilteredRepos);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
-    TResult Function()? refreshing,
-    required TResult orElse(),
-  }) {
-    if (listFiltered != null) {
-      return listFiltered(listOfFilteredRepos);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
-    required TResult Function(_Refreshing value) refreshing,
-  }) {
-    return listFiltered(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
-    TResult Function(_Refreshing value)? refreshing,
-  }) {
-    return listFiltered?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
-    TResult Function(_Refreshing value)? refreshing,
-    required TResult orElse(),
-  }) {
-    if (listFiltered != null) {
-      return listFiltered(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ListFiltered implements GithubState {
-  const factory _ListFiltered(List<GithubRepo> listOfFilteredRepos) =
-      _$_ListFiltered;
-
-  List<GithubRepo> get listOfFilteredRepos;
-  @JsonKey(ignore: true)
-  _$ListFilteredCopyWith<_ListFiltered> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$FilterOptionsLoadedCopyWith<$Res> {
-  factory _$FilterOptionsLoadedCopyWith(_FilterOptionsLoaded value,
-          $Res Function(_FilterOptionsLoaded) then) =
-      __$FilterOptionsLoadedCopyWithImpl<$Res>;
-  $Res call({Map<String, bool> filterOptions});
-}
-
-/// @nodoc
-class __$FilterOptionsLoadedCopyWithImpl<$Res>
-    extends _$GithubStateCopyWithImpl<$Res>
-    implements _$FilterOptionsLoadedCopyWith<$Res> {
-  __$FilterOptionsLoadedCopyWithImpl(
-      _FilterOptionsLoaded _value, $Res Function(_FilterOptionsLoaded) _then)
-      : super(_value, (v) => _then(v as _FilterOptionsLoaded));
-
-  @override
-  _FilterOptionsLoaded get _value => super._value as _FilterOptionsLoaded;
-
-  @override
-  $Res call({
-    Object? filterOptions = freezed,
-  }) {
-    return _then(_FilterOptionsLoaded(
-      filterOptions == freezed
-          ? _value.filterOptions
-          : filterOptions // ignore: cast_nullable_to_non_nullable
-              as Map<String, bool>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_FilterOptionsLoaded implements _FilterOptionsLoaded {
-  const _$_FilterOptionsLoaded(this.filterOptions);
-
-  @override
-  final Map<String, bool> filterOptions;
-
-  @override
-  String toString() {
-    return 'GithubState.filterOptionsLoaded(filterOptions: $filterOptions)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _FilterOptionsLoaded &&
-            const DeepCollectionEquality()
-                .equals(other.filterOptions, filterOptions));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(filterOptions));
-
-  @JsonKey(ignore: true)
-  @override
-  _$FilterOptionsLoadedCopyWith<_FilterOptionsLoaded> get copyWith =>
-      __$FilterOptionsLoadedCopyWithImpl<_FilterOptionsLoaded>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
-    required TResult Function() refreshing,
-  }) {
-    return filterOptionsLoaded(filterOptions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
-    TResult Function()? refreshing,
-  }) {
-    return filterOptionsLoaded?.call(filterOptions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
-    TResult Function()? refreshing,
-    required TResult orElse(),
-  }) {
-    if (filterOptionsLoaded != null) {
-      return filterOptionsLoaded(filterOptions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
-    required TResult Function(_Refreshing value) refreshing,
-  }) {
-    return filterOptionsLoaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
-    TResult Function(_Refreshing value)? refreshing,
-  }) {
-    return filterOptionsLoaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
-    TResult Function(_Refreshing value)? refreshing,
-    required TResult orElse(),
-  }) {
-    if (filterOptionsLoaded != null) {
-      return filterOptionsLoaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FilterOptionsLoaded implements GithubState {
-  const factory _FilterOptionsLoaded(Map<String, bool> filterOptions) =
-      _$_FilterOptionsLoaded;
-
-  Map<String, bool> get filterOptions;
-  @JsonKey(ignore: true)
-  _$FilterOptionsLoadedCopyWith<_FilterOptionsLoaded> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$RefreshErrorCopyWith<$Res> {
-  factory _$RefreshErrorCopyWith(
-          _RefreshError value, $Res Function(_RefreshError) then) =
-      __$RefreshErrorCopyWithImpl<$Res>;
-  $Res call({GithubFailure githubFailure});
-
-  $GithubFailureCopyWith<$Res> get githubFailure;
-}
-
-/// @nodoc
-class __$RefreshErrorCopyWithImpl<$Res> extends _$GithubStateCopyWithImpl<$Res>
-    implements _$RefreshErrorCopyWith<$Res> {
-  __$RefreshErrorCopyWithImpl(
-      _RefreshError _value, $Res Function(_RefreshError) _then)
-      : super(_value, (v) => _then(v as _RefreshError));
-
-  @override
-  _RefreshError get _value => super._value as _RefreshError;
-
-  @override
-  $Res call({
-    Object? githubFailure = freezed,
-  }) {
-    return _then(_RefreshError(
-      githubFailure == freezed
-          ? _value.githubFailure
-          : githubFailure // ignore: cast_nullable_to_non_nullable
-              as GithubFailure,
-    ));
-  }
-
-  @override
-  $GithubFailureCopyWith<$Res> get githubFailure {
-    return $GithubFailureCopyWith<$Res>(_value.githubFailure, (value) {
-      return _then(_value.copyWith(githubFailure: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_RefreshError implements _RefreshError {
-  const _$_RefreshError(this.githubFailure);
-
-  @override
-  final GithubFailure githubFailure;
-
-  @override
-  String toString() {
-    return 'GithubState.refreshError(githubFailure: $githubFailure)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _RefreshError &&
-            (identical(other.githubFailure, githubFailure) ||
-                other.githubFailure == githubFailure));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, githubFailure);
-
-  @JsonKey(ignore: true)
-  @override
-  _$RefreshErrorCopyWith<_RefreshError> get copyWith =>
-      __$RefreshErrorCopyWithImpl<_RefreshError>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
-    required TResult Function() refreshing,
-  }) {
-    return refreshError(githubFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
-    TResult Function()? refreshing,
-  }) {
-    return refreshError?.call(githubFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
-    TResult Function()? refreshing,
-    required TResult orElse(),
-  }) {
-    if (refreshError != null) {
-      return refreshError(githubFailure);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
-    required TResult Function(_Refreshing value) refreshing,
-  }) {
-    return refreshError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
-    TResult Function(_Refreshing value)? refreshing,
-  }) {
-    return refreshError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
-    TResult Function(_Refreshing value)? refreshing,
-    required TResult orElse(),
-  }) {
-    if (refreshError != null) {
-      return refreshError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RefreshError implements GithubState {
-  const factory _RefreshError(GithubFailure githubFailure) = _$_RefreshError;
-
-  GithubFailure get githubFailure;
-  @JsonKey(ignore: true)
-  _$RefreshErrorCopyWith<_RefreshError> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Filtering implements GithubState {
+  const factory _Filtering() = _$_Filtering;
 }
 
 /// @nodoc
@@ -2008,14 +948,16 @@ class _$_Refreshing implements _Refreshing {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GithubUserData githubUserData) userDataLoaded,
-    required TResult Function(GithubFailure githubFailure) userDataLoadingError,
-    required TResult Function(List<GithubRepo> listOfFilteredRepos)
-        listFiltered,
-    required TResult Function(Map<String, bool> filterOptions)
-        filterOptionsLoaded,
-    required TResult Function(GithubFailure githubFailure) refreshError,
+    required TResult Function() loadingMore,
     required TResult Function() refreshing,
+    required TResult Function(
+            GithubUser githubUser,
+            GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure,
+            bool canLoadMore)
+        userWithReposLoaded,
+    required TResult Function(GithubFailure failure) initialLoadingError,
+    required TResult Function(GithubFailure failure) loadingMoreError,
   }) {
     return refreshing();
   }
@@ -2025,12 +967,13 @@ class _$_Refreshing implements _Refreshing {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
   }) {
     return refreshing?.call();
   }
@@ -2040,12 +983,13 @@ class _$_Refreshing implements _Refreshing {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GithubUserData githubUserData)? userDataLoaded,
-    TResult Function(GithubFailure githubFailure)? userDataLoadingError,
-    TResult Function(List<GithubRepo> listOfFilteredRepos)? listFiltered,
-    TResult Function(Map<String, bool> filterOptions)? filterOptionsLoaded,
-    TResult Function(GithubFailure githubFailure)? refreshError,
+    TResult Function()? loadingMore,
     TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
     required TResult orElse(),
   }) {
     if (refreshing != null) {
@@ -2059,12 +1003,11 @@ class _$_Refreshing implements _Refreshing {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_UserDataLoaded value) userDataLoaded,
-    required TResult Function(_UserDataLoadingError value) userDataLoadingError,
-    required TResult Function(_ListFiltered value) listFiltered,
-    required TResult Function(_FilterOptionsLoaded value) filterOptionsLoaded,
-    required TResult Function(_RefreshError value) refreshError,
+    required TResult Function(_Filtering value) loadingMore,
     required TResult Function(_Refreshing value) refreshing,
+    required TResult Function(_UserWithReposLoaded value) userWithReposLoaded,
+    required TResult Function(_InitialLoadingError value) initialLoadingError,
+    required TResult Function(_LoadingMoreError value) loadingMoreError,
   }) {
     return refreshing(this);
   }
@@ -2074,12 +1017,11 @@ class _$_Refreshing implements _Refreshing {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
   }) {
     return refreshing?.call(this);
   }
@@ -2089,12 +1031,11 @@ class _$_Refreshing implements _Refreshing {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_UserDataLoaded value)? userDataLoaded,
-    TResult Function(_UserDataLoadingError value)? userDataLoadingError,
-    TResult Function(_ListFiltered value)? listFiltered,
-    TResult Function(_FilterOptionsLoaded value)? filterOptionsLoaded,
-    TResult Function(_RefreshError value)? refreshError,
+    TResult Function(_Filtering value)? loadingMore,
     TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
     required TResult orElse(),
   }) {
     if (refreshing != null) {
@@ -2106,4 +1047,612 @@ class _$_Refreshing implements _Refreshing {
 
 abstract class _Refreshing implements GithubState {
   const factory _Refreshing() = _$_Refreshing;
+}
+
+/// @nodoc
+abstract class _$UserWithReposLoadedCopyWith<$Res> {
+  factory _$UserWithReposLoadedCopyWith(_UserWithReposLoaded value,
+          $Res Function(_UserWithReposLoaded) then) =
+      __$UserWithReposLoadedCopyWithImpl<$Res>;
+  $Res call(
+      {GithubUser githubUser,
+      GithubSearchRepos githubSearchRepos,
+      GithubFailure? failure,
+      bool canLoadMore});
+
+  $GithubUserCopyWith<$Res> get githubUser;
+  $GithubSearchReposCopyWith<$Res> get githubSearchRepos;
+  $GithubFailureCopyWith<$Res>? get failure;
+}
+
+/// @nodoc
+class __$UserWithReposLoadedCopyWithImpl<$Res>
+    extends _$GithubStateCopyWithImpl<$Res>
+    implements _$UserWithReposLoadedCopyWith<$Res> {
+  __$UserWithReposLoadedCopyWithImpl(
+      _UserWithReposLoaded _value, $Res Function(_UserWithReposLoaded) _then)
+      : super(_value, (v) => _then(v as _UserWithReposLoaded));
+
+  @override
+  _UserWithReposLoaded get _value => super._value as _UserWithReposLoaded;
+
+  @override
+  $Res call({
+    Object? githubUser = freezed,
+    Object? githubSearchRepos = freezed,
+    Object? failure = freezed,
+    Object? canLoadMore = freezed,
+  }) {
+    return _then(_UserWithReposLoaded(
+      githubUser == freezed
+          ? _value.githubUser
+          : githubUser // ignore: cast_nullable_to_non_nullable
+              as GithubUser,
+      githubSearchRepos == freezed
+          ? _value.githubSearchRepos
+          : githubSearchRepos // ignore: cast_nullable_to_non_nullable
+              as GithubSearchRepos,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as GithubFailure?,
+      canLoadMore: canLoadMore == freezed
+          ? _value.canLoadMore
+          : canLoadMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  @override
+  $GithubUserCopyWith<$Res> get githubUser {
+    return $GithubUserCopyWith<$Res>(_value.githubUser, (value) {
+      return _then(_value.copyWith(githubUser: value));
+    });
+  }
+
+  @override
+  $GithubSearchReposCopyWith<$Res> get githubSearchRepos {
+    return $GithubSearchReposCopyWith<$Res>(_value.githubSearchRepos, (value) {
+      return _then(_value.copyWith(githubSearchRepos: value));
+    });
+  }
+
+  @override
+  $GithubFailureCopyWith<$Res>? get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+
+    return $GithubFailureCopyWith<$Res>(_value.failure!, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_UserWithReposLoaded implements _UserWithReposLoaded {
+  const _$_UserWithReposLoaded(this.githubUser, this.githubSearchRepos,
+      {this.failure, required this.canLoadMore});
+
+  @override
+  final GithubUser githubUser;
+  @override
+  final GithubSearchRepos githubSearchRepos;
+  @override
+  final GithubFailure? failure;
+  @override
+  final bool canLoadMore;
+
+  @override
+  String toString() {
+    return 'GithubState.userWithReposLoaded(githubUser: $githubUser, githubSearchRepos: $githubSearchRepos, failure: $failure, canLoadMore: $canLoadMore)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UserWithReposLoaded &&
+            (identical(other.githubUser, githubUser) ||
+                other.githubUser == githubUser) &&
+            (identical(other.githubSearchRepos, githubSearchRepos) ||
+                other.githubSearchRepos == githubSearchRepos) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.canLoadMore, canLoadMore) ||
+                other.canLoadMore == canLoadMore));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, githubUser, githubSearchRepos, failure, canLoadMore);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UserWithReposLoadedCopyWith<_UserWithReposLoaded> get copyWith =>
+      __$UserWithReposLoadedCopyWithImpl<_UserWithReposLoaded>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loadingMore,
+    required TResult Function() refreshing,
+    required TResult Function(
+            GithubUser githubUser,
+            GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure,
+            bool canLoadMore)
+        userWithReposLoaded,
+    required TResult Function(GithubFailure failure) initialLoadingError,
+    required TResult Function(GithubFailure failure) loadingMoreError,
+  }) {
+    return userWithReposLoaded(
+        githubUser, githubSearchRepos, failure, canLoadMore);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadingMore,
+    TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
+  }) {
+    return userWithReposLoaded?.call(
+        githubUser, githubSearchRepos, failure, canLoadMore);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadingMore,
+    TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
+    required TResult orElse(),
+  }) {
+    if (userWithReposLoaded != null) {
+      return userWithReposLoaded(
+          githubUser, githubSearchRepos, failure, canLoadMore);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Filtering value) loadingMore,
+    required TResult Function(_Refreshing value) refreshing,
+    required TResult Function(_UserWithReposLoaded value) userWithReposLoaded,
+    required TResult Function(_InitialLoadingError value) initialLoadingError,
+    required TResult Function(_LoadingMoreError value) loadingMoreError,
+  }) {
+    return userWithReposLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Filtering value)? loadingMore,
+    TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
+  }) {
+    return userWithReposLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Filtering value)? loadingMore,
+    TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
+    required TResult orElse(),
+  }) {
+    if (userWithReposLoaded != null) {
+      return userWithReposLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserWithReposLoaded implements GithubState {
+  const factory _UserWithReposLoaded(
+      GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+      {GithubFailure? failure,
+      required bool canLoadMore}) = _$_UserWithReposLoaded;
+
+  GithubUser get githubUser;
+  GithubSearchRepos get githubSearchRepos;
+  GithubFailure? get failure;
+  bool get canLoadMore;
+  @JsonKey(ignore: true)
+  _$UserWithReposLoadedCopyWith<_UserWithReposLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$InitialLoadingErrorCopyWith<$Res> {
+  factory _$InitialLoadingErrorCopyWith(_InitialLoadingError value,
+          $Res Function(_InitialLoadingError) then) =
+      __$InitialLoadingErrorCopyWithImpl<$Res>;
+  $Res call({GithubFailure failure});
+
+  $GithubFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class __$InitialLoadingErrorCopyWithImpl<$Res>
+    extends _$GithubStateCopyWithImpl<$Res>
+    implements _$InitialLoadingErrorCopyWith<$Res> {
+  __$InitialLoadingErrorCopyWithImpl(
+      _InitialLoadingError _value, $Res Function(_InitialLoadingError) _then)
+      : super(_value, (v) => _then(v as _InitialLoadingError));
+
+  @override
+  _InitialLoadingError get _value => super._value as _InitialLoadingError;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_InitialLoadingError(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as GithubFailure,
+    ));
+  }
+
+  @override
+  $GithubFailureCopyWith<$Res> get failure {
+    return $GithubFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_InitialLoadingError implements _InitialLoadingError {
+  const _$_InitialLoadingError(this.failure);
+
+  @override
+  final GithubFailure failure;
+
+  @override
+  String toString() {
+    return 'GithubState.initialLoadingError(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _InitialLoadingError &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$InitialLoadingErrorCopyWith<_InitialLoadingError> get copyWith =>
+      __$InitialLoadingErrorCopyWithImpl<_InitialLoadingError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loadingMore,
+    required TResult Function() refreshing,
+    required TResult Function(
+            GithubUser githubUser,
+            GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure,
+            bool canLoadMore)
+        userWithReposLoaded,
+    required TResult Function(GithubFailure failure) initialLoadingError,
+    required TResult Function(GithubFailure failure) loadingMoreError,
+  }) {
+    return initialLoadingError(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadingMore,
+    TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
+  }) {
+    return initialLoadingError?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadingMore,
+    TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
+    required TResult orElse(),
+  }) {
+    if (initialLoadingError != null) {
+      return initialLoadingError(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Filtering value) loadingMore,
+    required TResult Function(_Refreshing value) refreshing,
+    required TResult Function(_UserWithReposLoaded value) userWithReposLoaded,
+    required TResult Function(_InitialLoadingError value) initialLoadingError,
+    required TResult Function(_LoadingMoreError value) loadingMoreError,
+  }) {
+    return initialLoadingError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Filtering value)? loadingMore,
+    TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
+  }) {
+    return initialLoadingError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Filtering value)? loadingMore,
+    TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
+    required TResult orElse(),
+  }) {
+    if (initialLoadingError != null) {
+      return initialLoadingError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitialLoadingError implements GithubState {
+  const factory _InitialLoadingError(GithubFailure failure) =
+      _$_InitialLoadingError;
+
+  GithubFailure get failure;
+  @JsonKey(ignore: true)
+  _$InitialLoadingErrorCopyWith<_InitialLoadingError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LoadingMoreErrorCopyWith<$Res> {
+  factory _$LoadingMoreErrorCopyWith(
+          _LoadingMoreError value, $Res Function(_LoadingMoreError) then) =
+      __$LoadingMoreErrorCopyWithImpl<$Res>;
+  $Res call({GithubFailure failure});
+
+  $GithubFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class __$LoadingMoreErrorCopyWithImpl<$Res>
+    extends _$GithubStateCopyWithImpl<$Res>
+    implements _$LoadingMoreErrorCopyWith<$Res> {
+  __$LoadingMoreErrorCopyWithImpl(
+      _LoadingMoreError _value, $Res Function(_LoadingMoreError) _then)
+      : super(_value, (v) => _then(v as _LoadingMoreError));
+
+  @override
+  _LoadingMoreError get _value => super._value as _LoadingMoreError;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_LoadingMoreError(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as GithubFailure,
+    ));
+  }
+
+  @override
+  $GithubFailureCopyWith<$Res> get failure {
+    return $GithubFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_LoadingMoreError implements _LoadingMoreError {
+  const _$_LoadingMoreError(this.failure);
+
+  @override
+  final GithubFailure failure;
+
+  @override
+  String toString() {
+    return 'GithubState.loadingMoreError(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _LoadingMoreError &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LoadingMoreErrorCopyWith<_LoadingMoreError> get copyWith =>
+      __$LoadingMoreErrorCopyWithImpl<_LoadingMoreError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loadingMore,
+    required TResult Function() refreshing,
+    required TResult Function(
+            GithubUser githubUser,
+            GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure,
+            bool canLoadMore)
+        userWithReposLoaded,
+    required TResult Function(GithubFailure failure) initialLoadingError,
+    required TResult Function(GithubFailure failure) loadingMoreError,
+  }) {
+    return loadingMoreError(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadingMore,
+    TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
+  }) {
+    return loadingMoreError?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadingMore,
+    TResult Function()? refreshing,
+    TResult Function(GithubUser githubUser, GithubSearchRepos githubSearchRepos,
+            GithubFailure? failure, bool canLoadMore)?
+        userWithReposLoaded,
+    TResult Function(GithubFailure failure)? initialLoadingError,
+    TResult Function(GithubFailure failure)? loadingMoreError,
+    required TResult orElse(),
+  }) {
+    if (loadingMoreError != null) {
+      return loadingMoreError(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Filtering value) loadingMore,
+    required TResult Function(_Refreshing value) refreshing,
+    required TResult Function(_UserWithReposLoaded value) userWithReposLoaded,
+    required TResult Function(_InitialLoadingError value) initialLoadingError,
+    required TResult Function(_LoadingMoreError value) loadingMoreError,
+  }) {
+    return loadingMoreError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Filtering value)? loadingMore,
+    TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
+  }) {
+    return loadingMoreError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Filtering value)? loadingMore,
+    TResult Function(_Refreshing value)? refreshing,
+    TResult Function(_UserWithReposLoaded value)? userWithReposLoaded,
+    TResult Function(_InitialLoadingError value)? initialLoadingError,
+    TResult Function(_LoadingMoreError value)? loadingMoreError,
+    required TResult orElse(),
+  }) {
+    if (loadingMoreError != null) {
+      return loadingMoreError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadingMoreError implements GithubState {
+  const factory _LoadingMoreError(GithubFailure failure) = _$_LoadingMoreError;
+
+  GithubFailure get failure;
+  @JsonKey(ignore: true)
+  _$LoadingMoreErrorCopyWith<_LoadingMoreError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

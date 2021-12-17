@@ -1,5 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:chopper/chopper.dart';
 import 'package:dportfolio_v2/application/wrapper_bloc/wrapper_bloc.dart';
+import 'package:dportfolio_v2/infrastructure/github/github_service.dart';
 import 'package:dportfolio_v2/injection.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/misc/current_bottom_bar_page.dart';
 import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';

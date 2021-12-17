@@ -73,7 +73,12 @@
   },
   "githubPage": {
     "visit_profile": "Visit profile",
+    "search_hint": "Enter repository name",
+    "search_page_initial": "Search repositories",
     "repos_title": "{repos} repositories",
+    "select_language": "Select language",
+    "load_more": "Load more",
+    "search_through_all_github": "Search through all GitHub",
     "filter": {
       "title": "Filter Repositories",
       "button_filter": "Filter",

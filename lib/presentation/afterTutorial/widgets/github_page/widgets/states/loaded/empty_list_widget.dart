@@ -1,7 +1,7 @@
 import 'package:dportfolio_v2/application/github_bloc/github_bloc.dart';
 import 'package:dportfolio_v2/presentation/core/app_dimensions.dart';
-import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
+import "package:ez_localization/src/extension.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,16 +10,8 @@ class EmptyListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: BlocBuilder<GithubBloc, GithubState>(
-        buildWhen: (previous, current) => current.maybeWhen(
-          loading: () => true,
-          refreshing: () => true,
-          listFiltered: (_) => true,
-          refreshError: (_) => true,
-          orElse: () => false,
-        ),
         builder: (context, state) {
           return state.maybeMap(
-            loading: (_) => RefreshingEmptyWidget(),
             refreshing: (_) => RefreshingEmptyWidget(),
             orElse: () => LoadedEmptyWidget(),
           );
@@ -54,8 +46,12 @@ class LoadedEmptyWidget extends StatelessWidget {
         // data reload button
         ElevatedButton(
           onPressed: () {
-            BlocProvider.of<GithubBloc>(context)
-                .add(const GithubEvent.getUserDataByName('GdonatasG', true));
+            BlocProvider.of<GithubBloc>(context).add(
+              const GithubEvent.getUserAndRepos(
+                name: 'GdonatasG',
+                isRefresh: true,
+              ),
+            );
           },
           child: Text(
             context.getString(LocaleKeys.REFRESH),
