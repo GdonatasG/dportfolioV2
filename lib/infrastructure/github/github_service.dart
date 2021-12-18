@@ -16,22 +16,18 @@ part 'github_service.chopper.dart';
 abstract class GithubService extends ChopperService {
   @Get(
     path: "/users/{name}",
-    headers: {
-      "Authorization": "token ${Hidden.GITHUB_ACCESS_TOKEN}",
-    },
   )
   Future<Response<GithubUserDTO>> getGithubUserByName(
+    @Header("Authorization") String token,
     @Path("name") String name,
   );
 
   @Get(
     path: "/search/repositories?q={query}+user:{user}+language:"
         "{language}&per_page={per_page}&page={page}",
-    headers: {
-      "Authorization": "token ${Hidden.GITHUB_ACCESS_TOKEN}",
-    },
   )
   Future<Response<GithubSearchReposDTO>> searchUserRepos({
+    @Header("Authorization") required String token,
     @Path("query") String query = "",
     @Path("user") required String user,
     @Path("language") String language = "",
@@ -42,11 +38,9 @@ abstract class GithubService extends ChopperService {
   @Get(
     path: "/search/repositories?q={query}+language:"
         "{language}&per_page={per_page}&page={page}",
-    headers: {
-      "Authorization": "token ${Hidden.GITHUB_ACCESS_TOKEN}",
-    },
   )
   Future<Response<GithubSearchReposDTO>> searchReposGlobally({
+    @Header("Authorization") required String token,
     @Path("query") String query = "",
     @Path("language") String language = "",
     @Path("per_page") required int per_page,

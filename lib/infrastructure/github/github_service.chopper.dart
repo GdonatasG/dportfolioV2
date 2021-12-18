@@ -17,10 +17,11 @@ class _$GithubService extends GithubService {
   final definitionType = GithubService;
 
   @override
-  Future<Response<GithubUserDTO>> getGithubUserByName(String name) {
+  Future<Response<GithubUserDTO>> getGithubUserByName(
+      String token, String name) {
     final $url = 'https://api.github.com/users/${name}';
     final $headers = {
-      'Authorization': 'token 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',
+      'Authorization': token,
     };
 
     final $request = Request('GET', $url, client.baseUrl, headers: $headers);
@@ -29,7 +30,8 @@ class _$GithubService extends GithubService {
 
   @override
   Future<Response<GithubSearchReposDTO>> searchUserRepos(
-      {String query = "",
+      {required String token,
+      String query = "",
       required String user,
       String language = "",
       required int per_page,
@@ -37,7 +39,7 @@ class _$GithubService extends GithubService {
     final $url =
         'https://api.github.com/search/repositories?q=${query}+user:${user}+language:${language}&per_page=${per_page}&page=${page}';
     final $headers = {
-      'Authorization': 'token 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',
+      'Authorization': token,
     };
 
     final $request = Request('GET', $url, client.baseUrl, headers: $headers);
@@ -46,14 +48,15 @@ class _$GithubService extends GithubService {
 
   @override
   Future<Response<GithubSearchReposDTO>> searchReposGlobally(
-      {String query = "",
+      {required String token,
+      String query = "",
       String language = "",
       required int per_page,
       int page = 1}) {
     final $url =
         'https://api.github.com/search/repositories?q=${query}+language:${language}&per_page=${per_page}&page=${page}';
     final $headers = {
-      'Authorization': 'token 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',
+      'Authorization': token,
     };
 
     final $request = Request('GET', $url, client.baseUrl, headers: $headers);
