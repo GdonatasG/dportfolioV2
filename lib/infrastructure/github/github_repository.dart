@@ -3,6 +3,7 @@ import 'package:dportfolio_v2/domain/github/github_failure.dart';
 import 'package:dportfolio_v2/domain/github/github_search_repos.dart';
 import 'package:dportfolio_v2/domain/github/github_user.dart';
 import 'package:dportfolio_v2/domain/github/i_github_repository.dart';
+import 'package:dportfolio_v2/hidden.dart';
 import 'package:dportfolio_v2/infrastructure/github/github_service.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,7 +18,10 @@ class GithubRepository implements IGithubRepository {
     required String name,
   }) async {
     try {
-      final response = await _githubService.getGithubUserByName(name);
+      final response = await _githubService.getGithubUserByName(
+        Hidden.GITHUB_TOKEN,
+        name,
+      );
       if (response.isSuccessful && response.body != null) {
         return right(response.body!.toDomain());
       } else {
@@ -38,6 +42,7 @@ class GithubRepository implements IGithubRepository {
   }) async {
     try {
       final response = await _githubService.searchUserRepos(
+        token: Hidden.GITHUB_TOKEN,
         user: name,
         per_page: per_page,
         page: page,
@@ -64,6 +69,7 @@ class GithubRepository implements IGithubRepository {
   }) async {
     try {
       final response = await _githubService.searchReposGlobally(
+        token: Hidden.GITHUB_TOKEN,
         per_page: per_page,
         page: page,
         query: query,

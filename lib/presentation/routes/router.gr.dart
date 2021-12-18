@@ -17,8 +17,8 @@ import 'package:dportfolio_v2/presentation/core/widgets/custom_webview.dart'
     as _i4;
 import 'package:dportfolio_v2/presentation/tutorial/tutorial_page.dart' as _i2;
 import 'package:dportfolio_v2/presentation/wrapper/wrapper_page.dart' as _i1;
+import 'package:flutter/foundation.dart' as _i10;
 import 'package:flutter/material.dart' as _i9;
-import 'package:flutter/widgets.dart' as _i10;
 
 class AppRouter extends _i8.RootStackRouter {
   AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
