@@ -15,7 +15,7 @@ class AboutMePage extends StatefulWidget {
 }
 
 class _AboutMePageState extends State<AboutMePage>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late List<Widget> tabItems;
   late List<Widget> tabContentItems;
   late TabController _controller;
@@ -41,7 +41,6 @@ class _AboutMePageState extends State<AboutMePage>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Container(
       color: Theme.of(context).primaryColor,
       child: SafeArea(
@@ -127,7 +126,4 @@ class _AboutMePageState extends State<AboutMePage>
       ),
     ];
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

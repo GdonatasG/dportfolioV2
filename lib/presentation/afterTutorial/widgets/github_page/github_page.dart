@@ -16,8 +16,7 @@ class GithubPage extends StatefulWidget {
   _GithubPageState createState() => _GithubPageState();
 }
 
-class _GithubPageState extends State<GithubPage>
-    with AutomaticKeepAliveClientMixin {
+class _GithubPageState extends State<GithubPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -43,7 +42,4 @@ class _GithubPageState extends State<GithubPage>
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

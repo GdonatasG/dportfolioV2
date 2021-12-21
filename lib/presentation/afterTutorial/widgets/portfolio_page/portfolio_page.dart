@@ -13,7 +13,7 @@ class PortfolioPage extends StatefulWidget {
 }
 
 class _PortfolioPageState extends State<PortfolioPage>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late List<Widget> tabItems;
   late List<Widget> tabContentItems;
   late TabController _controller;
@@ -34,7 +34,6 @@ class _PortfolioPageState extends State<PortfolioPage>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Container(
       color: Theme.of(context).primaryColor,
       child: SafeArea(
@@ -59,9 +58,11 @@ class _PortfolioPageState extends State<PortfolioPage>
   // ignore: always_declare_return_types
   _initTabTitles() {
     tabItems = listOfPortfolioItems
-        .map((i) => Tab(
-              child: Text(i.title),
-            ))
+        .map(
+          (i) => Tab(
+            child: Text(i.title),
+          ),
+        )
         .toList();
   }
 
@@ -73,7 +74,4 @@ class _PortfolioPageState extends State<PortfolioPage>
         )
         .toList();
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

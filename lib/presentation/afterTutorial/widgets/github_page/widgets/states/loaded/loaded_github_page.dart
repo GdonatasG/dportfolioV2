@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dportfolio_v2/application/github_bloc/github_bloc.dart';
 import 'package:dportfolio_v2/domain/github/github_search_repos.dart';
 import 'package:dportfolio_v2/domain/github/github_user.dart';
@@ -11,7 +12,6 @@ import 'package:ez_localization/src/extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 
 import 'loaded_sliver_app_bar.dart';

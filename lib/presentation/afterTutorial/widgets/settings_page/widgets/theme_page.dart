@@ -1,6 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
