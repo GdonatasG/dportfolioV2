@@ -16,8 +16,7 @@ class SettingsPage extends StatefulWidget {
   _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage>
-    with AutomaticKeepAliveClientMixin {
+class _SettingsPageState extends State<SettingsPage> {
   String appVersion = "";
 
   @override
@@ -83,7 +82,6 @@ class _SettingsPageState extends State<SettingsPage>
   @override
   Widget build(BuildContext context) {
     final listOfWidgets = _initWidgets(context);
-    super.build(context);
     return Container(
       color: Theme.of(context).primaryColor,
       child: SafeArea(
@@ -106,7 +104,4 @@ class _SettingsPageState extends State<SettingsPage>
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

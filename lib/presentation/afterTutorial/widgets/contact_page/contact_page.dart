@@ -1,14 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/contact_page/widgets/platform_widget.dart';
-import 'package:dportfolio_v2/presentation/core/widgets/custom_webview.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:ez_localization/src/extension.dart';
+import 'package:dportfolio_v2/presentation/core/extensions/url_extensions.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
-import 'package:dportfolio_v2/presentation/core/extensions/url_extensions.dart';
+import 'package:ez_localization/src/extension.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
 
 // ignore: constant_identifier_names
 const double PLATFORM_ICON_SIZE = 35.0;
@@ -36,8 +34,7 @@ class ContactPage extends StatefulWidget {
   _ContactPageState createState() => _ContactPageState();
 }
 
-class _ContactPageState extends State<ContactPage>
-    with AutomaticKeepAliveClientMixin {
+class _ContactPageState extends State<ContactPage> {
   late List<PlatformItem> listOfPlatformItems;
 
   @override
@@ -116,7 +113,6 @@ class _ContactPageState extends State<ContactPage>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Container(
       color: Theme.of(context).primaryColor,
       child: SafeArea(
@@ -158,7 +154,4 @@ class _ContactPageState extends State<ContactPage>
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

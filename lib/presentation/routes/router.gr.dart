@@ -7,61 +7,98 @@
 import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:dportfolio_v2/presentation/afterTutorial/after_tutorial_page.dart'
     as _i3;
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/github_search_page.dart'
-    as _i7;
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/language_page.dart'
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/about_me_page/about_me_page.dart'
     as _i5;
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/theme_page.dart'
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/contact_page/contact_page.dart'
+    as _i7;
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/github_page.dart'
+    as _i9;
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/github_search_page.dart'
+    as _i10;
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/portfolio_page/portfolio_page.dart'
     as _i6;
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/settings_page.dart'
+    as _i11;
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/language_page.dart'
+    as _i13;
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/theme_page.dart'
+    as _i12;
 import 'package:dportfolio_v2/presentation/core/widgets/custom_webview.dart'
     as _i4;
 import 'package:dportfolio_v2/presentation/tutorial/tutorial_page.dart' as _i2;
 import 'package:dportfolio_v2/presentation/wrapper/wrapper_page.dart' as _i1;
-import 'package:flutter/foundation.dart' as _i10;
-import 'package:flutter/material.dart' as _i9;
+import 'package:flutter/material.dart' as _i14;
 
 class AppRouter extends _i8.RootStackRouter {
-  AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
+  AppRouter([_i14.GlobalKey<_i14.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
   final Map<String, _i8.PageFactory> pagesMap = {
     WrapperPageRoute.name: (routeData) {
-      return _i8.MaterialPageX<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
           routeData: routeData, child: _i1.WrapperPage());
     },
     TutorialPageRoute.name: (routeData) {
-      return _i8.MaterialPageX<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
           routeData: routeData, child: _i2.TutorialPage());
     },
     AfterTutorialPageRoute.name: (routeData) {
-      return _i8.MaterialPageX<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
           routeData: routeData, child: _i3.AfterTutorialPage());
     },
     CustomWebViewRoute.name: (routeData) {
       final args = routeData.argsAs<CustomWebViewRouteArgs>();
-      return _i8.MaterialPageX<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
           routeData: routeData,
           child: _i4.CustomWebView(key: args.key, url: args.url),
           fullscreenDialog: true);
     },
-    LanguagePageRoute.name: (routeData) {
-      return _i8.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i5.LanguagePage(),
-          fullscreenDialog: true);
+    AboutMePageRoute.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData, child: _i5.AboutMePage());
     },
-    ThemePageRoute.name: (routeData) {
-      return _i8.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: const _i6.ThemePage(),
-          fullscreenDialog: true);
+    PortfolioPageRoute.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData, child: _i6.PortfolioPage());
+    },
+    ContactPageRoute.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData, child: _i7.ContactPage());
+    },
+    GithubPageWrapperRouter.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i8.EmptyRouterPage());
+    },
+    SettingsPageWrapperRouter.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i8.EmptyRouterPage());
+    },
+    GithubPageRoute.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i9.GithubPage());
     },
     GithubSearchPageRoute.name: (routeData) {
       final args = routeData.argsAs<GithubSearchPageRouteArgs>();
-      return _i8.MaterialPageX<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
           routeData: routeData,
-          child: _i7.GithubSearchPage(key: args.key, username: args.username));
+          child: _i10.GithubSearchPage(key: args.key, username: args.username));
+    },
+    SettingsPageRoute.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData, child: _i11.SettingsPage());
+    },
+    ThemePageRoute.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData,
+          child: const _i12.ThemePage(),
+          fullscreenDialog: true);
+    },
+    LanguagePageRoute.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+          routeData: routeData,
+          child: _i13.LanguagePage(),
+          fullscreenDialog: true);
     }
   };
 
@@ -70,11 +107,28 @@ class AppRouter extends _i8.RootStackRouter {
         _i8.RouteConfig(WrapperPageRoute.name, path: '/'),
         _i8.RouteConfig(TutorialPageRoute.name, path: '/tutorial-page'),
         _i8.RouteConfig(AfterTutorialPageRoute.name,
-            path: '/after-tutorial-page'),
-        _i8.RouteConfig(CustomWebViewRoute.name, path: '/custom-web-view'),
-        _i8.RouteConfig(LanguagePageRoute.name, path: '/language-page'),
-        _i8.RouteConfig(ThemePageRoute.name, path: '/theme-page'),
-        _i8.RouteConfig(GithubSearchPageRoute.name, path: '/github-search-page')
+            path: '/after-tutorial-page',
+            children: [
+              _i8.RouteConfig(AboutMePageRoute.name, path: 'about-me-page'),
+              _i8.RouteConfig(PortfolioPageRoute.name, path: 'portfolio-page'),
+              _i8.RouteConfig(ContactPageRoute.name, path: 'contact-page'),
+              _i8.RouteConfig(GithubPageWrapperRouter.name,
+                  path: 'empty-router-page',
+                  children: [
+                    _i8.RouteConfig(GithubPageRoute.name, path: ''),
+                    _i8.RouteConfig(GithubSearchPageRoute.name,
+                        path: 'github-search-page')
+                  ]),
+              _i8.RouteConfig(SettingsPageWrapperRouter.name,
+                  path: 'empty-router-page',
+                  children: [
+                    _i8.RouteConfig(SettingsPageRoute.name, path: ''),
+                    _i8.RouteConfig(ThemePageRoute.name, path: 'theme-page'),
+                    _i8.RouteConfig(LanguagePageRoute.name,
+                        path: 'language-page')
+                  ])
+            ]),
+        _i8.RouteConfig(CustomWebViewRoute.name, path: '/custom-web-view')
       ];
 }
 
@@ -94,14 +148,15 @@ class TutorialPageRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for [_i3.AfterTutorialPage]
 class AfterTutorialPageRoute extends _i8.PageRouteInfo<void> {
-  const AfterTutorialPageRoute() : super(name, path: '/after-tutorial-page');
+  const AfterTutorialPageRoute({List<_i8.PageRouteInfo>? children})
+      : super(name, path: '/after-tutorial-page', initialChildren: children);
 
   static const String name = 'AfterTutorialPageRoute';
 }
 
 /// generated route for [_i4.CustomWebView]
 class CustomWebViewRoute extends _i8.PageRouteInfo<CustomWebViewRouteArgs> {
-  CustomWebViewRoute({_i10.Key? key, required String url})
+  CustomWebViewRoute({_i14.Key? key, required String url})
       : super(name,
             path: '/custom-web-view',
             args: CustomWebViewRouteArgs(key: key, url: url));
@@ -112,31 +167,61 @@ class CustomWebViewRoute extends _i8.PageRouteInfo<CustomWebViewRouteArgs> {
 class CustomWebViewRouteArgs {
   const CustomWebViewRouteArgs({this.key, required this.url});
 
-  final _i10.Key? key;
+  final _i14.Key? key;
 
   final String url;
 }
 
-/// generated route for [_i5.LanguagePage]
-class LanguagePageRoute extends _i8.PageRouteInfo<void> {
-  const LanguagePageRoute() : super(name, path: '/language-page');
+/// generated route for [_i5.AboutMePage]
+class AboutMePageRoute extends _i8.PageRouteInfo<void> {
+  const AboutMePageRoute() : super(name, path: 'about-me-page');
 
-  static const String name = 'LanguagePageRoute';
+  static const String name = 'AboutMePageRoute';
 }
 
-/// generated route for [_i6.ThemePage]
-class ThemePageRoute extends _i8.PageRouteInfo<void> {
-  const ThemePageRoute() : super(name, path: '/theme-page');
+/// generated route for [_i6.PortfolioPage]
+class PortfolioPageRoute extends _i8.PageRouteInfo<void> {
+  const PortfolioPageRoute() : super(name, path: 'portfolio-page');
 
-  static const String name = 'ThemePageRoute';
+  static const String name = 'PortfolioPageRoute';
 }
 
-/// generated route for [_i7.GithubSearchPage]
+/// generated route for [_i7.ContactPage]
+class ContactPageRoute extends _i8.PageRouteInfo<void> {
+  const ContactPageRoute() : super(name, path: 'contact-page');
+
+  static const String name = 'ContactPageRoute';
+}
+
+/// generated route for [_i8.EmptyRouterPage]
+class GithubPageWrapperRouter extends _i8.PageRouteInfo<void> {
+  const GithubPageWrapperRouter({List<_i8.PageRouteInfo>? children})
+      : super(name, path: 'empty-router-page', initialChildren: children);
+
+  static const String name = 'GithubPageWrapperRouter';
+}
+
+/// generated route for [_i8.EmptyRouterPage]
+class SettingsPageWrapperRouter extends _i8.PageRouteInfo<void> {
+  const SettingsPageWrapperRouter({List<_i8.PageRouteInfo>? children})
+      : super(name, path: 'empty-router-page', initialChildren: children);
+
+  static const String name = 'SettingsPageWrapperRouter';
+}
+
+/// generated route for [_i9.GithubPage]
+class GithubPageRoute extends _i8.PageRouteInfo<void> {
+  const GithubPageRoute() : super(name, path: '');
+
+  static const String name = 'GithubPageRoute';
+}
+
+/// generated route for [_i10.GithubSearchPage]
 class GithubSearchPageRoute
     extends _i8.PageRouteInfo<GithubSearchPageRouteArgs> {
-  GithubSearchPageRoute({_i10.Key? key, required String username})
+  GithubSearchPageRoute({_i14.Key? key, required String username})
       : super(name,
-            path: '/github-search-page',
+            path: 'github-search-page',
             args: GithubSearchPageRouteArgs(key: key, username: username));
 
   static const String name = 'GithubSearchPageRoute';
@@ -145,7 +230,28 @@ class GithubSearchPageRoute
 class GithubSearchPageRouteArgs {
   const GithubSearchPageRouteArgs({this.key, required this.username});
 
-  final _i10.Key? key;
+  final _i14.Key? key;
 
   final String username;
+}
+
+/// generated route for [_i11.SettingsPage]
+class SettingsPageRoute extends _i8.PageRouteInfo<void> {
+  const SettingsPageRoute() : super(name, path: '');
+
+  static const String name = 'SettingsPageRoute';
+}
+
+/// generated route for [_i12.ThemePage]
+class ThemePageRoute extends _i8.PageRouteInfo<void> {
+  const ThemePageRoute() : super(name, path: 'theme-page');
+
+  static const String name = 'ThemePageRoute';
+}
+
+/// generated route for [_i13.LanguagePage]
+class LanguagePageRoute extends _i8.PageRouteInfo<void> {
+  const LanguagePageRoute() : super(name, path: 'language-page');
+
+  static const String name = 'LanguagePageRoute';
 }
