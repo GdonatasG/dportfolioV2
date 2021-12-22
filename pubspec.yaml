@@ -43,7 +43,11 @@ dependencies:
   adaptive_action_sheet: ^2.0.0
   adaptive_theme: ^2.3.0
   ez_localization: ^1.0.0+2
+
+  # animated loading widgets
   shimmer: ^2.0.0
+
+  timeline_list: ^0.0.6
 
 
 dev_dependencies:

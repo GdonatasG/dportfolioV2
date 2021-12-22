@@ -46,7 +46,10 @@ final ThemeData themeLight = ThemeData.light().copyWith(
     color: PRIMARY_TEXT_COLOR,
     size: AppDimensions.UNSELECTED_ICON_SIZE,
   ),
-  dividerTheme: DividerThemeData(thickness: 0.25, color: UNSELECTED_COLOR),
+  dividerTheme: DividerThemeData(
+    color: UNSELECTED_COLOR,
+    space: 1.0,
+  ),
   textTheme: typography.copyWith(
     headline2: TextStyle(fontSize: 22.0, color: UNSELECTED_COLOR),
     bodyText1: TextStyle(

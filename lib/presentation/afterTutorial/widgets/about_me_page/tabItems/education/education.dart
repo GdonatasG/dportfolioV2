@@ -1,10 +1,9 @@
-import 'package:dportfolio_v2/presentation/core/extensions/app_data_extensions.dart';
-import 'package:dportfolio_v2/presentation/core/themes/theme_light.dart';
+import 'package:ez_localization/src/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:timeline_list/timeline.dart';
+import 'package:timeline_list/timeline_model.dart';
 
 import 'education_data.dart';
-import 'widgets/timeline/timeline.dart';
-import 'widgets/timeline/timeline_model.dart';
 
 class Education extends StatefulWidget {
   const Education({
@@ -30,38 +29,40 @@ class _EducationState extends State<Education> {
           SliverOverlapInjector(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
           ),
-          /*SliverPadding(
-            padding: const EdgeInsets.all(4.0),
-            sliver: Timeline.builder(
-              isSliverList: true,
-              itemBuilder: centerTimelineBuilder,
+          SliverToBoxAdapter(
+            child: Timeline.builder(
+              lineColor: Theme.of(context).dividerTheme.color,
+              lineWidth: Theme.of(context).dividerTheme.space,
+              itemBuilder: _centerTimelineBuilder,
               itemCount: educations.length,
+              shrinkWrap: true,
             ),
-          )*/
+          ),
         ],
       ),
     );
   }
 
-  /*TimelineModel centerTimelineBuilder(BuildContext context, int i) {
+  TimelineModel _centerTimelineBuilder(BuildContext context, int i) {
     final education = educations[i];
     return TimelineModel(
       LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Theme.of(context).primaryColor,
-                boxShadow: [
-                  if (context.getCurrentTheme == themeLight)
-                    BoxShadow(
-                      color: Theme.of(context).unselectedWidgetColor,
-                      offset: const Offset(1.5, 1.5), //(x,y)
-                      blurRadius: 1.0,
-                    )
-                  else
-                    BoxShadow(),
-                ]),
+              borderRadius: BorderRadius.circular(10),
+              color: Theme.of(context).primaryColor,
+              boxShadow: [
+                if (Theme.of(context).brightness == Brightness.light)
+                  BoxShadow(
+                    color: Theme.of(context).unselectedWidgetColor,
+                    offset: const Offset(1.5, 1.5), //(x,y)
+                    blurRadius: 1.0,
+                  )
+                else
+                  const BoxShadow(),
+              ],
+            ),
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             width: constraints.maxWidth,
             child: Padding(
@@ -70,7 +71,7 @@ class _EducationState extends State<Education> {
                 children: <Widget>[
                   IconTheme(
                     data: IconThemeData(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       size: 28,
                     ),
                     child: education.icon,
@@ -108,10 +109,7 @@ class _EducationState extends State<Education> {
                   const SizedBox(
                     height: 8.0,
                   ),
-                  IconTheme(
-                    data: IconThemeData(color: Theme.of(context).accentColor),
-                    child: const Icon(Icons.location_on),
-                  ),
+                  const Icon(Icons.location_on),
                   const SizedBox(
                     width: 6,
                   ),
@@ -130,8 +128,8 @@ class _EducationState extends State<Education> {
           i % 2 == 0 ? TimelineItemPosition.right : TimelineItemPosition.left,
       isFirst: i == 0,
       isLast: i == educations.length,
-      iconBackground: Theme.of(context).accentColor,
+      iconBackground: Theme.of(context).colorScheme.secondary,
     );
     //icon: doodle.icon);
-  }*/
+  }
 }
