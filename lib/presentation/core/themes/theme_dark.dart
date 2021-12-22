@@ -30,7 +30,10 @@ final ThemeData themeDark = ThemeData.dark().copyWith(
     color: UNSELECTED_COLOR,
     size: AppDimensions.UNSELECTED_ICON_SIZE,
   ),
-  dividerTheme: DividerThemeData(thickness: 0.25, color: UNSELECTED_COLOR),
+  dividerTheme: DividerThemeData(
+    color: UNSELECTED_COLOR,
+    space: 1.0,
+  ),
   textTheme: TextTheme(
     headline2: TextStyle(fontSize: 22.0, color: UNSELECTED_COLOR),
     bodyText1: TextStyle(
