@@ -23,11 +23,17 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
 
   int LOAD_PER_PAGE = 15;
 
-  bool _canLoadMore = true;
-  int _currentPage = 1;
+  @visibleForTesting
+  bool canLoadMore = true;
 
-  GithubUser? _currentLoadedUser;
-  GithubSearchRepos? _currentSearchResults;
+  @visibleForTesting
+  int currentPage = 1;
+
+  @visibleForTesting
+  GithubUser? currentLoadedUser;
+
+  @visibleForTesting
+  GithubSearchRepos? currentSearchResults;
 
   GithubBloc(this._iGithubRepository) : super(const GithubState.initial()) {
     on<GithubEvent>(
@@ -54,20 +60,20 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
     emit(const GithubState.loadingMore());
     try {
       final result = await _iGithubRepository.searchUserRepos(
-        name: _currentLoadedUser!.login!,
+        name: currentLoadedUser!.login!,
         per_page: LOAD_PER_PAGE,
-        page: _currentPage + 1,
+        page: currentPage + 1,
       );
 
       if (result.isRight()) {
-        _currentPage++;
+        currentPage++;
         _finalizeResults(result);
         _checkCanLoadMore(result);
         emit(
           GithubState.userWithReposLoaded(
-            _currentLoadedUser!,
-            _currentSearchResults!,
-            canLoadMore: _canLoadMore,
+            currentLoadedUser!,
+            currentSearchResults!,
+            canLoadMore: canLoadMore,
           ),
         );
       } else {
@@ -91,7 +97,6 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
     required GetUserAndRepos e,
     required Emitter<GithubState> emit,
   }) async {
-    _resetPagination();
     // to show RefreshIndicator
     if (e.isRefresh) {
       emit(const GithubState.refreshing());
@@ -136,10 +141,9 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
             );
 
         // extracting results
-        _currentLoadedUser =
-            userResult.fold((l) => _currentLoadedUser, (r) => r);
-        _currentSearchResults =
-            searchResult.fold((l) => _currentSearchResults, (r) => r);
+        currentLoadedUser = userResult.fold((l) => currentLoadedUser, (r) => r);
+        currentSearchResults =
+            searchResult.fold((l) => currentSearchResults, (r) => r);
 
         _checkCanLoadMore(searchResult);
 
@@ -168,10 +172,10 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
           // so we could emit loaded state with included refresh failure
           emit(
             GithubState.userWithReposLoaded(
-              _currentLoadedUser!,
-              _currentSearchResults!,
+              currentLoadedUser!,
+              currentSearchResults!,
               failure: finalFailure,
-              canLoadMore: _canLoadMore,
+              canLoadMore: canLoadMore,
             ),
           );
         }
@@ -181,9 +185,9 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
           if (finalFailure == null) {
             emit(
               GithubState.userWithReposLoaded(
-                _currentLoadedUser!,
-                _currentSearchResults!,
-                canLoadMore: _canLoadMore,
+                currentLoadedUser!,
+                currentSearchResults!,
+                canLoadMore: canLoadMore,
               ),
             );
           } else {
@@ -203,12 +207,12 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
   void _finalizeResults(
     Either<GithubFailure, GithubSearchRepos> result,
   ) {
-    _currentSearchResults = result.fold(
-      (l) => _currentSearchResults,
-      (r) => _currentSearchResults != null
-          ? _currentSearchResults?.copyWith(
+    currentSearchResults = result.fold(
+      (l) => currentSearchResults,
+      (r) => currentSearchResults != null
+          ? currentSearchResults?.copyWith(
               total_count: r.total_count,
-              items: List.from(_currentSearchResults?.items ?? [])
+              items: List.from(currentSearchResults?.items ?? [])
                 ..addAll(r.items ?? []),
             )
           : r,
@@ -217,13 +221,13 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
 
   void _checkCanLoadMore(Either<GithubFailure, GithubSearchRepos> result) {
     if (result.isRight()) {
-      _canLoadMore = result.fold((_) {
-        return _canLoadMore;
+      canLoadMore = result.fold((_) {
+        return canLoadMore;
       }, (r) {
-        if (_currentSearchResults?.items != null &&
-            _currentSearchResults?.total_count != null) {
-          return _currentSearchResults!.items!.length <
-              _currentSearchResults!.total_count!;
+        if (currentSearchResults?.items != null &&
+            currentSearchResults?.total_count != null) {
+          return currentSearchResults!.items!.length <
+              currentSearchResults!.total_count!;
         }
         return false;
       });
@@ -231,6 +235,6 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
   }
 
   void _resetPagination() {
-    _currentPage = 1;
+    currentPage = 1;
   }
 }
