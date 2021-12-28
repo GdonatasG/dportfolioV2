@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dportfolio_v2/application/github_search_bloc/github_search_filter_options.dart';
+import 'package:dportfolio_v2/application/github_search_bloc/github_search_pagination.dart';
 import 'package:dportfolio_v2/domain/github/github_failure.dart';
 import 'package:dportfolio_v2/domain/github/github_search_repos.dart';
-import 'package:dportfolio_v2/domain/github/i_github_repository.dart';
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/core/github_filter_locale_keys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,38 +17,16 @@ part 'github_search_bloc.freezed.dart';
 
 @injectable
 class GithubSearchBloc extends Bloc<GithubSearchEvent, GithubSearchState> {
-  final IGithubRepository _iGithubRepository;
+  final GithubSearchPagination _pagination;
   final String? username;
 
-  int LOAD_PER_PAGE = 15;
-
-  // Search through all GitHub or specific (my) account
-  bool _isGlobalSearch = false;
-
-  bool _canLoadMore = true;
-  int _currentPage = 1;
-  String _query = "";
-  GithubSearchRepos? _currentSearchResults;
-
-  final List<String> _defaultFilterOptions = [
-    GithubFilterLocaleKeys.FILTER_OPTION_ALL,
-    "Java",
-    "Kotlin",
-    "Dart",
-    "Python",
-    "Javascript",
-    "HTML",
-  ];
-
-  List<String> get getFilterOptions => List.unmodifiable(_defaultFilterOptions);
-
-  final ValueNotifier<int> _currentLanguageIndexNotifier = ValueNotifier(0);
+  List<String> get getFilterOptions => List.unmodifiable(defaultFilterOptions);
 
   ValueListenable<int> get languageIndexNotifier =>
-      _currentLanguageIndexNotifier;
+      _pagination.languageIndexNotifier;
 
   GithubSearchBloc(
-    this._iGithubRepository, {
+    this._pagination, {
     @factoryParam this.username,
   }) : super(const GithubSearchState.initial()) {
     on<GithubSearchEvent>(
@@ -90,15 +65,12 @@ class GithubSearchBloc extends Bloc<GithubSearchEvent, GithubSearchState> {
     emit(
       const GithubSearchState.loadingMore(),
     );
-    await _search(
-      emit: emit,
-      loadingMore: true,
+    emit(
+      await _pagination.search(
+        username: username,
+        loadingMore: true,
+      ),
     );
-  }
-
-  void _resetPagination() {
-    _currentSearchResults = null;
-    _currentPage = 1;
   }
 
   Future<void> _retrySearchEvent({
@@ -106,8 +78,12 @@ class GithubSearchBloc extends Bloc<GithubSearchEvent, GithubSearchState> {
     required Emitter<GithubSearchState> emit,
   }) async {
     emit(const GithubSearchState.searching());
-    _resetPagination();
-    await _search(emit: emit);
+    _pagination.resetPagination();
+    emit(
+      await _pagination.search(
+        username: username,
+      ),
+    );
   }
 
   Future<void> _searchTypeChangedEvent({
@@ -115,9 +91,13 @@ class GithubSearchBloc extends Bloc<GithubSearchEvent, GithubSearchState> {
     required Emitter<GithubSearchState> emit,
   }) async {
     emit(const GithubSearchState.searching());
-    _resetPagination();
-    _isGlobalSearch = e.isGlobal;
-    await _search(emit: emit);
+    _pagination.resetPagination();
+    _pagination.searchTypeChanged(newValue: e.isGlobal);
+    emit(
+      await _pagination.search(
+        username: username,
+      ),
+    );
   }
 
   Future<void> _languageChangedEvent({
@@ -125,9 +105,13 @@ class GithubSearchBloc extends Bloc<GithubSearchEvent, GithubSearchState> {
     required Emitter<GithubSearchState> emit,
   }) async {
     emit(const GithubSearchState.searching());
-    _resetPagination();
-    _currentLanguageIndexNotifier.value = e.index;
-    await _search(emit: emit);
+    _pagination.resetPagination();
+    _pagination.currentLanguageIndexChanged(newValue: e.index);
+    emit(
+      await _pagination.search(
+        username: username,
+      ),
+    );
   }
 
   Future<void> _queryChangedEvent({
@@ -135,118 +119,18 @@ class GithubSearchBloc extends Bloc<GithubSearchEvent, GithubSearchState> {
     required Emitter<GithubSearchState> emit,
   }) async {
     emit(const GithubSearchState.searching());
-    _resetPagination();
-    _query = e.query;
-    await _search(emit: emit);
-  }
-
-  Future<void> _search({
-    required Emitter<GithubSearchState> emit,
-    bool loadingMore = false,
-  }) async {
-    if (_query.isEmpty &&
-        _getCurrentLanguageAsString().isEmpty &&
-        !loadingMore) {
-      emit(const GithubSearchState.initial());
-    } else {
-      try {
-        final suitableMethod = _isGlobalSearch
-            ? _iGithubRepository.searchReposGlobally(
-                per_page: LOAD_PER_PAGE,
-                page: loadingMore ? _currentPage + 1 : _currentPage,
-                query: _query,
-                language: _getCurrentLanguageAsString(),
-              )
-            : _iGithubRepository.searchUserRepos(
-                name: username!,
-                per_page: LOAD_PER_PAGE,
-                page: loadingMore ? _currentPage + 1 : _currentPage,
-                query: _query,
-                language: _getCurrentLanguageAsString(),
-              );
-
-        final result = await suitableMethod.timeout(
-          const Duration(
-            seconds: 30,
-          ),
-          onTimeout: () => left(const GithubFailure.reposLoadingFailure()),
-        );
-
-        // Loading more is successful
-        // Incrementing currentPage counter,
-        // because page from repository was requested using [_currentPage + 1]
-        if (result.isRight() && loadingMore) {
-          _currentPage++;
-        }
-
-        _finalizeResults(result);
-        _checkCanLoadMore(result);
-
-        emit(
-          result.fold(
-            (f) => loadingMore
-                ? GithubSearchState.loadingMoreError(f)
-                : GithubSearchState.searchingError(f),
-            (r) => GithubSearchState.searched(
-              _currentSearchResults ?? r,
-              _canLoadMore,
-            ),
-          ),
-        );
-      } catch (e) {
-        log(e.toString());
-        emit(
-          loadingMore
-              ? const GithubSearchState.loadingMoreError(
-                  GithubFailure.unexpected(),
-                )
-              : const GithubSearchState.searchingError(
-                  GithubFailure.unexpected(),
-                ),
-        );
-      }
-    }
-  }
-
-  void _finalizeResults(
-    Either<GithubFailure, GithubSearchRepos> result,
-  ) {
-    _currentSearchResults = result.fold(
-      (l) => _currentSearchResults,
-      (r) => _currentSearchResults != null
-          ? _currentSearchResults?.copyWith(
-              total_count: r.total_count,
-              items: List.from(_currentSearchResults?.items ?? [])
-                ..addAll(r.items ?? []),
-            )
-          : r,
+    _pagination.resetPagination();
+    _pagination.queryChanged(newValue: e.query);
+    emit(
+      await _pagination.search(
+        username: username,
+      ),
     );
   }
 
-  void _checkCanLoadMore(Either<GithubFailure, GithubSearchRepos> result) {
-    if (result.isRight()) {
-      _canLoadMore = result.fold((_) {
-        return _canLoadMore;
-      }, (r) {
-        if (_currentSearchResults?.items != null &&
-            _currentSearchResults?.total_count != null) {
-          return _currentSearchResults!.items!.length <
-              _currentSearchResults!.total_count!;
-        }
-        return false;
-      });
-    }
-  }
-
-  String _getCurrentLanguageAsString() =>
-      _currentLanguageIndexNotifier.value > 0 &&
-              _currentLanguageIndexNotifier.value < _defaultFilterOptions.length
-          ? _defaultFilterOptions[_currentLanguageIndexNotifier.value]
-          : '';
-
   @override
   Future<void> close() {
-    _currentLanguageIndexNotifier.dispose();
+    _pagination.close();
     return super.close();
   }
 }
