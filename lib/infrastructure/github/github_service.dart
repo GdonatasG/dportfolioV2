@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:chopper/chopper.dart';
-import 'package:dportfolio_v2/hidden.dart';
 import 'package:dportfolio_v2/infrastructure/core/converters/json_to_type_converter.dart';
 import 'package:dportfolio_v2/infrastructure/github/github_repo_dto.dart';
 import 'package:dportfolio_v2/infrastructure/github/github_search_repos_dto.dart';
 import 'package:dportfolio_v2/infrastructure/github/github_user_dto.dart';
-import 'package:http/io_client.dart' as http;
+import 'package:flutter/cupertino.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart' as httpIO;
 import 'package:injectable/injectable.dart';
 
 part 'github_service.chopper.dart';
@@ -14,6 +16,18 @@ part 'github_service.chopper.dart';
 @injectable
 @ChopperApi(baseUrl: "https://api.github.com")
 abstract class GithubService extends ChopperService {
+  static final _converter = JsonToTypeConverter(
+    {
+      GithubUserDTO: (jsonData) => GithubUserDTO.fromJson(jsonData),
+      GithubRepoDTO: (jsonData) => GithubRepoDTO.fromJson(jsonData),
+      GithubSearchReposDTO: (jsonData) =>
+          GithubSearchReposDTO.fromJson(jsonData),
+    },
+  );
+  static final _interceptors = [
+    HttpLoggingInterceptor(),
+  ];
+
   @Get(
     path: "/users/{name}",
   )
@@ -50,21 +64,27 @@ abstract class GithubService extends ChopperService {
   @factoryMethod
   static GithubService create() {
     final client = ChopperClient(
-      client: http.IOClient(
+      client: httpIO.IOClient(
         HttpClient()..connectionTimeout = const Duration(seconds: 15),
       ),
       services: [
         _$GithubService(),
       ],
-      converter: JsonToTypeConverter(
-        {
-          GithubUserDTO: (jsonData) => GithubUserDTO.fromJson(jsonData),
-          GithubRepoDTO: (jsonData) => GithubRepoDTO.fromJson(jsonData),
-          GithubSearchReposDTO: (jsonData) =>
-              GithubSearchReposDTO.fromJson(jsonData),
-        },
-      ),
-      interceptors: [HttpLoggingInterceptor()],
+      converter: _converter,
+      interceptors: _interceptors,
+    );
+    return _$GithubService(client);
+  }
+
+  @visibleForTesting
+  static GithubService createForTesting(http.Client mockClient) {
+    final client = ChopperClient(
+      client: mockClient,
+      services: [
+        _$GithubService(),
+      ],
+      converter: _converter,
+      interceptors: _interceptors,
     );
     return _$GithubService(client);
   }

@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'dart:convert';
 
 import 'package:dportfolio_v2/domain/github/github_repo.dart';
@@ -24,7 +23,25 @@ abstract class GithubRepoDTO implements _$GithubRepoDTO {
         language: language,
       );
 
-  factory GithubRepoDTO.fromJson(dynamic j) => _$GithubRepoDTOFromJson(
-        json.decode(json.encode(j)) as Map<String, dynamic>,
-      );
+  factory GithubRepoDTO.fromJson(dynamic j) => _customFromJson(j);
+
+  static GithubRepoDTO _customFromJson(Map<String, dynamic> incoming) {
+    final jsonPayload = Map<String, dynamic>.from(incoming);
+
+    if (jsonPayload['name'] is! String) {
+      jsonPayload['name'] = null;
+    }
+
+    if (jsonPayload['html_url'] is! String) {
+      jsonPayload['html_url'] = null;
+    }
+
+    if (jsonPayload['language'] is! String) {
+      jsonPayload['language'] = null;
+    }
+
+    return _$GithubRepoDTOFromJson(
+      json.decode(json.encode(jsonPayload)) as Map<String, dynamic>,
+    );
+  }
 }

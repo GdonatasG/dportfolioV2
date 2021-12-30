@@ -22,8 +22,21 @@ abstract class GithubSearchReposDTO implements _$GithubSearchReposDTO {
         items: items?.map((repo) => repo.toDomain()).toList(),
       );
 
-  factory GithubSearchReposDTO.fromJson(dynamic j) =>
-      _$GithubSearchReposDTOFromJson(
-        json.decode(json.encode(j)) as Map<String, dynamic>,
-      );
+  factory GithubSearchReposDTO.fromJson(dynamic j) => _customFromJson(j);
+
+  static GithubSearchReposDTO _customFromJson(Map<String, dynamic> incoming) {
+    final jsonPayload = Map<String, dynamic>.from(incoming);
+
+    if (jsonPayload['total_count'] is! int) {
+      jsonPayload['total_count'] = null;
+    }
+
+    if (jsonPayload['items'] is! List) {
+      jsonPayload['items'] = null;
+    }
+
+    return _$GithubSearchReposDTOFromJson(
+      json.decode(json.encode(jsonPayload)) as Map<String, dynamic>,
+    );
+  }
 }
