@@ -24,5 +24,25 @@ abstract class GithubUserDTO implements _$GithubUserDTO {
       );
 
   factory GithubUserDTO.fromJson(Map<String, dynamic> json) =>
-      _$GithubUserDTOFromJson(json);
+      _customFromJson(json);
+
+  static GithubUserDTO _customFromJson(Map<String, dynamic> incoming) {
+    final jsonPayload = Map<String, dynamic>.from(incoming);
+
+    if (jsonPayload['login'] is! String) {
+      jsonPayload['login'] = null;
+    }
+
+    if (jsonPayload['avatar_url'] is! String) {
+      jsonPayload['avatar_url'] = null;
+    }
+
+    if (jsonPayload['html_url'] is! String) {
+      jsonPayload['html_url'] = null;
+    }
+
+    return _$GithubUserDTOFromJson(
+      json.decode(json.encode(jsonPayload)) as Map<String, dynamic>,
+    );
+  }
 }
