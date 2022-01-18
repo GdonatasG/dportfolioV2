@@ -23,6 +23,7 @@ void main() {
   tearDown(
     () {
       reset(mockGithubRepository);
+      pagination.close();
     },
   );
 

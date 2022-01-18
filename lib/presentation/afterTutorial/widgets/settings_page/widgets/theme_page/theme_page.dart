@@ -1,4 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/theme_page/theme_page_keys.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:ez_localization/src/extension.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class _ThemePageState extends State<ThemePage> {
   ) =>
       [
         RadioListTile(
+          key: const ValueKey(ThemePageKeys.radioTileThemeLight),
           title: Text(context.getString(LocaleKeys.LIGHT_THEME)),
           activeColor: Theme.of(context).colorScheme.secondary,
           value: AdaptiveThemeMode.light,
@@ -27,6 +29,7 @@ class _ThemePageState extends State<ThemePage> {
           },
         ),
         RadioListTile(
+          key: const ValueKey(ThemePageKeys.radioTileThemeDark),
           title: Text(context.getString(LocaleKeys.DARK_THEME)),
           activeColor: Theme.of(context).colorScheme.secondary,
           value: AdaptiveThemeMode.dark,
@@ -36,6 +39,7 @@ class _ThemePageState extends State<ThemePage> {
           },
         ),
         RadioListTile(
+          key: const ValueKey(ThemePageKeys.radioTileThemeSystem),
           title: Text(context.getString(LocaleKeys.DEVICE_THEME)),
           activeColor: Theme.of(context).colorScheme.secondary,
           value: AdaptiveThemeMode.system,
@@ -49,6 +53,7 @@ class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
+      key: const ValueKey(ThemePageKeys.themePage),
       value: SystemUiOverlayStyle(
         statusBarColor: Theme.of(context).primaryColor,
         statusBarIconBrightness:

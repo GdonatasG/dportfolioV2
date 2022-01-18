@@ -32,7 +32,8 @@ class _UniversityState extends State<University> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 ContentTextWidget(
-                    content: context.getString(LocaleKeys.UNIVERSITY_CONTENT1))
+                  content: context.getString(LocaleKeys.UNIVERSITY_CONTENT1),
+                )
               ]),
             ),
           )

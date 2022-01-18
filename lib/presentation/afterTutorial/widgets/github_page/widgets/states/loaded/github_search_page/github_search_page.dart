@@ -1,12 +1,13 @@
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
-import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:collection/src/list_extensions.dart';
 import 'package:dportfolio_v2/application/github_search_bloc/github_search_bloc.dart';
 import 'package:dportfolio_v2/domain/github/github_failure.dart';
 import 'package:dportfolio_v2/domain/github/github_search_repos.dart';
 import 'package:dportfolio_v2/injection.dart';
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/github_repo_item.dart';
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/sticky_header_widget.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/github_search_page/github_search_page_keys.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/widgets/github_repo_item.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/widgets/sticky_header_widget.dart';
 import 'package:dportfolio_v2/presentation/core/app_dimensions.dart';
 import 'package:dportfolio_v2/presentation/core/debouncer.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
@@ -27,7 +28,7 @@ class GithubSearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<GithubSearchBloc>(
-      create: (c) => getIt<GithubSearchBloc>(param1: 'GdonatasG'),
+      create: (c) => getIt<GithubSearchBloc>(param1: username),
       child: const GithubSearchView(),
     );
   }
@@ -40,14 +41,18 @@ class GithubSearchView extends StatefulHookWidget {
   _GithubSearchViewState createState() => _GithubSearchViewState();
 }
 
+const githubSearchDebounceDuration = Duration(milliseconds: 500);
+
 class _GithubSearchViewState extends State<GithubSearchView> {
   final TextEditingController _searchController = TextEditingController();
-  final Debounce _debounce = Debounce(const Duration(milliseconds: 500));
+  final Debounce _debounce = Debounce(githubSearchDebounceDuration);
+  final _focusNode = FocusNode();
 
   @override
   void dispose() {
     _searchController.dispose();
     _debounce.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -62,16 +67,27 @@ class _GithubSearchViewState extends State<GithubSearchView> {
             title: _searchTextField(context),
             actions: [
               IconButton(
+                key: const ValueKey(
+                  GithubSearchPageKeys.LANGUAGE_SELECTOR_BUTTON,
+                ),
                 icon: ValueListenableBuilder<int>(
                   valueListenable: BlocProvider.of<GithubSearchBloc>(context)
                       .languageIndexNotifier,
                   builder: (ctx, ind, _) => ind > 0
                       ? Icon(
                           Icons.filter_alt,
+                          key: const ValueKey(
+                            GithubSearchPageKeys
+                                .LANGUAGE_SELECTOR_ICON_SELECTED,
+                          ),
                           color: Theme.of(context).colorScheme.secondary,
                         )
                       : const Icon(
                           Icons.filter_alt,
+                          key: ValueKey(
+                            GithubSearchPageKeys
+                                .LANGUAGE_SELECTOR_ICON_UNSELECTED,
+                          ),
                         ),
                 ),
                 onPressed: () {
@@ -95,6 +111,9 @@ class _GithubSearchViewState extends State<GithubSearchView> {
                       width: 3.0,
                     ),
                     Switch(
+                      key: const ValueKey(
+                        GithubSearchPageKeys.GLOBAL_SEARCH_SWITCH,
+                      ),
                       value: isGlobalSearch.value,
                       activeColor: Theme.of(context).colorScheme.secondary,
                       onChanged: (isGlobal) {
@@ -123,12 +142,7 @@ class _GithubSearchViewState extends State<GithubSearchView> {
                   ),
                   builder: (ctx, state) => state.maybeMap(
                     initial: (_) => const InitialSearchWidget(),
-                    searching: (_) => const Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth:
-                            AppDimensions.CIRCULAR_PROGRESS_INDICATOR_STROKE,
-                      ),
-                    ),
+                    searching: (_) => const SearchingWidget(),
                     searched: (s) {
                       if (s.githubSearchRepos.items?.isNotEmpty ?? false) {
                         return LoadedSearchWidget(
@@ -185,7 +199,7 @@ class _GithubSearchViewState extends State<GithubSearchView> {
                     index: index,
                   ),
                 );
-                context.router.pop();
+                Navigator.of(context).pop();
               },
             ),
           )
@@ -198,49 +212,71 @@ class _GithubSearchViewState extends State<GithubSearchView> {
     );
   }
 
-  TextField _searchTextField(BuildContext context) => TextField(
-        controller: _searchController,
-        autofocus: true,
-        onChanged: (val) {
-          setState(() {});
-          _debounce(() {
-            BlocProvider.of<GithubSearchBloc>(context).add(
-              GithubSearchEvent.queryChanged(query: val),
-            );
-          });
-        },
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.search),
-          suffixIcon: _searchController.text.isNotEmpty
-              ? IconButton(
-                  onPressed: () {
-                    _searchController.clear();
-                    setState(() {});
-                    BlocProvider.of<GithubSearchBloc>(context).add(
-                      const GithubSearchEvent.queryChanged(query: ''),
-                    );
-                  },
-                  icon: const Icon(Icons.clear),
-                )
-              : null,
-          hintText: context.getString(LocaleKeys.GITHUB_SEARCH_HINT),
-          fillColor: Theme.of(context).primaryColorDark,
-          filled: true,
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide.none,
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide.none,
-          ),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
+  TextField _searchTextField(BuildContext context) {
+    return TextField(
+      key: const ValueKey(GithubSearchPageKeys.SEARCH_TEXT_FIELD),
+      controller: _searchController,
+      focusNode: _focusNode,
+      autofocus: true,
+      onChanged: (val) {
+        setState(() {});
+        _debounce(() {
+          BlocProvider.of<GithubSearchBloc>(context).add(
+            GithubSearchEvent.queryChanged(query: val),
+          );
+        });
+      },
+      textInputAction: TextInputAction.done,
+      onSubmitted: (_) {
+        _focusNode.unfocus();
+      },
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.search),
+        suffixIcon: _searchController.text.isNotEmpty
+            ? IconButton(
+                key: const ValueKey(GithubSearchPageKeys.SEARCH_CLEAR_BUTTON),
+                onPressed: () {
+                  _searchController.clear();
+                  setState(() {});
+                  BlocProvider.of<GithubSearchBloc>(context).add(
+                    const GithubSearchEvent.queryChanged(query: ''),
+                  );
+                },
+                icon: const Icon(Icons.clear),
+              )
+            : null,
+        hintText: context.getString(LocaleKeys.GITHUB_SEARCH_HINT),
+        fillColor: Theme.of(context).primaryColorDark,
+        filled: true,
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide.none,
         ),
-      );
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
+      ),
+    );
+  }
+}
+
+class SearchingWidget extends StatelessWidget {
+  const SearchingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: CircularProgressIndicator(
+        strokeWidth: AppDimensions.CIRCULAR_PROGRESS_INDICATOR_STROKE,
+      ),
+    );
+  }
 }
 
 class SearchErrorWidget extends StatelessWidget {
@@ -265,6 +301,9 @@ class SearchErrorWidget extends StatelessWidget {
               context.getString(LocaleKeys.ERROR_TRY_AGAIN),
             ),
             ElevatedButton(
+              key: const ValueKey(
+                GithubSearchPageKeys.SEARCH_ERROR_WIDGET_RETRY_BUTTON,
+              ),
               onPressed: () {
                 BlocProvider.of<GithubSearchBloc>(context)
                     .add(const GithubSearchEvent.retrySearch());
@@ -356,16 +395,16 @@ class _LoadedSearchWidgetState extends State<LoadedSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<GithubSearchBloc, GithubSearchState>(
+      listenWhen: (p, c) => c.maybeWhen(
+        loadingMoreError: (_) => true,
+        orElse: () => false,
+      ),
       listener: (ctx, state) {
         state.maybeMap(
           loadingMoreError: (_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  context.getString(LocaleKeys.ERROR_TRY_AGAIN),
-                ),
-              ),
-            );
+            FlushbarHelper.createError(
+              message: context.getString(LocaleKeys.ERROR_TRY_AGAIN),
+            ).show(context);
           },
           orElse: () {},
         );
@@ -384,6 +423,7 @@ class _LoadedSearchWidgetState extends State<LoadedSearchWidget> {
           ),
           Expanded(
             child: ListView.separated(
+              key: const ValueKey(GithubSearchPageKeys.reposListView),
               separatorBuilder: (context, index) => const Divider(
                 height: 1.0,
               ),
@@ -394,6 +434,7 @@ class _LoadedSearchWidgetState extends State<LoadedSearchWidget> {
                           widget.githubSearchRepos.items!.length &&
                       widget.canLoadMore
                   ? Align(
+                      key: const ValueKey(GithubSearchPageKeys.paginateWidget),
                       alignment: Alignment.bottomCenter,
                       child: Padding(
                         padding: const EdgeInsets.all(
@@ -402,10 +443,16 @@ class _LoadedSearchWidgetState extends State<LoadedSearchWidget> {
                         child: BlocBuilder<GithubSearchBloc, GithubSearchState>(
                           builder: (ctx, state) => state.maybeMap(
                             loadingMore: (_) => const CircularProgressIndicator(
+                              key: ValueKey(
+                                GithubSearchPageKeys.paginationIndicator,
+                              ),
                               strokeWidth: AppDimensions
                                   .CIRCULAR_PROGRESS_INDICATOR_STROKE,
                             ),
                             orElse: () => OutlinedButton(
+                              key: const ValueKey(
+                                GithubSearchPageKeys.paginateButton,
+                              ),
                               onPressed: () {
                                 BlocProvider.of<GithubSearchBloc>(context)
                                     .add(const GithubSearchEvent.paginate());

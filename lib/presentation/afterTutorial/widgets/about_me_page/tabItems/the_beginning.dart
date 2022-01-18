@@ -33,8 +33,8 @@ class _TheBeginningState extends State<TheBeginning> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 ContentTextWidget(
-                    content:
-                        context.getString(LocaleKeys.THE_BEGINNING_CONTENT1))
+                  content: context.getString(LocaleKeys.THE_BEGINNING_CONTENT1),
+                )
               ]),
             ),
           )

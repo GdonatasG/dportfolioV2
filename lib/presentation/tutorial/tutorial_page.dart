@@ -3,6 +3,7 @@ import 'package:dportfolio_v2/application/wrapper_bloc/wrapper_bloc.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/core/themes/theme_light.dart';
 import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
+import 'package:dportfolio_v2/presentation/tutorial/tutorial_page_keys.dart';
 import 'package:dportfolio_v2/presentation/tutorial/widgets/ending_view.dart';
 import 'package:dportfolio_v2/presentation/tutorial/widgets/greeting_view.dart';
 import 'package:dportfolio_v2/presentation/tutorial/widgets/what_to_find_view.dart';
@@ -12,6 +13,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TutorialPage extends StatefulWidget {
+  const TutorialPage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   _TutorialPageState createState() => _TutorialPageState();
 }
@@ -49,6 +54,7 @@ class _TutorialPageState extends State<TutorialPage> {
             children: [
               Expanded(
                 child: PageView(
+                  key: const ValueKey(TutorialPageKeys.KEY_PAGE_VIEW),
                   physics: const NeverScrollableScrollPhysics(),
                   controller: _pageController,
                   onPageChanged: (page) {
@@ -105,21 +111,25 @@ class FooterControls extends StatelessWidget {
       // only forward icon, first page
       return [
         IconButton(
-            icon: const Icon(Icons.arrow_forward),
-            onPressed: () {
-              secondPage();
-            }),
+          key: const ValueKey(TutorialPageKeys.KEY_FOOTER_ARROW_FORWARD),
+          icon: const Icon(Icons.arrow_forward),
+          onPressed: () {
+            secondPage();
+          },
+        ),
       ];
     } else if (currentPage > 0 && currentPage < maxPages - 1) {
       // not first page, but also not last, forward and back icons
       return [
         IconButton(
+          key: const ValueKey(TutorialPageKeys.KEY_FOOTER_ARROW_BACK),
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             previousPage();
           },
         ),
         IconButton(
+          key: const ValueKey(TutorialPageKeys.KEY_FOOTER_ARROW_FORWARD),
           icon: const Icon(Icons.arrow_forward),
           onPressed: () {
             secondPage();
@@ -129,14 +139,18 @@ class FooterControls extends StatelessWidget {
     } else {
       return [
         IconButton(
+            key: const ValueKey(TutorialPageKeys.KEY_FOOTER_ARROW_BACK),
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               previousPage();
             }),
         IconButton(
+          key: const ValueKey(TutorialPageKeys.KEY_FOOTER_DONE),
           icon: const Icon(Icons.done),
           onPressed: () {
-            closeTutorialDialog(context);
+            closeTutorialDialog(
+              context,
+            );
           },
         ),
       ];
@@ -144,19 +158,30 @@ class FooterControls extends StatelessWidget {
   }
 
   previousPage() {
-    pageController.animateToPage(currentPage - 1,
-        duration: const Duration(milliseconds: 500), curve: Curves.ease);
+    pageController.animateToPage(
+      currentPage - 1,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
   }
 
   secondPage() {
-    pageController.animateToPage(currentPage + 1,
-        duration: const Duration(milliseconds: 500), curve: Curves.ease);
+    pageController.animateToPage(
+      currentPage + 1,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
   }
 
-  closeTutorialDialog(BuildContext context) => showDialog(
+  @visibleForTesting
+  static Future closeTutorialDialog(
+    BuildContext context,
+  ) =>
+      showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            key: const ValueKey(TutorialPageKeys.KEY_CLOSE_TUTORIAL_DIALOG),
             title: Text(
               context.getString(LocaleKeys.CONFIRMATION),
               style: TextStyle(
@@ -165,12 +190,14 @@ class FooterControls extends StatelessWidget {
             ),
             actions: [
               TextButton(
+                key: const ValueKey(TutorialPageKeys.KEY_DIALOG_CANCEL),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
                 child: Text(context.getString(LocaleKeys.BTN_CANCEL)),
               ), // cancel button
               TextButton(
+                key: const ValueKey(TutorialPageKeys.KEY_DIALOG_CONFIRM),
                 onPressed: () {
                   BlocProvider.of<WrapperBloc>(context)
                       .add(const WrapperEvent.tutorialCompleted());

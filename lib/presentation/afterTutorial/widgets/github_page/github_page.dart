@@ -9,14 +9,9 @@ import 'widgets/states/loaded/loaded_github_page.dart';
 
 const GITHUB_PAGE_APP_BAR_HEIGHT = 260.0;
 
-class GithubPage extends StatefulWidget {
+class GithubPage extends StatelessWidget {
   const GithubPage({Key? key}) : super(key: key);
 
-  @override
-  _GithubPageState createState() => _GithubPageState();
-}
-
-class _GithubPageState extends State<GithubPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -35,7 +30,11 @@ class _GithubPageState extends State<GithubPage> {
         builder: (ctx, s) => s.maybeMap(
           initial: (_) => const GithubLoadingWidget(),
           loading: (_) => const GithubLoadingWidget(),
-          userWithReposLoaded: (_) => const LoadedGithubPage(),
+          userWithReposLoaded: (s) => LoadedGithubPage(
+            githubUser: s.githubUser,
+            githubSearchRepos: s.githubSearchRepos,
+            canLoadMore: s.canLoadMore,
+          ),
           initialLoadingError: (_) => GithubErrorStateWidget(),
           orElse: () => Container(),
         ),
