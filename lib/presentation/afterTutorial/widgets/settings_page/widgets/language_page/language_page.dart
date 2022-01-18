@@ -1,4 +1,5 @@
 import 'package:dportfolio_v2/injection.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/language_page/language_page_keys.dart';
 import 'package:dportfolio_v2/presentation/core/locale_constants.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:ez_localization/ez_localization.dart';
@@ -14,6 +15,7 @@ class LanguagePage extends StatefulWidget {
 class _LanguagePageState extends State<LanguagePage> {
   List<Widget> _rebuildChoices(BuildContext context, String lang) => [
         RadioListTile(
+          key: const ValueKey(LanguagePageKeys.radioTileLanguageEn),
           title: Text(context.getString(LocaleKeys.LANGUAGE_EN)),
           activeColor: Theme.of(context).colorScheme.secondary,
           value: LocaleConstants.LANG_EN,
@@ -27,6 +29,7 @@ class _LanguagePageState extends State<LanguagePage> {
           },
         ),
         RadioListTile(
+          key: const ValueKey(LanguagePageKeys.radioTileLanguageLt),
           title: Text(context.getString(LocaleKeys.LANGUAGE_LT)),
           activeColor: Theme.of(context).colorScheme.secondary,
           value: LocaleConstants.LANG_LT,
@@ -40,6 +43,7 @@ class _LanguagePageState extends State<LanguagePage> {
           },
         ),
         RadioListTile(
+          key: const ValueKey(LanguagePageKeys.radioTileLanguageDevice),
           title: Text(context.getString(LocaleKeys.LANGUAGE_DEVICE)),
           activeColor: Theme.of(context).colorScheme.secondary,
           value: LocaleConstants.LANG_DEVICE,

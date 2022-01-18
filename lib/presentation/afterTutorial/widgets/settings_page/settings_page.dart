@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/settings_page_keys.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/routes/router.gr.dart';
 import 'package:ez_localization/src/extension.dart';
@@ -25,8 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
   }
 
-  // ignore: always_declare_return_types
-  _getAppVersion() {
+  void _getAppVersion() {
     PackageInfo.fromPlatform().then((PackageInfo info) {
       setState(() {
         appVersion = info.version;
@@ -60,6 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
           title: context.getString(LocaleKeys.PERSONALIZATION),
         ),
         TextTile(
+          key: const ValueKey(SettingsPageKeys.itemThemePage),
           leading: const Icon(Icons.color_lens_outlined),
           trailing: const Icon(Icons.arrow_forward),
           title: context.getString(LocaleKeys.THEME),
@@ -69,6 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
           isSingleLine: true,
         ),
         TextTile(
+          key: const ValueKey(SettingsPageKeys.itemLanguagePage),
           leading: const Icon(Icons.language),
           trailing: const Icon(Icons.arrow_forward),
           title: context.getString(LocaleKeys.LANGUAGE_TITLE),

@@ -1,4 +1,5 @@
 import 'package:dportfolio_v2/application/github_bloc/github_bloc.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/core/loaded_github_page_keys.dart';
 import 'package:dportfolio_v2/presentation/core/app_dimensions.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import "package:ez_localization/src/extension.dart";
@@ -45,6 +46,7 @@ class LoadedEmptyWidget extends StatelessWidget {
         ),
         // data reload button
         ElevatedButton(
+          key: const ValueKey(LoadedGithubPageKeys.EMPTY_LIST_REFRESH_BUTTON),
           onPressed: () {
             BlocProvider.of<GithubBloc>(context).add(
               const GithubEvent.getUserAndRepos(

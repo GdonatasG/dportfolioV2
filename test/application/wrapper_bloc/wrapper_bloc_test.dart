@@ -41,8 +41,9 @@ void main() {
         },
       );
 
-      tearDown(() {
+      tearDown(() async {
         debugResetStreamingSharedPreferencesInstance();
+        await wrapperBloc!.close();
       });
 
       group('tutorialCheckRequest', () {

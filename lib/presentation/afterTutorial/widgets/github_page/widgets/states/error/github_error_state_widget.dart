@@ -1,4 +1,5 @@
 import 'package:dportfolio_v2/application/github_bloc/github_bloc.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/error/github_error_state_widget_keys.dart';
 import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,8 @@ class GithubErrorStateWidget extends StatelessWidget {
                 ),
                 // data reload button
                 ElevatedButton(
+                  key:
+                      const ValueKey(GithubErrorStateWidgetKeys.tryAgainButton),
                   onPressed: () {
                     BlocProvider.of<GithubBloc>(context).add(
                       const GithubEvent.getUserAndRepos(

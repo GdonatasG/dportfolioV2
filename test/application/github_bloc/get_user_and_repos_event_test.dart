@@ -19,8 +19,9 @@ void main() {
   );
 
   tearDown(
-    () {
+    () async {
       reset(mockGithubRepository);
+      await githubBloc.close();
     },
   );
 

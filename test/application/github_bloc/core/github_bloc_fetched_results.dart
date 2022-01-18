@@ -8,6 +8,11 @@ const fetchedUser = GithubUser(
   html_url: 'html_url',
 );
 
+const fetchedEmptySearchRepos = GithubSearchRepos(
+  total_count: 0,
+  items: [],
+);
+
 const fetchedSearchReposThatCanLoadMore = GithubSearchRepos(
   // can paginate, because [total_count] is greater than [items.length]
   total_count: 4,

@@ -142,8 +142,12 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
 
         // extracting results
         currentLoadedUser = userResult.fold((l) => currentLoadedUser, (r) => r);
-        currentSearchResults =
-            searchResult.fold((l) => currentSearchResults, (r) => r);
+        /*currentSearchResults =
+            searchResult.fold((l) => currentSearchResults, (r) => r);*/
+        currentSearchResults = searchResult.fold(
+          (l) => currentSearchResults,
+          (r) => r,
+        );
 
         _checkCanLoadMore(searchResult);
 

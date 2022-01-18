@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dportfolio_v2/domain/github/github_user.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/github_page.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/core/loaded_github_page_keys.dart';
 import 'package:ez_localization/src/extension.dart';
 import 'package:dportfolio_v2/presentation/core/locale_keys.dart';
 import 'package:dportfolio_v2/presentation/core/widgets/sabt.dart';
@@ -46,7 +47,8 @@ class _LoadedSliverAppBarState extends State<LoadedSliverAppBar> {
             CircleAvatar(
               radius: 60.0,
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              backgroundImage: NetworkImage(widget.githubUser.avatar_url ?? ''),
+              backgroundImage:
+                  Image.network(widget.githubUser.avatar_url ?? '').image,
             ),
             const SizedBox(
               height: 3,
@@ -63,6 +65,7 @@ class _LoadedSliverAppBarState extends State<LoadedSliverAppBar> {
               height: 15,
             ),
             ElevatedButton(
+              key: const ValueKey(LoadedGithubPageKeys.VISIT_PROFILE_BUTTON),
               onPressed: () {
                 context.router.push(
                   CustomWebViewRoute(url: widget.githubUser.html_url ?? ''),

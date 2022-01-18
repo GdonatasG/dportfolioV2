@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.7.0"
+  another_flushbar:
+    dependency: "direct main"
+    description:
+      name: another_flushbar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.10.28"
   archive:
     dependency: transitive
     description:
@@ -543,6 +550,13 @@ packages:
     dependency: "direct main"
     description:
       name: mocktail
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
+  mocktail_image_network:
+    dependency: "direct main"
+    description:
+      name: mocktail_image_network
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"

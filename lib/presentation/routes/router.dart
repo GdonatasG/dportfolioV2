@@ -4,12 +4,13 @@ import 'package:dportfolio_v2/presentation/afterTutorial/after_tutorial_page.dar
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/about_me_page/about_me_page.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/contact_page/contact_page.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/github_page.dart';
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/github_search_page.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/github_page/widgets/states/loaded/github_search_page/github_search_page.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/portfolio_page/portfolio_page.dart';
 import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/settings_page.dart';
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/language_page.dart';
-import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/theme_page.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/language_page/language_page.dart';
+import 'package:dportfolio_v2/presentation/afterTutorial/widgets/settings_page/widgets/theme_page/theme_page.dart';
 import 'package:dportfolio_v2/presentation/core/widgets/custom_webview.dart';
+import 'package:dportfolio_v2/presentation/test_page.dart';
 import 'package:dportfolio_v2/presentation/tutorial/tutorial_page.dart';
 import 'package:dportfolio_v2/presentation/wrapper/wrapper_page.dart';
 
@@ -62,6 +63,7 @@ import 'package:dportfolio_v2/presentation/wrapper/wrapper_page.dart';
       ],
     ),
     AdaptiveRoute(page: CustomWebView, fullscreenDialog: true),
+    AdaptiveRoute(page: TestPage),
   ],
 )
 class $AppRouter {}
