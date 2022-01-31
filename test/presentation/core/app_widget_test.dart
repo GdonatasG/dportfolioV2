@@ -92,7 +92,7 @@ void main() {
     'theme_mode',
     () {
       testWidgets(
-        'should set theme mode to light initially '
+        'should set theme mode to system initially '
         'when theme mode is not saved in SharedPreferences',
         (WidgetTester tester) async {
           await tester.runAsync(
@@ -105,7 +105,7 @@ void main() {
               final BuildContext context =
                   tester.element(find.byType(MaterialApp));
 
-              expect(AdaptiveTheme.of(context).mode, AdaptiveThemeMode.light);
+              expect(AdaptiveTheme.of(context).mode, AdaptiveThemeMode.system);
             },
           );
         },
