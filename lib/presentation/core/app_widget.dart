@@ -27,7 +27,7 @@ class AppWidget extends StatelessWidget {
     return AdaptiveTheme(
       light: themeLight,
       dark: themeDark,
-      initial: savedThemeMode ?? AdaptiveThemeMode.light,
+      initial: savedThemeMode ?? AdaptiveThemeMode.system,
       builder: (theme, darkTheme) => MultiBlocProvider(
         providers: [
           BlocProvider(
